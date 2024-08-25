@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name" translatable="false">UltimateCatBattle</string>
+    <string name="main_title" translatable="false">Ultimate Cat Battle</string>
+    <string name="main_screen_return">Return to main screen</string>
+    <string name="one_player">1 player</string>
+    <string name="two_players">2 players</string>
+    <string name="cat">Cat</string>
+    <string name="penguin">Penguin</string>
+    <string name="player_turn">%s\'s turn</string>
+    <string name="remaining_time">Remaining time: %s</string>
+    <string name="proceed">Proceed</string>
+    <string name="start_turn">Start turn</string>
+    <string name="used_skill_message">%s uses %s</string>
+    <string name="player_wins">%s wins !</string>
+    <string name="damage_done_message">Damage done :</string>
+    <string name="critical_message">Critical hit !</string>
+    <string name="attack_dragon_fist">Dragon fist</string>
+    <string name="attack_finger_of_death">Finger of death</string>
+    <string name="attack_great_explosion">Great explosion</string>
+    <string name="attack_sweeping_kick">Sweeping kick</string>
+    <string name="attack_heart_strike">Heart strike</string>
+    <string name="attack_beak_strike">Beak strike</string>
+    <string name="support_berserk">Berserk</string>
+    <string name="support_guard">Guard</string>
+    <string name="support_speed">Speed</string>
+    <string name="failed_attack_message">Attack is dodged by a hair\'s breadth</string>
+    <string name="support_power_fist">Power fist</string>
+</resources>

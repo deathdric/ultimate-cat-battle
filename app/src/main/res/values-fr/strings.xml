@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_screen_return">Retour à l\'accueil</string>
+    <string name="one_player">1 joueur</string>
+    <string name="two_players">2 joueurs</string>
+    <string name="cat">Chat</string>
+    <string name="penguin">Pingouin</string>
+    <string name="player_turn">Tour de %s</string>
+    <string name="remaining_time">Temps restant : %s</string>
+    <string name="proceed">Continuer</string>
+    <string name="start_turn">Démarrer le tour</string>
+    <string name="used_skill_message">%s utilise %s</string>
+    <string name="player_wins">%s a gagné !</string>
+    <string name="damage_done_message">Dégâts infligés :</string>
+    <string name="critical_message">Coup critique !</string>
+    <string name="failed_attack_message">L\'attaque est esquivée de justesse</string>
+    <string name="attack_dragon_fist">Poing du dragon</string>
+    <string name="attack_finger_of_death">Doigt de la mort</string>
+    <string name="attack_great_explosion">Super explosion</string>
+    <string name="attack_sweeping_kick">Coup de pied balayeur</string>
+    <string name="attack_heart_strike">Coup au coeur</string>
+    <string name="attack_beak_strike">Coup de bec</string>
+    <string name="support_berserk">Furie</string>
+    <string name="support_guard">Garde</string>
+    <string name="support_speed">Vitesse</string>
+    <string name="support_power_fist">Super poing</string>
+</resources>
