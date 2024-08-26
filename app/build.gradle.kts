@@ -11,8 +11,8 @@ android {
         applicationId = "org.deathdric.ultimatecatbattle"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = rootProject.ext.get("versCode").toString().toInt()
+        versionName = rootProject.ext.get("versName").toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
