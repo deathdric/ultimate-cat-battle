@@ -39,9 +39,9 @@ jobs:
         versionCode: ${{github.run_number}}
         versionName: ${{steps.vars.outputs.tag}}
 
-    - name: Build Release APK
+    - name: Build Release
       run: |
-        bash ./gradlew assembleRelease \
+        bash ./gradlew assembleRelease bundleRelease \
           -Pandroid.injected.signing.store.file=${{ secrets.APP_KEY_FILE }} \
           -Pandroid.injected.signing.store.password=${{ secrets.APP_KEYSTORE_PASSWORD }} \
           -Pandroid.injected.signing.key.alias=${{ secrets.APP_KEYSTORE_ALIAS }} \
@@ -53,4 +53,8 @@ jobs:
       with:
         name: apk
         path: app/build/outputs/apk/release/*.apk
-
+    - name: Upload artifact Release AAB
+      uses: actions/upload-artifact@v4
+      with:
+        name: apk
+        path: app/build/outputs/bundle/release/*.aab
