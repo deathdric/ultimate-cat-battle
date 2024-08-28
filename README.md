@@ -13,8 +13,9 @@ It's main characteristics are :
 
 # Download and install
 
-Unfortunately there is no binary distribution yet, so you'll have to install Android Studio, clone the solution,
-enable Developer Mode on your device and install it from Android Studio.
+You can download builds in the `Actions` tab of the project (`Artifacts`/`APK`):
+- `Debug` builds are triggered every change. Avoid using them unless you have a serious reason.
+- `Release` builds should be stable and eligible for general usage.
 
 # Game instructions
 

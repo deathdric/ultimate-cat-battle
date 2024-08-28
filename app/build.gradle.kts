@@ -11,8 +11,8 @@ android {
         applicationId = "org.deathdric.ultimatecatbattle"
         minSdk = 24
         targetSdk = 34
-        versionCode = rootProject.ext.get("versCode").toString().toInt()
-        versionName = rootProject.ext.get("versName").toString()
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -46,6 +46,9 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+    defaultConfig {
+        setProperty("archivesBaseName", "${rootProject.name}-${versionName}-${versionCode}")
     }
 }
 
