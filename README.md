@@ -13,9 +13,11 @@ It's main characteristics are :
 
 # Download and install
 
-You can download builds in the `Actions` tab of the project (`Artifacts`/`APK`):
-- `Debug` builds are triggered every change. Avoid using them unless you have a serious reason.
-- `Release` builds should be stable and eligible for general usage.
+You can download the APK in the release page (you'll have to configure your smartphone/tablet do allow
+third-party APK installations).
+
+If it becomes popular enough to allow the required number of testers, I'll try have it published to
+the Google Play Store.
 
 # Game instructions
 
