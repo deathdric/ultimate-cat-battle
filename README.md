@@ -1,5 +1,8 @@
 # Ultimate Cat Battle
 
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
+[![fr](https://img.shields.io/badge/lang-fr-blue.svg)](README-FR.md)
+
 Ultimate Cat Battle is a turn-based fighting game for Android featuring a cat and a penguin.
 
 ![game_screenshot](images/UltimateCatBattleScreenshot.png)
@@ -16,7 +19,7 @@ It's main characteristics are :
 You can download the APK in the release page (you'll have to configure your smartphone/tablet do allow
 third-party APK installations).
 
-If it becomes popular enough to allow the required number of testers, I'll try have it published to
+If it becomes popular enough to allow the required number of testers, I'll try to have it published to
 the Google Play Store.
 
 # Game instructions
@@ -46,11 +49,11 @@ You can select between two types of moves during your turn :
 
 ## Time management
 
-The most important resource in this game is `time`. At the beginning of the same, one player is randomly
+The most important resource in this game is `time`. At the beginning of the game, one player is randomly
 chosen and given a random (< 20) amount of time units. The number of time units remaining for the current
 player is displayed near the clock icon : <img src="images/clock.svg" width="50" height="50">
 
-Each move costs a fixed amount of time. when you select a move, if its cost is lower than your
+Each move costs a fixed amount of time. When you select a move, if its cost is lower than your
 remaining amount of time, you will be able to use another move, otherwise you opponent turn will begin.
 
 Apart from the first turn, the amount of time available for a player depends is the difference between
@@ -135,7 +138,7 @@ at the cost of decreasing your defense, while `Guard` will do the opposite.
 Before applying a support move, you should check whether the decreases on some stats are worth in increase
 in others (beware of the 50 % limit), and also if it's worth the time cost which can also be used on attacks.
 
-By default the interface will only display the name of the attack along with its time cost, you can display
+By default the interface will only display the name of the move along with its time cost, you can display
 more of its characteristics by clicking of the `+` button in the move selection screen : <img src="images/details_on.svg" width="50" height="50">
 
 You can see the cumulative values of the stats modifier in the main screen, below the Hit Points value.
