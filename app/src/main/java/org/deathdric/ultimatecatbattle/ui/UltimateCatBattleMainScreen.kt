@@ -40,7 +40,7 @@ fun UltimateCatBattleMainScreen(viewModel: UltimateCatBattleViewModel, uiState: 
         .systemBarsPadding()
         .navigationBarsPadding()
         .captionBarPadding()) {
-        PlayerFrame(player = uiState.player1)
+        PlayerFrame(isGameOver = uiState.isGameOver, player = uiState.player1)
         Column (modifier = Modifier
             .background(Color.White)
             .weight(1f)
@@ -61,7 +61,7 @@ fun UltimateCatBattleMainScreen(viewModel: UltimateCatBattleViewModel, uiState: 
                 }
             }
         }
-        PlayerFrame(player = uiState.player2)
+        PlayerFrame(isGameOver = uiState.isGameOver, player = uiState.player2)
     }
 }
 

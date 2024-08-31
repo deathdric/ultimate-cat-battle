@@ -1,6 +1,7 @@
 package org.deathdric.ultimatecatbattle.ui
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -58,10 +59,11 @@ fun SupportActionButton(supportAction: SupportAction,
                        modifier: Modifier = Modifier) {
     Button(
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFCCFFCC),
+            containerColor = Color(0xFFEEFFEE),
             contentColor = Color.Black),
         shape = if (showDetails) RoundedCornerShape(10) else RoundedCornerShape(50),
         onClick = onClick,
+        border = BorderStroke(1.dp, Color(0xFF008000)),
         modifier = modifier
             .padding(8.dp)
             .fillMaxWidth()) {
@@ -124,9 +126,10 @@ fun AttackActionButton(attackAction: AttackAction,
                        modifier: Modifier = Modifier) {
     Button(
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFFFFCCCC),
+            containerColor = Color(0xFFFFEEEE),
             contentColor = Color.Black),
         onClick = onClick,
+        border = BorderStroke(1.dp, Color(0xFF800000)),
         shape = if (showDetails) RoundedCornerShape(10) else RoundedCornerShape(50),
         modifier = modifier
             .padding(8.dp)

@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
@@ -63,9 +64,9 @@ fun StatDisplay(
 }
 
 @Composable
-fun PlayerFrame(player: PlayerStatus, modifier: Modifier = Modifier) {
-    val avatarBackgroundColor = if (player.active) Color.Yellow else Color.Gray;
-    val statBackgroundColor = if (player.active) Color(0xFFFFFFDD) else Color.White
+fun PlayerFrame(isGameOver: Boolean, player: PlayerStatus, modifier: Modifier = Modifier) {
+    val avatarBackgroundColor = if (player.active) Color(0xFFFFFF80) else Color(0xFFC0C0C0);
+    val statBackgroundColor = if (player.active) Color(0xFFFFFFF8) else Color.White
     val healthColor = when(player.healthState) {
         HealthState.OK -> Color(0xFF008000)
         HealthState.WARNING -> Color(0xFF906000)
@@ -108,11 +109,97 @@ fun PlayerFrame(player: PlayerStatus, modifier: Modifier = Modifier) {
                 )
 
             }
-            StatDisplay(statValue = player.attack, R.drawable.attack)
-            StatDisplay(statValue = player.defense, statIcon = R.drawable.defense)
-            StatDisplay(statValue = player.hit, statIcon = R.drawable.hit)
-            StatDisplay(statValue = player.avoid, statIcon = R.drawable.avoid2)
-            StatDisplay(statValue = player.critical, statIcon = R.drawable.critical)
+            if (isGameOver) {
+                Row(horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.Top) {
+                    val finalPlayerIcon = if (player.alive) R.drawable.trophy else R.drawable.white_flag
+                    Image(painter = painterResource(id = finalPlayerIcon), contentDescription = null,
+                        modifier = Modifier.size(100.dp))
+                }
+            } else {
+                StatDisplay(statValue = player.attack, R.drawable.attack)
+                StatDisplay(statValue = player.defense, statIcon = R.drawable.defense)
+                StatDisplay(statValue = player.hit, statIcon = R.drawable.hit)
+                StatDisplay(statValue = player.avoid, statIcon = R.drawable.avoid2)
+                StatDisplay(statValue = player.critical, statIcon = R.drawable.critical)
+            }
+
         }
     }
+}
+
+@Composable
+@Preview
+fun PlayerFrameActivePreview() {
+    val playerStatus = PlayerStatus(
+        name = R.string.cat,
+        icon = R.drawable.cat2,
+        active = true,
+        healthState = HealthState.OK,
+        attack = -10,
+        defense = -30,
+        avoid = 30,
+        hit = 10,
+        critical = 0,
+        alive = true,
+        hitPoints = 200
+        )
+    PlayerFrame(isGameOver = false, player = playerStatus)
+}
+
+@Composable
+@Preview
+fun PlayerFrameInactivePreview() {
+    val playerStatus = PlayerStatus(
+        name = R.string.cat,
+        icon = R.drawable.cat2,
+        active = false,
+        healthState = HealthState.OK,
+        attack = -10,
+        defense = -30,
+        avoid = 30,
+        hit = 10,
+        critical = 0,
+        alive = true,
+        hitPoints = 200
+    )
+    PlayerFrame(isGameOver = false, player = playerStatus)
+}
+
+@Composable
+@Preview
+fun PlayerFrameLoserPreview() {
+    val playerStatus = PlayerStatus(
+        name = R.string.cat,
+        icon = R.drawable.cat_loss,
+        active = false,
+        healthState = HealthState.CRITICAL,
+        attack = -10,
+        defense = -30,
+        avoid = 30,
+        hit = 10,
+        critical = 0,
+        alive = false,
+        hitPoints = 0
+    )
+    PlayerFrame(isGameOver = true, player = playerStatus)
+}
+
+@Composable
+@Preview
+fun PlayerFrameWinnerPreview() {
+    val playerStatus = PlayerStatus(
+        name = R.string.cat,
+        icon = R.drawable.cat_loss,
+        active = false,
+        healthState = HealthState.CRITICAL,
+        attack = -10,
+        defense = -30,
+        avoid = 30,
+        hit = 10,
+        critical = 0,
+        alive = true,
+        hitPoints = 50
+    )
+    PlayerFrame(isGameOver = true, player = playerStatus)
 }
