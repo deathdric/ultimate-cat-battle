@@ -1,0 +1,10 @@
+Ultimate Cat Battle confidentiality policy
+
+Ultimate Cat Battle :
+- Does not use any connectivity to the internet
+- Does not read/store files on your device
+- Does not require any specific permission on your device
+- Does not have ads, let alone targeted ones
+- Does not use telemetry
+
+As a consequence, this game does not interact at all with your personal data, which should comply with the privacy laws of most countries.
