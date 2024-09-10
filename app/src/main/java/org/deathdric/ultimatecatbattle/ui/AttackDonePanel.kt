@@ -45,7 +45,7 @@ fun AttackDonePanel(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatB
                     ),
                     color = Color.Black
                 )
-                if (uiState.attackResult!!.critical) {
+                if (uiState.attackResult.critical) {
                     Text(
                         text = stringResource(id = R.string.critical_message),
                         color = Color.Red,

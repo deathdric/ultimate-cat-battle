@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -32,7 +33,7 @@ fun StatDisplay(
     statIcon: Int,
     modifier: Modifier = Modifier
 ) {
-    val statColor = if (statValue > 0) Color(0xFF008000)
+    val statColor = if (statValue > 0) colorResource(id = R.color.stat_bonus_color)
     else if (statValue < 0) Color.Red
     else Color.Black
 

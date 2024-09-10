@@ -25,4 +25,20 @@
     <string name="support_speed">Speed</string>
     <string name="failed_attack_message">Attack is dodged by a hair\'s breadth</string>
     <string name="support_power_fist">Power fist</string>
+    <string name="min_damage">Min Damage</string>
+    <string name="max_damage">Max Damage</string>
+    <string name="chance_to_hit">Chance to hit</string>
+    <string name="chance_to_crit">Critical hit chance</string>
+    <string name="success_guaranteed">Success guaranted !</string>
+    <string name="attack_move">Attack</string>
+    <string name="support_move">Support</string>
+    <string name="duration">Duration</string>
+    <string name="next_turn">Next turn</string>
+    <string name="cancel_move">Cancel</string>
+    <string name="confirm_move">Confirm</string>
+    <string name="stat_attack">Attack</string>
+    <string name="stat_defense">Defense</string>
+    <string name="stat_hit">Hit</string>
+    <string name="stat_avoid">Avoidance</string>
+    <string name="stat_crit">Critical</string>
 </resources>

@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="attack_container_color">#FFFFEEEE</color>
+    <color name="attack_border_color">#FF800000</color>
+    <color name="support_container_color">#FFEEFFEE</color>
+    <color name="support_border_color">#FF008000</color>
+    <color name="default_border_color">#FF000080</color>
+    <color name="stat_bonus_color">#FF008000</color>
 </resources>

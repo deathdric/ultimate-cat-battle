@@ -2,6 +2,11 @@ package org.deathdric.ultimatecatbattle.model
 
 class Player(val template : PlayerTemplate) {
 
+    companion object {
+        val MIN_STAT_VALUE = -50
+        val MAX_STAT_VALUE = 50
+    }
+
     var hitPoints : Int = template.maxHp
         private set
 
@@ -44,8 +49,8 @@ class Player(val template : PlayerTemplate) {
 
     private fun computeStat(
         statusFunction : (StatusEffect) -> Int,
-        minValue : Int = -50,
-        maxValue : Int = 50
+        minValue : Int = MIN_STAT_VALUE,
+        maxValue : Int = MAX_STAT_VALUE
     ) : Int {
         var total = 0
         for (effect in statusEffects) {

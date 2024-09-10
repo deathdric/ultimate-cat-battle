@@ -7,9 +7,14 @@ import kotlinx.coroutines.flow.update
 import org.deathdric.ultimatecatbattle.data.PlayerRepository
 import org.deathdric.ultimatecatbattle.model.AttackAction
 import org.deathdric.ultimatecatbattle.model.AttackResult
+import org.deathdric.ultimatecatbattle.model.AttackSelectedInfo
+import org.deathdric.ultimatecatbattle.model.NextTurnInfo
 import org.deathdric.ultimatecatbattle.model.Player
 import org.deathdric.ultimatecatbattle.model.SupportAction
+import org.deathdric.ultimatecatbattle.model.SupportSelectedInfo
 import org.deathdric.ultimatecatbattle.model.apply
+import org.deathdric.ultimatecatbattle.model.computeEffects
+import org.deathdric.ultimatecatbattle.model.simulate
 import kotlin.random.Random
 
 class UltimateCatBattleViewModel : ViewModel() {
@@ -73,6 +78,37 @@ class UltimateCatBattleViewModel : ViewModel() {
 
     fun startPlayerTurn() {
         updateActionSelect()
+    }
+
+    fun selectAttack(attackAction: AttackAction) {
+        val attacker = if (activePlayerId == 1) player1 else player2
+        val defender = if (activePlayerId == 1) player2 else player1
+        val attackSimulationResult = attackAction.simulate(attacker, defender)
+        val diffTime = (defender.nextTime - curTime) - attackAction.delay
+        val nextTurnInfo = if (diffTime > 0) {
+            NextTurnInfo(attacker, diffTime)
+        } else {
+            NextTurnInfo(defender, -diffTime)
+        }
+
+        val attackSelectedInfo = AttackSelectedInfo(attackAction, attackSimulationResult, nextTurnInfo)
+        updateAttackSelectionState(attackSelectedInfo)
+
+    }
+
+    fun selectSupport(supportAction: SupportAction) {
+        val attacker = if (activePlayerId == 1) player1 else player2
+        val defender = if (activePlayerId == 1) player2 else player1
+        val diffTime = (defender.nextTime - curTime) - supportAction.delay
+        val nextTurnInfo = if (diffTime > 0) {
+            NextTurnInfo(attacker, diffTime)
+        } else {
+            NextTurnInfo(defender, -diffTime)
+        }
+
+        val supportSelectedInfo = SupportSelectedInfo(supportAction, supportAction.computeEffects(attacker), nextTurnInfo)
+        updateSupportSelectionState(supportSelectedInfo)
+
     }
 
     fun chooseAttack(attackAction: AttackAction) {
@@ -143,9 +179,30 @@ class UltimateCatBattleViewModel : ViewModel() {
         }
     }
 
+    fun cancelMoveSelection() {
+        _uiState.update { previous ->
+            previous.copy(
+                attackSelectedInfo = null,
+                supportSelectedInfo = null
+            )
+        }
+    }
+
+
+    private fun updateAttackSelectionState(attackSelectedInfo: AttackSelectedInfo) {
+        _uiState.update { previous ->
+            previous.copy(
+                supportSelectedInfo = null,
+                attackSelectedInfo = attackSelectedInfo
+            )
+        }
+    }
+
     private fun updateAttackResultState(attackAction: AttackAction, attackResult: AttackResult) {
         _uiState.update { previous ->
             previous.copy(isStartScreen = false,
+                attackSelectedInfo = null,
+                supportSelectedInfo = null,
                 isGameOver = !player1.isAlive || !player2.isAlive,
                 actionMode = ActionMode.ATTACK_DONE,
                 player1 = player1.toStatus(activePlayerId == 1),
@@ -157,9 +214,20 @@ class UltimateCatBattleViewModel : ViewModel() {
 
     }
 
+    private fun updateSupportSelectionState(supportSelectedInfo: SupportSelectedInfo) {
+        _uiState.update { previous ->
+            previous.copy(
+                attackSelectedInfo = null,
+                supportSelectedInfo = supportSelectedInfo
+            )
+        }
+    }
+
     private fun updateSupportResultState(supportAction: SupportAction) {
         _uiState.update { previous ->
             previous.copy(isStartScreen = false,
+                attackSelectedInfo = null,
+                supportSelectedInfo = null,
                 actionMode = ActionMode.STATUS_DONE,
                 player1 = player1.toStatus(activePlayerId == 1),
                 player2 = player2.toStatus(activePlayerId == 2),

@@ -4,7 +4,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import org.deathdric.ultimatecatbattle.model.AttackAction
 import org.deathdric.ultimatecatbattle.model.AttackResult
+import org.deathdric.ultimatecatbattle.model.AttackSelectedInfo
 import org.deathdric.ultimatecatbattle.model.SupportAction
+import org.deathdric.ultimatecatbattle.model.SupportSelectedInfo
 
 data class UltimateCatBattleUiState(
     val isStartScreen: Boolean = true,
@@ -21,7 +23,9 @@ data class UltimateCatBattleUiState(
     val availableAttacks : List<AttackAction> = emptyList(),
     val availableSupports : List<SupportAction> = emptyList(),
     val lastAttack: AttackAction? = null,
+    val attackSelectedInfo: AttackSelectedInfo? = null,
     val attackResult : AttackResult? = null,
+    val supportSelectedInfo: SupportSelectedInfo? = null,
     val lastSupport : SupportAction? = null,
     val showActionDetails : Boolean = false
 

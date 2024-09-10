@@ -45,21 +45,52 @@ fun UltimateCatBattleMainScreen(viewModel: UltimateCatBattleViewModel, uiState: 
             .background(Color.White)
             .weight(1f)
             .fillMaxHeight()) {
-            BattleTopBar(viewModel = viewModel, uiState = uiState, modifier = Modifier.fillMaxWidth())
-            when(uiState.actionMode) {
+            BattleTopBar(
+                viewModel = viewModel,
+                uiState = uiState,
+                modifier = Modifier.fillMaxWidth()
+            )
+            when (uiState.actionMode) {
+
                 ActionMode.ACTION_SELECT -> {
-                    ActionSelectionPanel(viewModel = viewModel, uiState = uiState, modifier = Modifier.fillMaxSize())
+                    if (uiState.attackSelectedInfo != null) {
+                        AttackConfirmationPanel(viewModel = viewModel, attackSelectedInfo = uiState.attackSelectedInfo)
+                    } else if (uiState.supportSelectedInfo != null) {
+                        SupportConfirmationPanel(viewModel = viewModel, supportSelectedInfo = uiState.supportSelectedInfo)
+                    } else {
+                        ActionSelectionPanel(
+                            viewModel = viewModel,
+                            uiState = uiState,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
                 }
+
                 ActionMode.ATTACK_DONE -> {
-                    AttackDonePanel(viewModel = viewModel, uiState = uiState, modifier = Modifier.fillMaxWidth())
+                    AttackDonePanel(
+                        viewModel = viewModel,
+                        uiState = uiState,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
-                ActionMode.STATUS_DONE ->  {
-                    StatusDonePanel(viewModel = viewModel, uiState = uiState, modifier = Modifier.fillMaxWidth())
+
+                ActionMode.STATUS_DONE -> {
+                    StatusDonePanel(
+                        viewModel = viewModel,
+                        uiState = uiState,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
+
                 ActionMode.PLAYER_TURN_SWITCH -> {
-                    PlayerTurnPanel(viewModel = viewModel, uiState = uiState, modifier = Modifier.fillMaxWidth())
+                    PlayerTurnPanel(
+                        viewModel = viewModel,
+                        uiState = uiState,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
+
         }
         PlayerFrame(isGameOver = uiState.isGameOver, player = uiState.player2)
     }

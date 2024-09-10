@@ -24,4 +24,20 @@
     <string name="support_guard">Garde</string>
     <string name="support_speed">Vitesse</string>
     <string name="support_power_fist">Super poing</string>
+    <string name="min_damage">Dégâts Min</string>
+    <string name="max_damage">Dégâts Max</string>
+    <string name="chance_to_hit">Chance de toucher</string>
+    <string name="chance_to_crit">Chance coup critique</string>
+    <string name="success_guaranteed">Succès garanti !</string>
+    <string name="attack_move">Attaque</string>
+    <string name="next_turn">Prochain tour</string>
+    <string name="cancel_move">Annuler</string>
+    <string name="confirm_move">Confirmer</string>
+    <string name="support_move">Soutien</string>
+    <string name="duration">Durée</string>
+    <string name="stat_attack">Attaque</string>
+    <string name="stat_defense">Défense</string>
+    <string name="stat_hit">Précision</string>
+    <string name="stat_avoid">Esquive</string>
+    <string name="stat_crit">Critique</string>
 </resources>
