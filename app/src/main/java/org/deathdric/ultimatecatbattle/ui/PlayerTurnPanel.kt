@@ -22,8 +22,6 @@ fun PlayerTurnPanel(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatB
             contentDescription = stringResource(id = uiState.activePlayerName),
             modifier = Modifier.size(100.dp)
         )
-        Button(onClick = { viewModel.startPlayerTurn() }, modifier = Modifier.padding(16.dp)) {
-            Text(text = stringResource(id = R.string.start_turn))
-        }
+        SimpleButton(onClick = { viewModel.startPlayerTurn() }, modifier = Modifier.padding(16.dp), text = stringResource(id = R.string.start_turn))
     }
 }

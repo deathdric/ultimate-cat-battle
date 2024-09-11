@@ -19,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,7 +43,7 @@ fun StatDisplay(
 
     Row (modifier = modifier
         .padding(end = 4.dp)
-        .size(width = 96.dp, height = 28.dp), horizontalArrangement = Arrangement.Start) {
+        .size(width = 96.dp, height = 28.dp), horizontalArrangement = Arrangement.Center) {
         Image(
             painter = painterResource(id = statIcon),
             contentDescription = null,
@@ -55,6 +56,8 @@ fun StatDisplay(
             text = "${statValue}",
             textAlign = TextAlign.Right,
             color = statColor,
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 16.sp,
             fontWeight = statWeight,
             modifier = Modifier
                 .size(width = 48.dp, height = 24.dp)
@@ -92,7 +95,8 @@ fun PlayerFrame(isGameOver: Boolean, player: PlayerStatus, modifier: Modifier = 
             .fillMaxHeight()) {
             Row(
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.hitpoints2),
@@ -105,6 +109,7 @@ fun PlayerFrame(isGameOver: Boolean, player: PlayerStatus, modifier: Modifier = 
                     text = "${player.hitPoints}",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
+                    fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
                     color = healthColor
                 )

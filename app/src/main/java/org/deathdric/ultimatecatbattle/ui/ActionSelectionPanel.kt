@@ -6,6 +6,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,6 +17,8 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,7 +55,9 @@ fun StatDetailPanel(
 }
 
 @Composable
-fun SupportActionButton(supportAction: SupportAction,
+fun SupportActionButton(windowWidthSizeClass: WindowWidthSizeClass,
+                        windowHeightSizeClass: WindowHeightSizeClass,
+                        supportAction: SupportAction,
                        showDetails: Boolean,
                        onClick: () -> Unit,
                        modifier: Modifier = Modifier) {
@@ -59,7 +65,7 @@ fun SupportActionButton(supportAction: SupportAction,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFFEEFFEE),
             contentColor = Color.Black),
-        shape = if (showDetails) RoundedCornerShape(10) else RoundedCornerShape(50),
+        shape = if (showDetails || windowWidthSizeClass != WindowWidthSizeClass.Expanded) RoundedCornerShape(10) else RoundedCornerShape(50),
         onClick = onClick,
         border = BorderStroke(1.dp, Color(0xFF008000)),
         modifier = modifier
@@ -71,51 +77,116 @@ fun SupportActionButton(supportAction: SupportAction,
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    TitleText(
-                        text = stringResource(id = supportAction.name)
-                    )
+                    if (windowWidthSizeClass == WindowWidthSizeClass.Expanded) {
+                        TitleText(text = stringResource(id = supportAction.name))
+                    } else {
+                        MessageText(text = stringResource(id = supportAction.name), color = Color.Black)
+                    }
                 }
-                Row(horizontalArrangement = Arrangement.Center) {
-                    StatDetailPanel(
-                        iconResource = R.drawable.clock,
-                        data = supportAction.delay.toString()
-                    )
-                    StatDetailPanel(
-                        iconResource = R.drawable.attack,
-                        data = supportAction.attackBonus.toString()
-                    )
-                    StatDetailPanel(
-                        iconResource = R.drawable.defense,
-                        data = supportAction.defenseBonus.toString()
-                    )
-                }
-                Row(horizontalArrangement = Arrangement.Center) {
+                if (windowWidthSizeClass == WindowWidthSizeClass.Expanded) {
+                    Row(horizontalArrangement = Arrangement.Center) {
+                        StatDetailPanel(
+                            iconResource = R.drawable.clock,
+                            data = supportAction.delay.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.attack,
+                            data = supportAction.attackBonus.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.defense,
+                            data = supportAction.defenseBonus.toString()
+                        )
+                    }
+                    Row(horizontalArrangement = Arrangement.Center) {
 
-                    StatDetailPanel(
-                        iconResource = R.drawable.hit,
-                        data = supportAction.hitBonus.toString()
-                    )
-                    StatDetailPanel(
-                        iconResource = R.drawable.avoid2,
-                        data = supportAction.avoidBonus.toString()
-                    )
-                    StatDetailPanel(
-                        iconResource = R.drawable.critical,
-                        data = supportAction.criticalBonus.toString()
-                    )
+                        StatDetailPanel(
+                            iconResource = R.drawable.hit,
+                            data = supportAction.hitBonus.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.avoid2,
+                            data = supportAction.avoidBonus.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.critical,
+                            data = supportAction.criticalBonus.toString()
+                        )
+                    }
+                } else {
+                    Row(horizontalArrangement = Arrangement.Center) {
+                        StatDetailPanel(
+                            iconResource = R.drawable.clock,
+                            data = supportAction.delay.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.attack,
+                            data = supportAction.attackBonus.toString()
+                        )
+                    }
+                    Row(horizontalArrangement = Arrangement.Center) {
+                        StatDetailPanel(
+                            iconResource = R.drawable.defense,
+                            data = supportAction.defenseBonus.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.hit,
+                            data = supportAction.hitBonus.toString()
+                        )
+                    }
+                    Row(horizontalArrangement = Arrangement.Center) {
+
+                        StatDetailPanel(
+                            iconResource = R.drawable.avoid2,
+                            data = supportAction.avoidBonus.toString()
+                        )
+                        StatDetailPanel(
+                            iconResource = R.drawable.critical,
+                            data = supportAction.criticalBonus.toString()
+                        )
+                    }
                 }
             }
         } else {
-            Row {
-                MessageText(text = "%s  (%s)".format(stringResource(id = supportAction.name), supportAction.delay),
-                    textAlign = TextAlign.Center)
+            if (windowWidthSizeClass == WindowWidthSizeClass.Expanded) {
+                Row {
+                    MessageText(
+                        text = "%s  (%s)".format(
+                            stringResource(id = supportAction.name),
+                            supportAction.delay
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            } else {
+                Row (modifier = Modifier.defaultMinSize(minHeight = 60.dp),
+                    verticalAlignment = Alignment.CenterVertically) {
+                    MessageText(
+                        text = stringResource(id = supportAction.name),
+                        color = Color.Black,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    MessageText(
+                        text = "(%s)".format(
+                            supportAction.delay
+                        ),
+                        color = Color.Black,
+                        modifier = Modifier
+                            .defaultMinSize(minWidth = 50.dp)
+                            .padding(start = 4.dp),
+                        textAlign = TextAlign.Right
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun AttackActionButton(attackAction: AttackAction,
+fun AttackActionButton(windowWidthSizeClass: WindowWidthSizeClass,
+                       windowHeightSizeClass: WindowHeightSizeClass,
+                       attackAction: AttackAction,
                        showDetails: Boolean,
                        onClick: () -> Unit,
                        modifier: Modifier = Modifier) {
@@ -125,7 +196,7 @@ fun AttackActionButton(attackAction: AttackAction,
             contentColor = Color.Black),
         onClick = onClick,
         border = BorderStroke(1.dp, colorResource(id = R.color.attack_border_color)),
-        shape = if (showDetails) RoundedCornerShape(10) else RoundedCornerShape(50),
+        shape = if (showDetails || windowWidthSizeClass != WindowWidthSizeClass.Expanded) RoundedCornerShape(10) else RoundedCornerShape(50),
         modifier = modifier
             .padding(4.dp)
             .fillMaxWidth()) {
@@ -133,7 +204,14 @@ fun AttackActionButton(attackAction: AttackAction,
             Column (horizontalAlignment = Alignment.CenterHorizontally){
                 Row (verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween){
-                    TitleText(text = stringResource(id = attackAction.name))
+                    if (windowWidthSizeClass == WindowWidthSizeClass.Expanded) {
+                        TitleText(text = stringResource(id = attackAction.name))
+                    } else {
+                        MessageText(text = stringResource(id = attackAction.name), color = Color.Black)
+                    }
+                }
+                if (windowWidthSizeClass != WindowWidthSizeClass.Expanded) {
+                    Spacer(modifier = Modifier.size(22.dp))
                 }
                 Row (horizontalArrangement = Arrangement.Center) {
                     StatDetailPanel(
@@ -156,12 +234,41 @@ fun AttackActionButton(attackAction: AttackAction,
                         data = attackAction.critical.toString()
                     )
                 }
-
+                if (windowWidthSizeClass != WindowWidthSizeClass.Expanded) {
+                    Spacer(modifier = Modifier.size(22.dp))
+                }
             }
         } else {
-            Row {
-                MessageText(text = "%s  (%s)".format(stringResource(id = attackAction.name), attackAction.delay),
-                    textAlign = TextAlign.Center)
+            if (windowWidthSizeClass == WindowWidthSizeClass.Expanded) {
+                Row {
+                    MessageText(
+                        text = "%s  (%s)".format(
+                            stringResource(id = attackAction.name),
+                            attackAction.delay
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            } else {
+                Row (modifier = Modifier.defaultMinSize(minHeight = 60.dp),
+                    verticalAlignment = Alignment.CenterVertically) {
+                    MessageText(
+                        text = stringResource(id = attackAction.name),
+                        color = Color.Black,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    MessageText(
+                        text = "(%s)".format(
+                            attackAction.delay
+                        ),
+                        color = Color.Black,
+                        modifier = Modifier
+                            .defaultMinSize(minWidth = 50.dp)
+                            .padding(start = 4.dp),
+                        textAlign = TextAlign.Right
+                    )
+                }
             }
         }
 
@@ -170,10 +277,13 @@ fun AttackActionButton(attackAction: AttackAction,
 }
 
 @Composable
-fun ActionSelectionPanel(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState, modifier: Modifier = Modifier) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(260.dp), modifier = modifier) {
+fun ActionSelectionPanel(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClass: WindowHeightSizeClass, viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState, modifier: Modifier = Modifier) {
+    val columnSize = if (windowWidthSizeClass == WindowWidthSizeClass.Expanded) 270.dp else 200.dp
+    LazyVerticalGrid(columns = GridCells.Adaptive(columnSize), modifier = modifier) {
         items(uiState.availableAttacks) { attackAction ->
             AttackActionButton(attackAction = attackAction,
+                windowHeightSizeClass = windowHeightSizeClass,
+                windowWidthSizeClass = windowWidthSizeClass,
                 showDetails = uiState.showActionDetails,
                 onClick = { viewModel.selectAttack(attackAction = attackAction) },
                 modifier = Modifier
@@ -182,6 +292,8 @@ fun ActionSelectionPanel(viewModel: UltimateCatBattleViewModel, uiState: Ultimat
         }
         items(uiState.availableSupports) { supportAction ->
             SupportActionButton(
+                windowWidthSizeClass = windowWidthSizeClass,
+                windowHeightSizeClass = windowHeightSizeClass,
                 supportAction = supportAction,
                 showDetails = uiState.showActionDetails,
                 onClick = { viewModel.selectSupport(supportAction) },
@@ -195,23 +307,41 @@ fun ActionSelectionPanel(viewModel: UltimateCatBattleViewModel, uiState: Ultimat
 @Composable
 @Preview
 fun DetailedAttackButtonPreview() {
-    AttackActionButton(attackAction = AttackRepository.dragonFist, showDetails = true, onClick = { })
+    AttackActionButton(attackAction = AttackRepository.dragonFist, showDetails = true, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Expanded, windowHeightSizeClass = WindowHeightSizeClass.Compact)
+}
+
+@Composable
+@Preview
+fun DetailedAttackButtonMediumPreview() {
+    AttackActionButton(attackAction = AttackRepository.dragonFist, showDetails = true, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Medium, windowHeightSizeClass = WindowHeightSizeClass.Compact)
 }
 
 @Composable
 @Preview
 fun AttackButtonPreview() {
-    AttackActionButton(attackAction = AttackRepository.dragonFist, showDetails = false, onClick = { })
+    AttackActionButton(attackAction = AttackRepository.dragonFist, showDetails = false, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Expanded, windowHeightSizeClass = WindowHeightSizeClass.Compact)
+}
+
+@Composable
+@Preview
+fun AttackButtonMediumPreview() {
+    AttackActionButton(attackAction = AttackRepository.dragonFist, showDetails = false, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Medium, windowHeightSizeClass = WindowHeightSizeClass.Compact)
 }
 
 @Composable
 @Preview
 fun DetailedSupportButtonPreview() {
-    SupportActionButton(supportAction = SupportRepository.speed, showDetails = true, onClick = { })
+    SupportActionButton(supportAction = SupportRepository.speed, showDetails = true, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Expanded, windowHeightSizeClass = WindowHeightSizeClass.Compact)
+}
+
+@Composable
+@Preview
+fun DetailedSupportMediumButtonPreview() {
+    SupportActionButton(supportAction = SupportRepository.speed, showDetails = true, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Medium, windowHeightSizeClass = WindowHeightSizeClass.Compact)
 }
 
 @Composable
 @Preview
 fun SupportButtonPreview() {
-    SupportActionButton(supportAction = SupportRepository.speed, showDetails = false, onClick = { })
+    SupportActionButton(supportAction = SupportRepository.speed, showDetails = false, onClick = { }, windowWidthSizeClass = WindowWidthSizeClass.Expanded, windowHeightSizeClass = WindowHeightSizeClass.Compact)
 }

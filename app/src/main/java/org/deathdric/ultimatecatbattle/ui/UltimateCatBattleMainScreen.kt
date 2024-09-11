@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -33,7 +35,7 @@ import org.deathdric.ultimatecatbattle.R
 
 
 @Composable
-fun UltimateCatBattleMainScreen(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState) {
+fun UltimateCatBattleMainScreen(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClass: WindowHeightSizeClass, viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState) {
     Row (modifier = Modifier
         .safeContentPadding()
         .statusBarsPadding()
@@ -59,6 +61,8 @@ fun UltimateCatBattleMainScreen(viewModel: UltimateCatBattleViewModel, uiState: 
                         SupportConfirmationPanel(viewModel = viewModel, supportSelectedInfo = uiState.supportSelectedInfo)
                     } else {
                         ActionSelectionPanel(
+                            windowWidthSizeClass = windowWidthSizeClass,
+                            windowHeightSizeClass = windowHeightSizeClass,
                             viewModel = viewModel,
                             uiState = uiState,
                             modifier = Modifier.fillMaxSize()
@@ -101,5 +105,5 @@ fun UltimateCatBattleMainScreen(viewModel: UltimateCatBattleViewModel, uiState: 
 fun UltimateCatBattleMainScreenPreview() {
     val viewModel = UltimateCatBattleViewModel()
     viewModel.startGame(false)
-    UltimateCatBattleMainScreen(viewModel = viewModel, uiState = viewModel.uiState.collectAsState().value)
+    UltimateCatBattleMainScreen(windowWidthSizeClass = WindowWidthSizeClass.Medium, windowHeightSizeClass = WindowHeightSizeClass.Compact, viewModel = viewModel, uiState = viewModel.uiState.collectAsState().value)
 }

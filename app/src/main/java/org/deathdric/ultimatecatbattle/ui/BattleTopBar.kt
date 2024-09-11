@@ -35,24 +35,20 @@ fun BattleTopBar(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBatt
         .fillMaxWidth()
         .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically) {
-        if (uiState.actionMode == ActionMode.ACTION_SELECT) {
-            IconButton(onClick = { viewModel.toggleDetails() }, modifier = Modifier.size(50.dp)) {
-                if (uiState.showActionDetails) {
-                    Image(
-                        painter = painterResource(id = R.drawable.details_off),
-                        contentDescription = "-"
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(id = R.drawable.details_on),
-                        contentDescription = "+"
-                    )
-                }
+        IconButton(onClick = { viewModel.toggleDetails() }, modifier = Modifier.size(50.dp)) {
+            if (uiState.showActionDetails) {
+                Image(
+                    painter = painterResource(id = R.drawable.details_off),
+                    contentDescription = "-"
+                )
+            } else {
+                Image(
+                    painter = painterResource(id = R.drawable.details_on),
+                    contentDescription = "+"
+                )
             }
-            Spacer(modifier = Modifier.size(width = 50.dp, height = 20.dp))
-        } else {
-            Spacer(modifier = Modifier.size(width = 100.dp, height = 20.dp))
         }
+        Spacer(modifier = Modifier.size(width = 50.dp, height = 20.dp))
         Text (
             text = stringResource(id = R.string.player_turn).format(stringResource(id = uiState.activePlayerName)),
             textAlign = TextAlign.Center,

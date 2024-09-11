@@ -2,6 +2,7 @@ package org.deathdric.ultimatecatbattle.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,74 +38,82 @@ fun AttackDonePanel(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatB
 
     Column (modifier = modifier.padding(16.dp)) {
         Row (verticalAlignment = Alignment.CenterVertically) {
-            Column (modifier = Modifier.padding(start = 16.dp).weight(1f)){
-                Text(
+            Column (modifier = Modifier
+                .padding(start = 16.dp)
+                .weight(1f)){
+                MessageText(
                     text = stringResource(id = R.string.used_skill_message).format(
                         stringResource(id = uiState.activePlayerName),
                         stringResource(id = uiState.lastAttack!!.name),
                     ),
+                    fontWeight = FontWeight.Normal,
                     color = Color.Black
                 )
                 if (uiState.attackResult.critical) {
-                    Text(
+                    MessageText(
                         text = stringResource(id = R.string.critical_message),
-                        color = Color.Red,
-                        fontWeight = FontWeight.Bold
+                        color = Color.Red
                     )
                 }
                 if (uiState.attackResult.success) {
                     Row (verticalAlignment = Alignment.CenterVertically) {
-                        Text(
+                        MessageText(
                             text = stringResource(id = R.string.damage_done_message),
-                            color = Color.Black
+                            color = Color.Black,
+                            fontWeight = FontWeight.Normal
                         )
-                        Text(
+                        MessageText(
                             text = "${uiState.attackResult.damage}",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
                             color = Color.Black,
                             modifier = Modifier.padding(start = 8.dp)
                         )
                     }
                 } else {
-                    Text(
+                    MessageText(
                         text = stringResource(id = R.string.failed_attack_message),
-                        color = Color.Blue,
-                        fontWeight = FontWeight.Bold
+                        color = Color.Blue
                     )
                 }
             }
             Image(painter = painterResource(id = resultIcon), contentDescription = null,
-                modifier = Modifier.padding(16.dp).size(100.dp))
+                modifier = Modifier
+                    .padding(16.dp)
+                    .size(100.dp))
         }
         if (uiState.isGameOver) {
-            Text(
-                text = stringResource(id = R.string.player_wins).format(
-                    stringResource(id = uiState.activePlayerName)
-                ),
-                color = Color.Black,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Button(
+            Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
+                Image(
+                    painter = painterResource(id = R.drawable.trophy),
+                    contentDescription = null,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp).size(30.dp)
+                )
+                TitleText(
+                    text = stringResource(id = R.string.player_wins).format(
+                        stringResource(id = uiState.activePlayerName)
+                    ),
+                    color = Color.Black
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.trophy),
+                    contentDescription = null,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp).size(30.dp)
+                )
+            }
+            SimpleButton(
                 onClick = { viewModel.returnToMainScreen()},
+                text = stringResource(id = R.string.main_screen_return),
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxWidth()
-            ) {
-                Text(text = stringResource(id = R.string.main_screen_return))
-            }
+            )
         } else {
-            Button(
+            SimpleButton(
                 onClick = { viewModel.postAction() },
+                text = stringResource(id = R.string.proceed),
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxWidth()
-            ) {
-                Text(text = stringResource(id = R.string.proceed))
-            }
+            )
         }
     }
 }
@@ -123,6 +132,23 @@ fun AttackDonePanelPreview() {
         actionMode = ActionMode.ATTACK_DONE,
         lastAttack = AttackRepository.dragonFist,
         attackResult = AttackResult(success = true, critical = true, damage = 50)
+    ), modifier = Modifier.background(Color.White))
+}
+
+@Composable
+@Preview
+fun AttackMissedPanelPreview() {
+
+    AttackDonePanel(viewModel = UltimateCatBattleViewModel(), uiState = UltimateCatBattleUiState(
+        activePlayerId = 1,
+        activePlayerIcon = PlayerRepository.catPlayer.icon,
+        activePlayerName = PlayerRepository.catPlayer.name,
+        player1 = Player(PlayerRepository.catPlayer).toStatus(true),
+        player2 = Player(PlayerRepository.penguinPlayer).toStatus(false),
+        remainingTime = 20,
+        actionMode = ActionMode.ATTACK_DONE,
+        lastAttack = AttackRepository.dragonFist,
+        attackResult = AttackResult(success = false, critical = false, damage = 0)
     ), modifier = Modifier.background(Color.White))
 }
 

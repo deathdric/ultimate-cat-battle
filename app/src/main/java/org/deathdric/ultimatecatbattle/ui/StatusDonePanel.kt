@@ -27,7 +27,7 @@ import org.deathdric.ultimatecatbattle.model.Player
 fun StatusDonePanel(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState, modifier: Modifier = Modifier) {
     Column (modifier = modifier.padding(16.dp)) {
         Row (verticalAlignment = Alignment.CenterVertically){
-            Text(
+            MessageText(
                 text = stringResource(id = R.string.used_skill_message).format(
                     stringResource(id = uiState.activePlayerName),
                     stringResource(id = uiState.lastSupport!!.name)
@@ -39,16 +39,13 @@ fun StatusDonePanel(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatB
             Image(painter = painterResource(id = R.drawable.support_done), contentDescription = null,
                 modifier = Modifier.padding(16.dp).size(100.dp))
         }
-        Button(
+        SimpleButton(
             onClick = { viewModel.postAction() },
+            text = stringResource(id = R.string.proceed),
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(id = R.string.proceed)
-            )
-        }
+        )
     }
 }
 

@@ -70,6 +70,24 @@ fun ImageButton(onClick: () -> Unit, text: String, image: Painter, modifier: Mod
     }
 }
 
+@Composable
+fun SimpleButton(onClick: () -> Unit, text: String, modifier: Modifier = Modifier,
+                containerColor : Color = colorResource(id = R.color.default_border_color), contentColor: Color = Color.White) {
+    Button(onClick = onClick, modifier = modifier
+        .padding(4.dp),
+        shape = RoundedCornerShape(50),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = contentColor
+        )
+    )
+    {
+        Row (verticalAlignment = Alignment.CenterVertically) {
+            ButtonText(text = text, color = contentColor, modifier = Modifier.weight(1f))
+        }
+    }
+}
+
 @Preview
 @Composable
 fun ImageButtonPreview() {
