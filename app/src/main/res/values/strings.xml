@@ -41,4 +41,15 @@
     <string name="stat_hit">Hit</string>
     <string name="stat_avoid">Avoidance</string>
     <string name="stat_crit">Critical</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="computer">Computer</string>
+    <string name="new_game">Let the fight begin !</string>
+    <string name="objective_description">Reduce the opponent hit points to 0</string>
+    <string name="resume_game">Resume game</string>
+    <string name="confirm_go_main_screen">End current game and go back to the main screen ?</string>
+    <string name="about_game">About this game</string>
+    <string name="copyright_notice">Copyright Deathdric 2024</string>
+    <string name="visit_on_github">Visit us on GitHub</string>
+    <string name="back_to_menu">Back to menu</string>
 </resources>

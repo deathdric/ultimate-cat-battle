@@ -15,6 +15,8 @@ fun UltimateCatBattleApp(windowWidthSizeClass: WindowWidthSizeClass, windowHeigh
     val uiState = viewModel.uiState.collectAsState().value
     if (uiState.isStartScreen) {
         StartScreen(windowWidthSizeClass = windowWidthSizeClass, windowHeightSizeClass = windowHeightSizeClass, viewModel = viewModel)
+    } else if (uiState.menuState.active) {
+        MainMenuScreen(viewModel = viewModel, uiState = uiState)
     } else {
         UltimateCatBattleMainScreen(windowWidthSizeClass = windowWidthSizeClass, windowHeightSizeClass = windowHeightSizeClass, viewModel = viewModel, uiState = uiState)
     }

@@ -53,7 +53,13 @@ class UltimateCatBattleViewModel : ViewModel() {
         player1.applyDelay(initPlayer1Delay)
         player2.applyDelay(initPlayer2Delay)
         updateStatus()
-        updateTurnSwitch()
+        updateTurnSwitch(true)
+    }
+
+    fun proceedWithGame() {
+        _uiState.update { previous ->
+            previous.copy(actionMode = ActionMode.PLAYER_TURN_SWITCH)
+        }
     }
 
     fun returnToMainScreen() {
@@ -70,7 +76,7 @@ class UltimateCatBattleViewModel : ViewModel() {
     fun postAction() {
         val turnChange = updateStatus()
         if (turnChange) {
-            updateTurnSwitch()
+            updateTurnSwitch(false)
         } else {
             updateActionSelect()
         }
@@ -130,6 +136,25 @@ class UltimateCatBattleViewModel : ViewModel() {
         }
     }
 
+    fun displayMenu() {
+        _uiState.update { previous ->
+            previous.copy(menuState = MenuState(active = true))
+        }
+    }
+
+    fun quitMenu() {
+        _uiState.update { previous ->
+            previous.copy(menuState = MenuState(active = false))
+        }
+    }
+
+
+    fun switchMenuActiveItem(activeItem: MenuActiveItem) {
+        _uiState.update { previous ->
+            previous.copy(menuState = MenuState(active = true, activeItem = activeItem))
+        }
+    }
+
     private fun updateStatus() : Boolean {
         curTime = Math.min(player1.nextTime, player2.nextTime)
         player1.applyEffectExpiration(curTime)
@@ -140,10 +165,10 @@ class UltimateCatBattleViewModel : ViewModel() {
         return playerTurnChanged
     }
 
-    private fun updateTurnSwitch() {
+    private fun updateTurnSwitch(isNewGame: Boolean) {
         _uiState.update { previous ->
             previous.copy(isStartScreen = false,
-                actionMode = ActionMode.PLAYER_TURN_SWITCH,
+                actionMode = if (isNewGame) ActionMode.START_GAME else ActionMode.PLAYER_TURN_SWITCH,
                 activePlayerName = currentPlayerName,
                 activePlayerIcon = currentPlayerIcon,
                 remainingTime = remainingTime,

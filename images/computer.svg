@@ -1,0 +1,33 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="eyegrad1" x1="0" x2="1" y1="1" y2="0">
+      <stop offset="0%" stop-color="#CCCC00" />
+      <stop offset="50%" stop-color="white" />
+      <stop offset="100%" stop-color="#CCCC00" />
+    </linearGradient>
+    <linearGradient id="eyegrad2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#CCCC00" />
+      <stop offset="50%" stop-color="white" />
+      <stop offset="100%" stop-color="#CCCC00" />
+    </linearGradient>
+    <radialGradient id="redlampgrad" cx="25%" cy="50%" r="33%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#FFCCCC" />
+      <stop offset="100%" stop-color="#FF4040" />
+    </radialGradient>
+    <radialGradient id="greenlampgrad" cx="75%" cy="50%" r="33%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#CCFFCC" />
+      <stop offset="100%" stop-color="#40FF40" />
+    </radialGradient>
+  </defs>
+  <rect width="100" height="100" x="0" y="0" rx="0" ry="0" fill="#CCCCFF" stroke="black" stroke-width="2" />
+  <rect width="60" height="40" x="20" y="40" fill="#C0C0C0" stroke="black" stroke-width="1" />
+  <rect width="10" height="20" x="10" y="50" fill="#C0C0C0" stroke="black" stroke-width="1" />
+  <rect width="10" height="20" x="80" y="50" fill="#C0C0C0" stroke="black" stroke-width="1" />
+  <rect width="10" height="10" x="30" y="50" fill="url(#eyegrad1)" stroke="black" stroke-width="1" />
+  <rect width="10" height="10" x="60" y="50" fill="url(#eyegrad2)" stroke="black" stroke-width="1" />
+  <line x1="40" x2="60" y1="70" y2="70" stroke="#404040" stroke-width="4" />
+  <line x1="30" x2="30" y1="30" y2="40" stroke="black" stroke-width="2" />
+  <line x1="70" x2="70" y1="30" y2="40" stroke="black" stroke-width="2" />
+  <circle r="5" cx="30" cy="25" fill="url(#redlampgrad)" stroke="black" stroke-width="1" />
+  <circle r="5" cx="70" cy="25" fill="url(#greenlampgrad)" stroke="black" stroke-width="1" />
+</svg>

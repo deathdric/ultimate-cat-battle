@@ -1,9 +1,11 @@
 package org.deathdric.ultimatecatbattle.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -92,4 +94,25 @@ fun SimpleButton(onClick: () -> Unit, text: String, modifier: Modifier = Modifie
 @Composable
 fun ImageButtonPreview() {
     ImageButton(onClick = { }, text = "Continue", image = painterResource(id = R.drawable.confirm))
+}
+
+@Composable
+fun ConfirmDialog(questionText: String, onConfirm: () -> Unit, onCancel: () -> Unit, modifier: Modifier = Modifier) {
+    Column (modifier = modifier.border(1.dp, Color.Black, RoundedCornerShape(percent = 10)), horizontalAlignment = Alignment.CenterHorizontally){
+        TitleText(text = questionText, textAlign = TextAlign.Center, modifier = Modifier.padding(8.dp))
+        Row {
+            ImageButton(onClick = onCancel, text = stringResource(id = R.string.cancel_move), image = painterResource(
+                id = R.drawable.cancel
+            ), modifier = Modifier.weight(1f))
+            ImageButton(onClick = onConfirm, text = stringResource(id = R.string.confirm_move), image = painterResource(
+                id = R.drawable.confirm
+            ), modifier = Modifier.weight(1f))
+        }
+    }
+}
+
+@Preview
+@Composable
+fun ConfirmDialogPreview() {
+    ConfirmDialog("Do you really want to do that ?", {}, {}, modifier = Modifier.background(Color.White))
 }

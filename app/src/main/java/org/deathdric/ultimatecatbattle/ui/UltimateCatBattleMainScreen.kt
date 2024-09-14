@@ -1,6 +1,7 @@
 package org.deathdric.ultimatecatbattle.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.captionBarPadding
@@ -47,13 +48,17 @@ fun UltimateCatBattleMainScreen(windowWidthSizeClass: WindowWidthSizeClass, wind
             .background(Color.White)
             .weight(1f)
             .fillMaxHeight()) {
-            BattleTopBar(
-                viewModel = viewModel,
-                uiState = uiState,
-                modifier = Modifier.fillMaxWidth()
-            )
+            if (uiState.actionMode != ActionMode.START_GAME) {
+                BattleTopBar(
+                    viewModel = viewModel,
+                    uiState = uiState,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
             when (uiState.actionMode) {
-
+                ActionMode.START_GAME -> {
+                    StartGamePanel(viewModel = viewModel, modifier = Modifier.fillMaxSize())
+                }
                 ActionMode.ACTION_SELECT -> {
                     if (uiState.attackSelectedInfo != null) {
                         AttackConfirmationPanel(viewModel = viewModel, attackSelectedInfo = uiState.attackSelectedInfo)

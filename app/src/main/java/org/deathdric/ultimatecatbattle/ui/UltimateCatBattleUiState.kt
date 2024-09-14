@@ -27,6 +27,7 @@ data class UltimateCatBattleUiState(
     val attackResult : AttackResult? = null,
     val supportSelectedInfo: SupportSelectedInfo? = null,
     val lastSupport : SupportAction? = null,
-    val showActionDetails : Boolean = false
+    val showActionDetails : Boolean = false,
+    val menuState: MenuState = MenuState()
 
 )

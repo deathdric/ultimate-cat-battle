@@ -40,4 +40,15 @@
     <string name="stat_hit">Précision</string>
     <string name="stat_avoid">Esquive</string>
     <string name="stat_crit">Critique</string>
+    <string name="player1">Joueur 1</string>
+    <string name="player2">Joueur 2</string>
+    <string name="computer">Ordinateur</string>
+    <string name="new_game">Que le combat commence !</string>
+    <string name="objective_description">Réduit les points de vie de ton adversaire à 0</string>
+    <string name="resume_game">Reprendre la partie</string>
+    <string name="confirm_go_main_screen">Arrêter la partie et revenir à l\'écran principal ?</string>
+    <string name="about_game">A propos de ce jeu</string>
+    <string name="copyright_notice">Copyright Deathdric 2024</string>
+    <string name="visit_on_github">Visitez nous sur GitHub</string>
+    <string name="back_to_menu">Retour au menu</string>
 </resources>

@@ -55,6 +55,7 @@ fun StartScreen(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClas
             fontSize = 36.sp,
             color = Color.Black,
             modifier = Modifier
+                .padding(bottom = 8.dp)
                 .border(width = 5.dp, color = Color.Red, shape = RoundedCornerShape(5.dp))
                 .background(color = Color(0xFFFF8000))
                 .padding(24.dp)
@@ -63,7 +64,7 @@ fun StartScreen(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClas
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center){
             Image(painter = painterResource(id = R.drawable.cat2), contentDescription = null)
-            Column (verticalArrangement = Arrangement.SpaceBetween){
+            Column (verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally){
                 Button(
                     onClick = { viewModel.startGame(true)},
                     shape = RoundedCornerShape(10.dp),
@@ -71,7 +72,7 @@ fun StartScreen(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClas
                         containerColor = Color.DarkGray,
                         contentColor = Color.White
                     ),
-                    modifier = Modifier.padding(8.dp).size(width = 160.dp, height = 40.dp)
+                    modifier = Modifier.padding(8.dp).size(width = 180.dp, height = 40.dp)
                 ) {
                     ButtonText(text = stringResource(id = R.string.one_player), textAlign = TextAlign.Center)
                 }
@@ -82,7 +83,7 @@ fun StartScreen(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClas
                         containerColor = Color.DarkGray,
                         contentColor = Color.White
                     ),
-                    modifier = Modifier.padding(8.dp).size(width = 160.dp, height = 40.dp)
+                    modifier = Modifier.padding(8.dp).size(width = 180.dp, height = 40.dp)
                 ) {
                     ButtonText(text = stringResource(id = R.string.two_players), textAlign = TextAlign.Center)
                 }

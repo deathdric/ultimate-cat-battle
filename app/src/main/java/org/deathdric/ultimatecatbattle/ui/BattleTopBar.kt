@@ -2,6 +2,7 @@ package org.deathdric.ultimatecatbattle.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,6 +36,9 @@ fun BattleTopBar(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBatt
         .fillMaxWidth()
         .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically) {
+        IconButton(onClick = { viewModel.displayMenu() }, modifier = Modifier.size(50.dp).padding(end = 4.dp).border(1.dp, Color.Black)) {
+            Image(painter = painterResource(id = R.drawable.menu), contentDescription = null)
+        }
         IconButton(onClick = { viewModel.toggleDetails() }, modifier = Modifier.size(50.dp)) {
             if (uiState.showActionDetails) {
                 Image(
@@ -48,14 +52,25 @@ fun BattleTopBar(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBatt
                 )
             }
         }
-        Spacer(modifier = Modifier.size(width = 50.dp, height = 20.dp))
-        Text (
-            text = stringResource(id = R.string.player_turn).format(stringResource(id = uiState.activePlayerName)),
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            fontSize = 28.sp,
-            modifier = Modifier.weight(1f)
+        Spacer(modifier = Modifier.weight(1f))
+        val playerTypeIcon = if (uiState.activePlayerId == 1) {
+            R.drawable.player1
+        } else if (viewModel.isSinglePlayer) {
+            R.drawable.computer
+        } else {
+            R.drawable.player2
+        }
+        Image(painter = painterResource(id = playerTypeIcon),
+            modifier = Modifier
+                .padding(start = 4.dp, end = 4.dp)
+                .size(50.dp),
+            contentDescription = null
+        )
+        Image(painter = painterResource(id = uiState.activePlayerIcon),
+            modifier = Modifier
+                .padding(start = 4.dp, end = 4.dp)
+                .size(50.dp),
+            contentDescription = null
         )
         Image(painter = painterResource(id = R.drawable.clock),
             modifier = Modifier
