@@ -52,4 +52,72 @@
     <string name="copyright_notice">Copyright Deathdric 2024</string>
     <string name="visit_on_github">Visit us on GitHub</string>
     <string name="back_to_menu">Back to menu</string>
+    <string name="game_instructions">Game instructions</string>
+    <string name="game_basics">Game basics</string>
+    <string name="game_basics_part1">There are 2 players : the cat (controlled by the first player) and the penguin (either controlled by
+the second player in 2-player mode or the computer in 1-player mode). Both of them starts with an amount
+of hit points. The goal is to decrease the number of enemy hit points to 0 before the opponent does
+the same to you.</string>
+    <string name="game_basics_hit_points">Hit point icon : </string>
+    <string name="game_basics_part2">You can select between two types of moves during your turn :\n\t- Attack moves which does damage (decreases hit points)\n\t- Support moves which will modify your statistics (e.g. : increase damage dealt, …)</string>
+    <string name="game_basics_part3">The most important resource in this game is time. At the beginning of the game, one player is randomly
+chosen and given a random (&lt; 20) amount of time units. Each move costs a fixed amount of time. When you select a move, if its cost is lower than your
+remaining amount of time, you will be able to use another move, otherwise you opponent turn will begin.</string>
+    <string name="game_basics_part4">Apart from the first turn, the amount of time available for a player depends is the difference between
+the time cost of its opponent last move and its opponent last remaining time. So using a slow (but powerful) move will give more time to your opponent …</string>
+    <string name="game_basics_top_bar">Main toolbar</string>
+    <string name="in_game_menu">Open game menu</string>
+    <string name="switch_move_details">Toggle on/off move details display</string>
+    <string name="active_player_display">Displays active player (player 1, player 2 or computer)</string>
+    <string name="active_character_display">Displays active character (cat or penguin)</string>
+    <string name="remaining_time_display">Displays remaining time of active player</string>
+    <string name="game_attacks">Attack moves</string>
+    <string name="game_attacks_part1">Attack moves are displayed as red/pink buttons in the move selection screen.</string>
+    <string name="game_attacks_part2">As their name implies, the purpose of attack moves is to reduce the number of enemy hit points.</string>
+    <string name="game_attacks_damage">Attack damage</string>
+    <string name="game_attacks_damage_part1">An important information about an attack is its base damage. Each attack has a damage range from which
+the actual damage value will be chosen randomly (before applying damage modifiers).</string>
+    <string name="time_cost">Time cost</string>
+    <string name="game_attacks_damage_part2">The effective damage dealt is also affected by the player attack modifier (positively) and the opponent
+defense modifier (negatively). Those modifiers are percentage-based and additive, which means that if
+the attacker has a 25 (=25 %) attack modifier and the opponent has a 25 (=25 %) defense modifier, both
+modifiers will cancel each-other.</string>
+    <string name="game_attacks_damage_part3">The minimum damage done is always 1 (which only happens when the attacker has a -50 % attack modifier
+and the defender has a 50 % defense modifier).</string>
+    <string name="game_attacks_hit_part1">Attacks can miss (and you\'ll be sad when it will happen, as you won\'t do any damage and will still pay
+the time cost). When a user performs an attack action, a first random draw will be done in order to
+check if the attack has succeeded or not.</string>
+    <string name="game_attacks_hit_part2">Each attack move has a base chance of success. If the base hit chance is greater or equal than 100, an attack will never miss. An attack with a hit
+chance of 50 will miss half of the time (in theory, don\'t complain to me about the RNG).</string>
+    <string name="game_attacks_hit_part3">Like for damage done, hit chance can also be subject to status modifiers. The attacker hit rating will
+increase its chance (e.g. : 60 % base hit from move and 20 % player hit rating = 80 % chance), while
+the defender avoidance rating will decrease its change (e.g. : 60 % base hit from move and 10 % opponent
+avoidance rating = 50 % chance).</string>
+    <string name="game_attacks_crit_part1">If you\'re lucky, attacks can trigger critical hits, which will add 50 % extra damage (after all
+modifiers are applied) for the same time cost.</string>
+    <string name="game_attacks_crit_part2">Whether an attack is critical or not is computed after checking whether an attack was successful or
+not. Even if you had a 100 % critical hit chance, it will have no effect if your attack missed.</string>
+    <string name="game_attacks_crit_part3">Each attack move has a base chance (in percents) of critical hit. Critical chance can also be modified by the player critical modifier (e.g. : 10 % base critical from
+move and 20 % player critical modifier = 30 % critical chance). Unlike for damage and hit rating, there
+is no modifier for the opponent in order to reduce critical hit.</string>
+    <string name="game_attacks_time_part1">Like all moves, attacks have time cost. This will impact whether you can use another move before the opponent\'s turn of how much time your opponent will have next.</string>
+    <string name="game_supports">Support moves</string>
+    <string name="game_supports_part1">Support moves are displayed as green buttons in the move selection screen.</string>
+    <string name="game_supports_part2">A support move applies a set of modifiers to the player for a set amount of time (move cost + 100 time units).
+You can cumulate as many modifiers as you want, however there is a limit applied to the total modifier
+value on each stat (no less than -50 %, no more than 50 %). For example if you apply 3 Berserk moves,
+your total attack modifier will only be 50 % instead of 75 %, however once the first Berserk modifier
+expires, the attack modifier will still stays at 50 % until the second one expires.</string>
+    <string name="game_supports_part3">Not all modifications are positive, actually most support moves tend to apply a positive modifier on
+some stats and a negative modifier on others. For example Berserk will increase your attack
+at the cost of decreasing your defense, while Guard will do the opposite.</string>
+    <string name="game_supports_part4">Before applying a support move, you should check whether the decreases on some stats are worth in increase
+in others (beware of the 50 % limit), and also if it\'s worth the time cost which can also be used on attacks.</string>
+    <string name="game_supports_part5">You can see the cumulative values of the stats modifier in the main screen, below the Hit Points value.</string>
+    <string name="game_supports_attack_part1">Increases damage dealt (if negative, will decrease it).</string>
+    <string name="game_supports_defense_part1">Decreases damage received (if negative, will increase it).</string>
+    <string name="game_supports_hit_part1">Increases chance to hit.</string>
+    <string name="game_supports_avoid_part1">Reduces chance to be hit by your opponent.</string>
+    <string name="game_supports_crit_part1">Increase your critical hit chance (if negative, will decrease it).</string>
+    <string name="game_supports_time_part1">Like all moves, support moves have time cost. This will impact whether you can use another move before the opponent\'s turn of how much time your opponent will have next.</string>
 </resources>

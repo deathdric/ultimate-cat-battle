@@ -19,8 +19,10 @@ It's main characteristics are :
 You can download the APK in the release page (you'll have to configure your smartphone/tablet do allow
 third-party APK installations).
 
-If it becomes popular enough to allow the required number of testers, I'll try to have it published to
-the Google Play Store.
+The game is available in restricted early access on [Google Play](https://play.google.com/store/apps/details?id=org.deathdric.ultimatecatbattle).
+If you are interested to participate in testing (or just want to play), please [send me an email](mailto:cmotsch@free.fr?subject=Access to Ultimate Cat Battle)
+and provide the Gmail address you're using on the play store (so I can grant you access). Once/if there are enough testers, I'll try to have
+the game made publicly available there.
 
 # Game instructions
 

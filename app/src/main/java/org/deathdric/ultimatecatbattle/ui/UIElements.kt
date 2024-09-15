@@ -43,6 +43,13 @@ fun MessageText(text: String, modifier: Modifier = Modifier, fontWeight: FontWei
 }
 
 @Composable
+fun InstructionsText(text: String, modifier: Modifier = Modifier, fontWeight: FontWeight = FontWeight.Normal, textAlign: TextAlign = TextAlign.Justify,
+                color: Color = Color.Black) {
+    Text(text = text, fontSize = 16.sp, fontWeight = fontWeight, fontFamily = FontFamily.SansSerif,
+        textAlign = textAlign, modifier = modifier, color = color)
+}
+
+@Composable
 fun ButtonText(text: String, modifier: Modifier = Modifier, fontWeight: FontWeight = FontWeight.Bold, textAlign: TextAlign = TextAlign.Center,
                color: Color = Color.White) {
     Text(text = text, fontSize = 14.sp, fontWeight = fontWeight, fontFamily = FontFamily.SansSerif,

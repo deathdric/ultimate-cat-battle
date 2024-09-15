@@ -20,8 +20,11 @@ Ses caractéristiques principales sont :
 Vous pouvez télécharger le package APK sur la page de release (vous devrez par contre au préalable configurer votre
 smartphone ou tablette pour autoriser les installation tierces d'APK).
 
-Si le jeu rencontre suffisemment de succès pour pouvoir atteindre le nombre de testeurs requis, j'essaierai de le publiser
-sur le Google Play Store.
+Le jeu est actuellement en accès restreint sur [Google Play](https://play.google.com/store/apps/details?id=org.deathdric.ultimatecatbattle).
+Si vous êtes intéressés pour participer aux tests (ou simplement jouer), [envoyez un courriel](mailto:cmotsch@free.fr?subject=Accès à Ultimate Cat Battle)
+en m'indiquant l'adresse Gmail que vous utilisez sur le play store (afin que je vous donne l'accès).
+Quand/si le nombre de testeurs requis sera suffisant, le jeu sera mis en accès public.
+
 
 # Instructions du jeu
 
@@ -48,8 +51,8 @@ Vous pouvez choisir deux types d'actions penvant votre tour :
 
 ## Gestion du temps
 
-La resource principale du jeu est le `temps`. Au début de la partie, un joueur est choisi au hasard et reçoit un nombre
-aléatoire (inférieur à 20) d'unité de temps. Le nombre d'unité de temps restant pour un joueur avant que son tour finisse
+La ressource principale du jeu est le `temps`. Au début de la partie, un joueur est choisi au hasard et reçoit un nombre
+aléatoire (inférieur à 20) d'unités de temps. Le nombre d'unité de temps restant pour un joueur avant que son tour finisse
 est affiché près de l'icône en forme d'horloge : <img src="images/clock.svg" width="50" height="50">
 
 Chaque action coûte un nombre fixe d'unités de temps. Quand vous choisissez une action, si son coût en temps est inférieur
@@ -71,7 +74,7 @@ les 5 unites de temps restant du chat avant d'effectuer ce coup).
 
 Les actions d'attaques sont représentées par les boutons rouges/roses dans l'écran de sélection des actions.
 
-Comme leur nom l'indique, le but de ses actions est de réduire le nombre de points de vie de l'adversaire. Comme expliqué
+Comme leur nom l'indique, le but de ces actions est de réduire le nombre de points de vie de l'adversaire. Comme expliqué
 dans la section précédente, ces attaques on un coût en unités de temps (notez que ce coût est appliqué indépendamment du
 fait que l'attaque réussisse, soit critique ou échoue).
 
@@ -86,7 +89,7 @@ La plage (min-max) de dégâts associée à une attaque peut être vue dans les 
 croisées : <img src="images/damage.svg" width="50" height="50">
 
 Les dégâts effectifs infligés dépendent également du modificateur d'attaque du joueur (positivement) et du modificateur de
-défenre de l'adversaire (négativement). Ces mofificateurs sont en pourcents (%) et s'additionent, par exemple si l'attaquant
+défense de l'adversaire (négativement). Ces modificateurs sont en pourcents (%) et s'additionent, par exemple si l'attaquant
 a un modificateur d'attaque de 25 (=25 %) et l'adversaire a un modificateur de défense de 25 (=25 %), les 2 modificateurs
 s'annulent.
 
@@ -150,7 +153,7 @@ Par défaut l'interface de sélection des actions n'affichera que son nom et son
 les caratéristiques détaillées des soutiens en cliquant sur le bouton `+` : <img src="images/details_on.svg" width="50" height="50">
 
 Vous pouvez voir le total des modificateurs appliqués sur chaque personnage dans l'écran principal, en dessous du nombre
-de point de vie. Il y a 5 types de modificateurs :
+de points de vie. Il y a 5 types de modificateurs :
 
 - Modificateur d'attaque (augmente les dégâts infligés) : <img src="images/attack.svg" width="50" height="50">
 - Modificateur de défense (diminue les dégâts subis) : <img src="images/defense.svg" width="50" height="50">

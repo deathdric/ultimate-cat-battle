@@ -44,11 +44,75 @@
     <string name="player2">Joueur 2</string>
     <string name="computer">Ordinateur</string>
     <string name="new_game">Que le combat commence !</string>
-    <string name="objective_description">Réduit les points de vie de ton adversaire à 0</string>
+    <string name="objective_description">Réduis les points de vie de ton adversaire à 0</string>
     <string name="resume_game">Reprendre la partie</string>
     <string name="confirm_go_main_screen">Arrêter la partie et revenir à l\'écran principal ?</string>
     <string name="about_game">A propos de ce jeu</string>
     <string name="copyright_notice">Copyright Deathdric 2024</string>
-    <string name="visit_on_github">Visitez nous sur GitHub</string>
+    <string name="visit_on_github">Visite nous sur GitHub</string>
     <string name="back_to_menu">Retour au menu</string>
+    <string name="game_instructions">Instructions du jeu</string>
+    <string name="game_basics">Bases du jeu</string>
+    <string name="game_basics_part1">Il y a 2 personnages : le chat (controllé par le premier joueur) et le pingouin (controllé par le second joueur en mode
+2 joueurs ou par l\'ordinateur en mode 1 joueur). Les deux personnages démarrent avec un certain nombre de points de vie.
+Le but du jeu est de réduire les points de vie de l\'adversaire à 0 avant qu\'il n\'en fasse de même pour toi.</string>
+    <string name="game_basics_hit_points">Icone des points de vie : </string>
+    <string name="game_basics_part2">Tu peux choisir deux types d\'actions pendant ton tour :\n\t- Les attaques, qui infligent des dégâts à l\'adversaire (réduisent ses points de vie)\n\t- Les actions de soutien, qui modifient les caratéristiques de ton personnage (ex : augmenter les dégâts infligés, …)</string>
+    <string name="game_basics_part3">La ressource principale du jeu est le temps. Au début de la partie, un joueur est choisi au hasard et reçoit un nombre
+aléatoire (inférieur à 20) d\'unités de temps. Chaque action coûte un nombre fixe d\'unités de temps. Quand tu choisis une action, si son coût en temps est inférieur
+au temps restant imparti, tu pourras effectuer une autre action, sinon ton tour se finit et celui de l\'adversaire commence.</string>
+    <string name="game_basics_part4">A l\'exception du premier tour, le nombre d\'unités de temps disponible est calculé en fonction de la différence entre le coût
+de la dernière action faite par le joueur adverse et le temps restant dont il disposait avant d\'effecuter cette action. Par conséquent, utiliser un coup lent et puissant accordera plus de temps à ton adversaire …</string>
+    <string name="game_basics_top_bar">Barre d\'outils</string>
+    <string name="in_game_menu">Ouvre le menu du jeu</string>
+    <string name="switch_move_details">Active/désactive l\'affichage des détails des actions</string>
+    <string name="active_player_display">Affiche le joueur actif (joueur 1, joueur 2 ou ordinateur)</string>
+    <string name="active_character_display">Affiche le personnage actif (chat ou pingouin)</string>
+    <string name="remaining_time_display">Affiche les unités de temps restant du joueur actif</string>
+    <string name="game_attacks">Les attaques</string>
+    <string name="game_attacks_part1">Les actions d\'attaques sont représentées par les boutons rouges/roses dans l\'écran de sélection des actions.</string>
+    <string name="game_attacks_part2">Comme leur nom l\'indique, le but de ces actions est de réduire le nombre de points de vie de l\'adversaire.</string>
+    <string name="game_attacks_damage">Dégâts des attaques</string>
+    <string name="game_attacks_damage_part1">Une information importante associée à une attaque est le montant des dégâts de base infligés. Chaque attaque a une plage de valeurs à partir de laquelle le nombre de dégâts de base sera choisi au hasard (avant d\'appliquer les modifieurs de dégâts).</string>
+    <string name="time_cost">Coût en temps</string>
+    <string name="game_attacks_damage_part2">Les dégâts effectifs infligés dépendent également du modificateur d\'attaque du joueur (positivement) et du modificateur de
+défense de l\'adversaire (négativement). Ces modificateurs sont en pourcents (%) et s\'additionent, par exemple si l\'attaquant
+a un modificateur d\'attaque de 25 (=25 %) et l\'adversaire a un modificateur de défense de 25 (=25 %), les 2 modificateurs
+s\'annulent.</string>
+    <string name="game_attacks_damage_part3">Le minimum de dégâts effectués est toujours de 1 (ce qui ne peut arriver que si l\'attaquant a un modificateur d\'attaque de
+-50 % et l\'adversaire a un modificateur de défense de 50 %).</string>
+    <string name="game_attacks_hit_part1">Les attaques peuvent échouer (et tu seras dépité quand ça arrivera, car tu ne feras aucun dégât mais tu paiera quand même le coût en temps).
+Lorsqu\'un joueur effecute une attaque, un tirage aléatoire est effectué afin de savoir si l\'attaque va réussir ou non.</string>
+    <string name="game_attacks_hit_part2">Chaque type d\'attaque a une chance initiale de toucher. Si une attaque a une chance initiale de toucher de 100, l\'attaque va toujours réussir. Si sa chance de toucher est de 50,
+elle ne réussira qu\'une fois sur 2 (la probabilité est théorique, ne vas pas te plaindre si tu n\'as pas de chance).</string>
+    <string name="game_attacks_hit_part3">Comme pour les dégâts infligés, la chance de toucher peut être affectée par des modificateurs de status. Le taux de précision
+de l\'attaquant va augmenter cette chance (ex: 60 % de chance de toucher de l\'attaque cumulé à 20 % de taux de précision
+donnera 80 % de chance de réussir l\'attaque), alors qu\'au contraire le taux d\'esquive du défenseur va la diminuer (ex: 60 %
+de chance de toucher de l\'attaque cumulé cumulé à 10 % du taux d\'esquive du défenseur donnera 50 % de chances de réussir
+l\'attaque).</string>
+    <string name="game_attacks_crit_part1">Si tu es chanceux, les attaques peuvent effectuer des coups critiques, ce qui augmente les dégâts infligés de 50 % (après applications des modificateurs) pour le même coût en temps.</string>
+    <string name="game_attacks_crit_part2">Le fait qu\'une attaque soit un coup critique est calculé après le fait qu\'une attaque réussisse ou non. Même si tu as 100 % de chances d\'effectuer un coup critique, ça n\'aura aucun effet si ton attaque échoue.</string>
+    <string name="game_attacks_crit_part3">Chaque attaque a une chance initiale (en pourcent) d\'effectuer un coup critique. La chance de coup critique est également affectée par le modificateur de coup critique de l\'attaquant (ex : 10 % chance
+de critique de l\'attaque cumulée à un modificateur de critique de 20 % donnera 30 % de chances d\'effectuer un coup critique). Contrairement aux dégâts et aux chances de réussir, le défenseur n\'a pas de modificateurs qui peuvent faire baisser la chance de coup critique de l\'attaquant.</string>
+    <string name="game_attacks_time_part1">Comme pour toute action, les attaques ont un coût en temps. Ce coût déterminera si tu pourras jouer à nouveau avant le tour de ton adversaire, ou combien de temps ton adversaire disposera lors de son prochain tour.</string>
+    <string name="game_supports">Les soutiens</string>
+    <string name="game_supports_part1">Les actions de soutien sont réprésentées par les boutons verts dans l\'écran de sélection des actions.</string>
+    <string name="game_supports_part2">Une action de soutien applique au joueur un ensemble de modificateurs qui expirent au bout d\'un nombre fixe d\'unités de temps (coût
+de l\'action + 100 unités de temps). Tu peux cumuler autant de modificateurs que tu veux, cependant une limite est
+appliquée à la somme totale de chaque modificateur actif (total minimum : -50 %, total maximum : +50 %). Par exemple si
+tu as appliqué Furie 3 fois, ton modificateur d\'attaque total ne sera que de 50 % au lieu de 75 %, cependant lorsque
+l\'effet de la première Furie aura expiré, le modificateur d\'attaque sera toujours de 50 % jusqu\'à ce que l\'effet de la
+deuxième expire.</string>
+    <string name="game_supports_part3">Les actions de soutien n\'apportent pas que des effets positifs, ainsi la plupart appliquent un modificateur positif
+sur des caratéristiques et en contrepartie un modificateur négatif sur d\'autres. Par exemple Furie va augmenter l\'attaque
+mais baisser la défense, alors que Garde fera l\'inverse.</string>
+    <string name="game_supports_part4">Avant d\'effectuer une action de soutien, tu dois vérifier au préalable si les effets positifs compensent les effets négatifs (n\'oublie pas la limite des 50 %) et son coût en temps (qui aurait pu être utilisé pour effectuer une attaque).
+</string>
+    <string name="game_supports_part5">Tu peux voir le total des modificateurs appliqués sur chaque personnage dans l\'écran principal, en dessous du nombre de points de vie.</string>
+    <string name="game_supports_attack_part1">Augmente les dégâts infligés (les réduit si négatif).</string>
+    <string name="game_supports_defense_part1">Réduit les dégâts reçus (les augmente si négatif)</string>
+    <string name="game_supports_hit_part1">Augmente les chances de réussir ses attaques.</string>
+    <string name="game_supports_avoid_part1">Diminue les chances de réussite des attaques de ton adversaire.</string>
+    <string name="game_supports_crit_part1">Augmente la chance de faire un coup critique (la réduit si négatif).</string>
+    <string name="game_supports_time_part1">Comme pour toute action, les soutiens ont un coût en temps. Ce coût déterminera si tu pourras jouer à nouveau avant le tour de ton adversaire, ou combien de temps ton adversaire disposera lors de son prochain tour.</string>
 </resources>

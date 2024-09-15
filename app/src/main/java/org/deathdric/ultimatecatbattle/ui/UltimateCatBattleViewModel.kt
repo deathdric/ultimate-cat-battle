@@ -155,6 +155,12 @@ class UltimateCatBattleViewModel : ViewModel() {
         }
     }
 
+    fun switchInstructionsItem(instructionsActiveItem: InstructionsActiveItem) {
+        _uiState.update { previous ->
+            previous.copy(menuState = MenuState(active = true, activeItem = MenuActiveItem.GAME_INSTRUCTIONS_DETAILS, instructionsActiveItem = instructionsActiveItem))
+        }
+    }
+
     private fun updateStatus() : Boolean {
         curTime = Math.min(player1.nextTime, player2.nextTime)
         player1.applyEffectExpiration(curTime)
