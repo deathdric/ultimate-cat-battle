@@ -3,6 +3,7 @@ package org.deathdric.ultimatecatbattle.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,19 +37,35 @@ fun BattleTopBar(viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBatt
         .fillMaxWidth()
         .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = { viewModel.displayMenu() }, modifier = Modifier.size(50.dp).padding(end = 4.dp).border(1.dp, Color.Black)) {
-            Image(painter = painterResource(id = R.drawable.menu), contentDescription = null)
+        Box {
+            Image(painter = painterResource(id = R.drawable.menu), contentDescription = stringResource(
+                id = R.string.in_game_menu
+            ),
+            modifier = Modifier
+                .padding(start = 4.dp, end = 4.dp)
+                .size(50.dp)
+                .clickable {  viewModel.displayMenu() }
+                .border(1.dp, Color.Black))
         }
-        IconButton(onClick = { viewModel.toggleDetails() }, modifier = Modifier.size(50.dp)) {
+        Spacer(modifier = Modifier.size(16.dp))
+        Box {
             if (uiState.showActionDetails) {
                 Image(
                     painter = painterResource(id = R.drawable.details_off),
-                    contentDescription = "-"
+                    contentDescription = "-",
+                    modifier = Modifier
+                        .padding(start = 4.dp, end = 4.dp)
+                        .size(50.dp)
+                        .clickable {  viewModel.toggleDetails() }
                 )
             } else {
                 Image(
                     painter = painterResource(id = R.drawable.details_on),
-                    contentDescription = "+"
+                    contentDescription = "+",
+                    modifier = Modifier
+                        .padding(start = 4.dp, end = 4.dp)
+                        .size(50.dp)
+                        .clickable {  viewModel.toggleDetails() }
                 )
             }
         }
