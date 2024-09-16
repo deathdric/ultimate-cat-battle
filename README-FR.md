@@ -21,7 +21,7 @@ Vous pouvez télécharger le package APK sur la page de release (vous devrez par
 smartphone ou tablette pour autoriser les installation tierces d'APK).
 
 Le jeu est actuellement en accès restreint sur [Google Play](https://play.google.com/store/apps/details?id=org.deathdric.ultimatecatbattle).
-Si vous êtes intéressés pour participer aux tests (ou simplement jouer), [envoyez un courriel](mailto:cmotsch@free.fr?subject=Accès à Ultimate Cat Battle)
+Si vous êtes intéressés pour participer aux tests (ou simplement jouer), [envoyez un courriel](mailto:cmotsch@free.fr?subject=Accès%20à%20Ultimate%20Cat%20Battle)
 en m'indiquant l'adresse Gmail que vous utilisez sur le play store (afin que je vous donne l'accès).
 Quand/si le nombre de testeurs requis sera suffisant, le jeu sera mis en accès public.
 

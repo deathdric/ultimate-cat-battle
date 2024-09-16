@@ -20,7 +20,7 @@ You can download the APK in the release page (you'll have to configure your smar
 third-party APK installations).
 
 The game is available in restricted early access on [Google Play](https://play.google.com/store/apps/details?id=org.deathdric.ultimatecatbattle).
-If you are interested to participate in testing (or just want to play), please [send me an email](mailto:cmotsch@free.fr?subject=Access to Ultimate Cat Battle)
+If you are interested to participate in testing (or just want to play), please [send me an email](mailto:cmotsch@free.fr?subject=Access%20to%20Ultimate%20Cat%20Battle)
 and provide the Gmail address you're using on the play store (so I can grant you access). Once/if there are enough testers, I'll try to have
 the game made publicly available there.
 
