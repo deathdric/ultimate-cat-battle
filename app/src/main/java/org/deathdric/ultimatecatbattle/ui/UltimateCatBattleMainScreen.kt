@@ -38,6 +38,7 @@ import org.deathdric.ultimatecatbattle.R
 @Composable
 fun UltimateCatBattleMainScreen(windowWidthSizeClass: WindowWidthSizeClass, windowHeightSizeClass: WindowHeightSizeClass, viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState) {
     Row (modifier = Modifier
+        .background(Color.White)
         .safeContentPadding()
         .statusBarsPadding()
         .systemBarsPadding()
