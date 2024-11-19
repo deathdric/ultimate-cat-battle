@@ -1,0 +1,27 @@
+<svg width="100" height="200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 50 140 L 60 150 L 55 165 A 2 5 0 0 0 55 175 L 75 175 A 5 5 0 0 0 75 165 L 65 165 L 75 145 L 75 140" stroke="#808080" fill="black" />
+  <path d="M 75 115 L 85 115 A 10 5 0 0 0 85 105 L 75 105" fill="black" stroke="#808080" />
+  <path d="M 88 110 L 95 110 A 5 3 0 0 1 88 113" stroke="none" fill="white"/>
+  <path d="M 60 60 L 50 40 C 40 0 60 0 70 40 L 70 50" fill="black" stroke="#404040"/>
+  <circle r="10" cx="15" cy="145" fill="black" stroke="#404040"/>
+  <path d="M 70 85 L 80 110 A 10 35 0 0 1 80 150 A 30 20 0 0 1 40 170 A 20 30 0 0 1 30 115 L 50 85" fill="black" stroke="#808080" />
+  <path d="M 60 45 A 25 25 0 0 1 60 95 A 25 25 0 0 1 60 45" fill="black" stroke="#404040" />
+  <path d="M 78 110 A 5 30 0 0 1 78 150 A 10 30 0 0 1 65 130 A 10 30 0 0 1 78 110" fill="white" stroke="none"/>
+  <path d="M 40 60 L 30 40 C 20 0 40 0 50 40 L 50 50" fill="black" stroke="#404040"/>
+  <path d="M 44 55 L 34 40 C 24 5 36 5 46 40 L 46 50" fill="grey" stroke="none"/>
+  <ellipse rx="5" ry="6" cx="60" cy="65" fill="white" />
+  <ellipse rx="2" ry="3" cx="60" cy="65" fill="black" />
+  <ellipse rx="5" ry="6" cx="76" cy="62" fill="white" />
+  <ellipse rx="2" ry="3" cx="76" cy="62" fill="black" />
+  <polygon points="71,70 67,76 75,74" style="fill:brown" />
+  <polygon points="68,82 72,82 72,84 68,84" style="fill:white" />
+  <polygon points="77,80 74,81 74,84 77,82" style="fill:white" />
+  <line x1="57" y1="78" x2="67" y2="76" stroke="grey" />
+  <line x1="75" y1="74" x2="80" y2="73" stroke="grey" />
+  <line x1="52" y1="75" x2="64" y2="74" stroke="grey" />
+  <line x1="82" y1="69" x2="75" y2="72" stroke="grey" />
+  <path d="M 62 80 C 62 83 80 83 80 75" fill="none" stroke="grey"/>
+  <path d="M 45 105 L 45 110 A 20 20 0 0 0 65 130 L 75 130 A 10 5 0 0 0 75 120 L 65 120 A 10 10 0 0 1 55 110 L 55 105" fill="black" stroke="#808080" />
+  <path d="M 78 125 L 85 125 A 5 3 0 0 1 78 128" stroke="none" fill="white"/>
+  <path d="M 30 155 L 40 165 L 35 180 A 2 5 0 0 0 35 190 L 55 190 A 5 5 0 0 0 55 180 L 45 180 L 55 160 L 55 155" stroke="#808080" fill="black" />
+</svg>

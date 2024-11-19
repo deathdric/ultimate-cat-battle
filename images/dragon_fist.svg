@@ -1,0 +1,17 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" x="0" y="0" rx="0" ry="0" fill="white" stroke="black" stroke-width="2" />
+  <path d="M 62 26 L 70 10 L 68 26" stroke="black" fill="brown"/>
+  <path d="M 64 26 L 73 12 L 69 26" stroke="black" fill="brown"/>
+  <path d="M 84 33 L 85 20 L 75 28" stroke="black" fill="#FFC000"/>
+  <path d="M 85 40 L 90 45 L 85 50" stroke="black" fill="#FFC000"/>
+  <path d="M 75 45 A 5 7 0 0 0 69 36 C 66 39 61 40 59 45 C 56 45 52 44 50 43 C 55 43 59 40 60 36 C 52 36 48 38 45 40 C 43 36 42 37 43 32 C 47 34 52 29 55 28 C 56 26 58 26 59 24 A 20 15 0 0 1 79 24 A 20 20 0 0 1 85 45 A 8 14 0 0 0 90 60 L 78 60 A 8 14 0 0 1 75 45" fill="#A7F432" stroke="black" />
+  <path d="M 57 30 L 62 27 L 58 31 L 57 30" fill="black" stroke="black" />
+  <circle r="1" cx="45" cy="35" fill="black" stroke="none" />
+
+  <path d="M 15 75 L 25 85 L 29 81 L 40 75 L 44 71 A 2 2 0 0 0 40 67 A 2 2 0 0 0 36 63 A 2 2 0 0 0 32 59 A 2 2 0 0 0 28 55 A 3 2 0 0 0 25 52 L 20 60 L 19 71 L 15 75" fill="pink" stroke="black"/>
+  <path d="M 28 55 L 25 60 L 25 63" fill="none" stroke="black" />
+  <path d="M 10 76 L 13 73 L 27 87 L 24 90" fill="blue" stroke="black" />
+  <path d="M 10 76 L 10 90 L 24 90 L 24 89 L 11 76" fill="blue" stroke="none" />
+  <path d="M 21 43 A 30 30 0 0 1 57 79" fill="none" stroke="black" />
+  <path d="M 20 46 A 28 28 0 0 1 54 80" fill="none" stroke="black" />
+</svg>

@@ -1,0 +1,16 @@
+<svg width="100" height="200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 52 155 L 56 155 L 61 165 L 65 165" stroke="black" fill="white" />
+  <path d="M 54 170 L 56 165 L 61 165 L 63 170 L 75 175 L 54 175" stroke="#404040" fill="black" />
+  <path d="M 80 70 A 50 70 0 0 1 80 150 A 35 35 0 0 1 70 165 L 30 165 A 15 25 0 0 1 20 150 L 20 70" stroke="black" fill="white" />
+  <path d="M 30 165 A 5 30 0 1 1 30 105 L 20 105 L 20 155 A 10 10 0 0 0 30 165" stroke="none" fill="black" />
+  <path d="M 15 150 A 8 8 0 0 1 5 150 L 20 70 L 20 50 A 20 20 0 0 1 80 50 L 80 70 A 30 15 0 0 1 50 85 A 30 30 0 0 0 40 100 L 15 150" stroke="#808080" fill="black"/>
+  <path d="M 20 70 L 20 50 A 20 20 0 0 1 80 50 L 80 70 A 30 15 0 0 1 20 70" stroke="#404040" fill="black"/>
+  <ellipse rx="5" ry="6" cx="50" cy="45" fill="white" />
+  <ellipse rx="2" ry="3" cx="50" cy="45" fill="black" />
+  <ellipse rx="5" ry="6" cx="70" cy="40" fill="white" />
+  <ellipse rx="2" ry="3" cx="70" cy="40" fill="black" />
+  <polygon points="50,60 63,70 95,60 63,50" style="fill:orange;stroke:#404040" />
+  <line x1="50" y1="60" x2="95" y2="60" style="stroke:black" />
+  <path d="M 32 160 L 36 170 L 41 170 L 45 160" stroke="black" fill="white" />
+  <path d="M 34 175 L 36 170 L 41 170 L 43 175 L 55 180 L 34 180" stroke="#404040" fill="black" />
+</svg>
