@@ -1,22 +1,22 @@
 package org.deathdric.ultimatecatbattle.model
 
-class Player(val template : PlayerTemplate) {
+data class Player(val maxHitPoints: Int,
+                  val id: PlayerId,
+                  val playerType: PlayerType,
+                  val attackActions: List<AttackAction> = listOf(),
+                  val supportActions: List<SupportAction> = listOf()
+) {
+    var hitPoints = maxHitPoints
+        private set;
 
-    companion object {
-        val MIN_STAT_VALUE = -50
-        val MAX_STAT_VALUE = 50
-    }
-
-    var hitPoints : Int = template.maxHp
-        private set
-
-    private var statusEffects : MutableList<StatusEffect> = ArrayList()
+    private var statusEffects : MutableList<StatusModifier> = ArrayList()
     val isAlive get() = hitPoints > 0
-    val attack get()  = computeStat(statusFunction = {it.attackBonus})
-    val defense get()  = computeStat(statusFunction = {it.defenseBonus})
-    val hit get()  = computeStat(statusFunction = {it.hitBonus})
-    val avoid get()  = computeStat(statusFunction = {it.avoidBonus})
-    val critical get() = computeStat(statusFunction = {it.criticalBonus})
+    val attack get()  = computeStat(StatusEffectType.ATTACK)
+    val defense get()  = computeStat(StatusEffectType.DEFENSE)
+    val hit get()  = computeStat(StatusEffectType.HIT)
+    val avoid get()  = computeStat(StatusEffectType.AVOID)
+    val critical get() = computeStat(StatusEffectType.CRITICAL)
+
     var nextTime = 0
         private set;
 
@@ -30,15 +30,23 @@ class Player(val template : PlayerTemplate) {
             newHitPoints = 0
         }
         hitPoints = newHitPoints
-
     }
 
-    fun addEffect(newEffect: StatusEffect) {
+    fun applyHealing(healing: Int) {
+        var newHitPoints = hitPoints + healing
+        if (newHitPoints > maxHitPoints) {
+            newHitPoints = maxHitPoints
+        }
+        hitPoints = newHitPoints
+    }
+
+    fun addEffect(newEffect: StatusModifier) {
         statusEffects.add(newEffect)
     }
 
+
     fun applyEffectExpiration(curTime : Int) {
-        val newEffects = ArrayList<StatusEffect>()
+        val newEffects = ArrayList<StatusModifier>()
         for (curEffect in statusEffects) {
             if (curEffect.expires > curTime) {
                 newEffects.add(curEffect)
@@ -48,21 +56,18 @@ class Player(val template : PlayerTemplate) {
     }
 
     private fun computeStat(
-        statusFunction : (StatusEffect) -> Int,
-        minValue : Int = MIN_STAT_VALUE,
-        maxValue : Int = MAX_STAT_VALUE
+        effectType: StatusEffectType
     ) : Int {
         var total = 0
         for (effect in statusEffects) {
-            total += statusFunction(effect)
+            total += effectType.statusFunction.invoke(effect)
         }
-        if (total > maxValue) {
-            total = maxValue;
+        if (total > effectType.maxValue) {
+            total = effectType.maxValue;
         }
-        if (total < minValue) {
-            total = minValue;
+        if (total < effectType.minValue) {
+            total = effectType.minValue;
         }
         return total;
     }
-
 }

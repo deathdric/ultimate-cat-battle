@@ -39,7 +39,7 @@
       android:strokeWidth="2"
       android:strokeColor="#000000"/>
   <path
-      android:pathData="M67,68L87,68L87,75L57,75L57,68L72,48C87,33 67,33 67,39L57,38C67,18 92,28 82,48L67,68"
+      android:pathData="M65,68L81,68L81,75L57,75L57,68L74,38A5,5 0,1 0,64 38L57,38A12,13 0,1 1,81 38L65,68"
       android:fillColor="#000000"
       android:strokeColor="#00000000"/>
 </vector>

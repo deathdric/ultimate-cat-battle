@@ -1,47 +1,73 @@
 package org.deathdric.ultimatecatbattle.data
 
-import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.SupportAction
+import org.deathdric.ultimatecatbattle.model.StatusEffect
+import org.deathdric.ultimatecatbattle.model.StatusEffectType
+import org.deathdric.ultimatecatbattle.model.SupportActionId
+import org.deathdric.ultimatecatbattle.model.SupportActionTemplate
+import org.deathdric.ultimatecatbattle.model.TargetType
 
 object SupportRepository {
 
-    val berserk = SupportAction (
-        id = 1,
-        name = R.string.support_berserk,
-        attackBonus = 25,
-        defenseBonus = -25,
-        criticalBonus = 15,
+    private val berserk : SupportActionTemplate = SupportActionTemplate(
+        id = SupportActionId.BERSERK,
+        targetType = TargetType.ONE_ALLY,
+        duration = 100,
         delay = 10,
-        duration = 100
+        coolDown = 100,
+        selfEffects = listOf(
+            StatusEffect(StatusEffectType.ATTACK, 30),
+            StatusEffect(StatusEffectType.DEFENSE, -15),
+            StatusEffect(StatusEffectType.AVOID, -5),
+            StatusEffect(StatusEffectType.CRITICAL, 15),
+        ),
+        otherEffects = listOf(
+            StatusEffect(StatusEffectType.ATTACK, 10),
+            StatusEffect(StatusEffectType.CRITICAL, 5)
+        )
     )
 
-    val guard = SupportAction (
-        id = 2,
-        name = R.string.support_guard,
-        attackBonus = -25,
-        defenseBonus = 50,
-        criticalBonus = -10,
-        avoidBonus = 10,
-        delay = 30,
-        duration = 100
-    )
-
-    val speed = SupportAction (
-        id = 3,
-        name = R.string.support_speed,
-        attackBonus = -25,
-        hitBonus = 25,
-        avoidBonus = 10,
-        criticalBonus = 15,
-        delay = 10,
-        duration = 100
-    )
-
-    val powerFist = SupportAction (
-        id = 4,
-        name = R.string.support_power_fist,
-        criticalBonus = 30,
+    private val guard : SupportActionTemplate = SupportActionTemplate(
+        id = SupportActionId.GUARD,
+        targetType = TargetType.ONE_ALLY,
+        duration = 100,
         delay = 20,
-        duration = 100
+        coolDown = 100,
+        selfEffects = listOf(
+            StatusEffect(StatusEffectType.ATTACK, -25),
+            StatusEffect(StatusEffectType.DEFENSE, 50),
+            StatusEffect(StatusEffectType.AVOID, 10),
+            StatusEffect(StatusEffectType.CRITICAL, -5)
+        ),
+        otherEffects = listOf(
+            StatusEffect(StatusEffectType.DEFENSE, 20),
+            StatusEffect(StatusEffectType.AVOID, 5)
+        )
     )
+
+    private val speed : SupportActionTemplate = SupportActionTemplate(
+        id = SupportActionId.SPEED,
+        targetType = TargetType.ONE_ALLY,
+        duration = 100,
+        delay = 10,
+        coolDown = 100,
+        selfEffects = listOf(
+            StatusEffect(StatusEffectType.ATTACK, -25),
+            StatusEffect(StatusEffectType.HIT, 30),
+            StatusEffect(StatusEffectType.AVOID, 20),
+            StatusEffect(StatusEffectType.CRITICAL, 15)
+        ),
+        otherEffects = listOf(
+            StatusEffect(StatusEffectType.HIT, 10),
+            StatusEffect(StatusEffectType.AVOID, 5),
+            StatusEffect(StatusEffectType.CRITICAL, 5)
+        )
+    )
+
+    fun getSupport(id: SupportActionId) : SupportActionTemplate {
+        return when(id) {
+            SupportActionId.BERSERK -> berserk
+            SupportActionId.GUARD -> guard
+            SupportActionId.SPEED -> speed
+        }
+    }
 }

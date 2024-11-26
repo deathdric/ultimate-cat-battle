@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_screen_return">Retour à l\'accueil</string>
     <string name="one_player">1 joueur</string>
     <string name="two_players">2 joueurs</string>
+    <string name="three_players">3 joueurs</string>
+    <string name="four_players">4 joueurs</string>
+    <string name="help">Aide</string>
+    <string name="confirm">Confirmer</string>
+    <string name="cancel">Annuler</string>
     <string name="cat">Chat</string>
     <string name="penguin">Pingouin</string>
-    <string name="player_turn">Tour de %s</string>
-    <string name="remaining_time">Temps restant : %s</string>
-    <string name="proceed">Continuer</string>
-    <string name="start_turn">Démarrer le tour</string>
-    <string name="used_skill_message">%s utilise %s</string>
-    <string name="player_wins">%s a gagné !</string>
-    <string name="damage_done_message">Dégâts infligés :</string>
-    <string name="critical_message">Coup critique !</string>
-    <string name="failed_attack_message">L\'attaque est esquivée de justesse</string>
+    <string name="rabbit">Lapin</string>
+    <string name="mouse">Souris</string>
+    <string name="player1">Joueur 1</string>
+    <string name="player2">Joueur 2</string>
+    <string name="player3">Joueur 3</string>
+    <string name="player4">Joueur 4</string>
+    <string name="computer">Ordinateur</string>
+    <string name="player_must_have_characters">%s doit controller au moins un personnage !</string>
+    <string name="add">Ajouter</string>
+    <string name="remove">Retirer</string>
+    <string name="character_assign_title">Assigne les personnages aux joueurs</string>
+    <string name="team_assign_title">Répartis les joueurs par équipes</string>
+    <string name="must_have_more_than_one_team">Il faut au moins 2 équipes différentes !</string>
+    <string name="team_name_pattern">Equipe %s</string>
+    <string name="fish_blue">Bleu Poisson</string>
+    <string name="ball_green">Vert Balle</string>
+    <string name="cheese_red">Rouge Fromage</string>
+    <string name="moon_brown">Marron Lune</string>
+    <string name="sun_orange">Orange Soleil</string>
+    <string name="star_purple">Violet Etoile</string>
+    <string name="carrot_yellow">Jaune Carotte</string>
     <string name="attack_dragon_fist">Poing du dragon</string>
     <string name="attack_finger_of_death">Doigt de la mort</string>
     <string name="attack_great_explosion">Super explosion</string>
@@ -23,96 +39,165 @@
     <string name="support_berserk">Furie</string>
     <string name="support_guard">Garde</string>
     <string name="support_speed">Vitesse</string>
-    <string name="support_power_fist">Super poing</string>
+    <string name="go_home">Retour à l\'écran principal</string>
+    <string name="new_game">Que le combat commence !</string>
+    <string name="objective_description">Réduis les points de vie de tes adversaires à 0</string>
+    <string name="objective_description2">Lorsque ton tour arrive, choisis l\'action de ton personnage pour infliger des dégâts aux ennemis ou augmenter tes capacités.</string>
+    <string name="start_game">Commencer la partie</string>
+    <string name="player_turn">Tour de %s</string>
+    <string name="start_turn">Démarrer le tour</string>
+    <string name="turn_time_units">Durée du tour</string>
+    <string name="select_move">Choisis ta prochaine action</string>
+    <string name="start_turn_quote_1">%s se dresse avec fierté, il sait que la justice est de son coté.</string>
+    <string name="start_turn_quote_2">%s n\'abandonnera pas. Le sort de trop de monde est en jeu !</string>
+    <string name="start_turn_quote_3">%s rassemble son courage et passe à l\'action.</string>
+    <string name="start_turn_quote_4">%s est prêt à frapper. Que ses ennemis tremblent de peur …</string>
+    <string name="start_turn_quote_5">L\'heure de la vengeance de %s a sonné !</string>
+    <string name="start_turn_quote_6">%s a l\'oeil du tigre, ressent le frisson du combat.</string>
+    <string name="start_turn_quote_7">%s est en train de dépasser ses limites.</string>
+    <string name="start_turn_quote_8">%s n\'a pas l\'intention d\'être vaincu si facilement.</string>
+    <string name="start_turn_quote_9">Il est l\'heure pour %s de montrer ce dont il est capable.</string>
+    <string name="start_turn_quote_10">La prochaine action de %s va-t-elle changer le cours de la bataille ?</string>
+    <string name="attack_move">Attaque</string>
+    <string name="support_move">Soutien</string>
+    <string name="single_enemy_target">Cible un ennemi</string>
+    <string name="all_enemies_target">Cible tous les ennemis</string>
+    <string name="single_ally_target">Cible un allié</string>
+    <string name="all_allies_target">Cible tous les alliés</string>
+    <string name="cooldown_time">Temps de recharge</string>
+    <string name="time_cost">Coût en temps</string>
     <string name="min_damage">Dégâts Min</string>
     <string name="max_damage">Dégâts Max</string>
     <string name="chance_to_hit">Chance de toucher</string>
     <string name="chance_to_crit">Chance coup critique</string>
     <string name="success_guaranteed">Succès garanti !</string>
-    <string name="attack_move">Attaque</string>
-    <string name="next_turn">Prochain tour</string>
-    <string name="cancel_move">Annuler</string>
-    <string name="confirm_move">Confirmer</string>
-    <string name="support_move">Soutien</string>
+    <string name="no_status_effects">Pas d\'effets de status !</string>
+    <string name="delay_effect">Retarde le tour de l\'ennemi</string>
+    <string name="chance">Probabilité</string>
+    <string name="delay">Retard</string>
+    <string name="status_effect">Effets de status</string>
     <string name="duration">Durée</string>
     <string name="stat_attack">Attaque</string>
     <string name="stat_defense">Défense</string>
     <string name="stat_hit">Précision</string>
     <string name="stat_avoid">Esquive</string>
     <string name="stat_crit">Critique</string>
-    <string name="player1">Joueur 1</string>
-    <string name="player2">Joueur 2</string>
-    <string name="computer">Ordinateur</string>
-    <string name="new_game">Que le combat commence !</string>
-    <string name="objective_description">Réduis les points de vie de ton adversaire à 0</string>
-    <string name="resume_game">Reprendre la partie</string>
-    <string name="confirm_go_main_screen">Arrêter la partie et revenir à l\'écran principal ?</string>
-    <string name="about_game">A propos de ce jeu</string>
-    <string name="copyright_notice">Copyright Deathdric 2024</string>
-    <string name="visit_on_github">Visite nous sur GitHub</string>
-    <string name="back_to_menu">Retour au menu</string>
-    <string name="game_instructions">Instructions du jeu</string>
-    <string name="game_basics">Bases du jeu</string>
-    <string name="game_basics_part1">Il y a 2 personnages : le chat (controllé par le premier joueur) et le pingouin (controllé par le second joueur en mode
-2 joueurs ou par l\'ordinateur en mode 1 joueur). Les deux personnages démarrent avec un certain nombre de points de vie.
-Le but du jeu est de réduire les points de vie de l\'adversaire à 0 avant qu\'il n\'en fasse de même pour toi.</string>
-    <string name="game_basics_hit_points">Icone des points de vie : </string>
-    <string name="game_basics_part2">Tu peux choisir deux types d\'actions pendant ton tour :\n\t- Les attaques, qui infligent des dégâts à l\'adversaire (réduisent ses points de vie)\n\t- Les actions de soutien, qui modifient les caratéristiques de ton personnage (ex : augmenter les dégâts infligés, …)</string>
-    <string name="game_basics_part3">La ressource principale du jeu est le temps. Au début de la partie, un joueur est choisi au hasard et reçoit un nombre
-aléatoire (inférieur à 20) d\'unités de temps. Chaque action coûte un nombre fixe d\'unités de temps. Quand tu choisis une action, si son coût en temps est inférieur
-au temps restant imparti, tu pourras effectuer une autre action, sinon ton tour se finit et celui de l\'adversaire commence.</string>
-    <string name="game_basics_part4">A l\'exception du premier tour, le nombre d\'unités de temps disponible est calculé en fonction de la différence entre le coût
-de la dernière action faite par le joueur adverse et le temps restant dont il disposait avant d\'effecuter cette action. Par conséquent, utiliser un coup lent et puissant accordera plus de temps à ton adversaire …</string>
-    <string name="game_basics_top_bar">Barre d\'outils</string>
-    <string name="in_game_menu">Ouvre le menu du jeu</string>
-    <string name="switch_move_details">Active/désactive l\'affichage des détails des actions</string>
-    <string name="active_player_display">Affiche le joueur actif (joueur 1, joueur 2 ou ordinateur)</string>
-    <string name="active_character_display">Affiche le personnage actif (chat ou pingouin)</string>
-    <string name="remaining_time_display">Affiche les unités de temps restant du joueur actif</string>
-    <string name="game_attacks">Les attaques</string>
-    <string name="game_attacks_part1">Les actions d\'attaques sont représentées par les boutons rouges/roses dans l\'écran de sélection des actions.</string>
-    <string name="game_attacks_part2">Comme leur nom l\'indique, le but de ces actions est de réduire le nombre de points de vie de l\'adversaire.</string>
-    <string name="game_attacks_damage">Dégâts des attaques</string>
-    <string name="game_attacks_damage_part1">Une information importante associée à une attaque est le montant des dégâts de base infligés. Chaque attaque a une plage de valeurs à partir de laquelle le nombre de dégâts de base sera choisi au hasard (avant d\'appliquer les modifieurs de dégâts).</string>
-    <string name="time_cost">Coût en temps</string>
-    <string name="game_attacks_damage_part2">Les dégâts effectifs infligés dépendent également du modificateur d\'attaque du joueur (positivement) et du modificateur de
-défense de l\'adversaire (négativement). Ces modificateurs sont en pourcents (%) et s\'additionent, par exemple si l\'attaquant
-a un modificateur d\'attaque de 25 (=25 %) et l\'adversaire a un modificateur de défense de 25 (=25 %), les 2 modificateurs
-s\'annulent.</string>
-    <string name="game_attacks_damage_part3">Le minimum de dégâts effectués est toujours de 1 (ce qui ne peut arriver que si l\'attaquant a un modificateur d\'attaque de
--50 % et l\'adversaire a un modificateur de défense de 50 %).</string>
-    <string name="game_attacks_hit_part1">Les attaques peuvent échouer (et tu seras dépité quand ça arrivera, car tu ne feras aucun dégât mais tu paiera quand même le coût en temps).
-Lorsqu\'un joueur effecute une attaque, un tirage aléatoire est effectué afin de savoir si l\'attaque va réussir ou non.</string>
-    <string name="game_attacks_hit_part2">Chaque type d\'attaque a une chance initiale de toucher. Si une attaque a une chance initiale de toucher de 100, l\'attaque va toujours réussir. Si sa chance de toucher est de 50,
-elle ne réussira qu\'une fois sur 2 (la probabilité est théorique, ne vas pas te plaindre si tu n\'as pas de chance).</string>
-    <string name="game_attacks_hit_part3">Comme pour les dégâts infligés, la chance de toucher peut être affectée par des modificateurs de status. Le taux de précision
-de l\'attaquant va augmenter cette chance (ex: 60 % de chance de toucher de l\'attaque cumulé à 20 % de taux de précision
-donnera 80 % de chance de réussir l\'attaque), alors qu\'au contraire le taux d\'esquive du défenseur va la diminuer (ex: 60 %
-de chance de toucher de l\'attaque cumulé cumulé à 10 % du taux d\'esquive du défenseur donnera 50 % de chances de réussir
-l\'attaque).</string>
-    <string name="game_attacks_crit_part1">Si tu es chanceux, les attaques peuvent effectuer des coups critiques, ce qui augmente les dégâts infligés de 50 % (après applications des modificateurs) pour le même coût en temps.</string>
-    <string name="game_attacks_crit_part2">Le fait qu\'une attaque soit un coup critique est calculé après le fait qu\'une attaque réussisse ou non. Même si tu as 100 % de chances d\'effectuer un coup critique, ça n\'aura aucun effet si ton attaque échoue.</string>
-    <string name="game_attacks_crit_part3">Chaque attaque a une chance initiale (en pourcent) d\'effectuer un coup critique. La chance de coup critique est également affectée par le modificateur de coup critique de l\'attaquant (ex : 10 % chance
-de critique de l\'attaque cumulée à un modificateur de critique de 20 % donnera 30 % de chances d\'effectuer un coup critique). Contrairement aux dégâts et aux chances de réussir, le défenseur n\'a pas de modificateurs qui peuvent faire baisser la chance de coup critique de l\'attaquant.</string>
-    <string name="game_attacks_time_part1">Comme pour toute action, les attaques ont un coût en temps. Ce coût déterminera si tu pourras jouer à nouveau avant le tour de ton adversaire, ou combien de temps ton adversaire disposera lors de son prochain tour.</string>
-    <string name="game_supports">Les soutiens</string>
-    <string name="game_supports_part1">Les actions de soutien sont réprésentées par les boutons verts dans l\'écran de sélection des actions.</string>
-    <string name="game_supports_part2">Une action de soutien applique au joueur un ensemble de modificateurs qui expirent au bout d\'un nombre fixe d\'unités de temps (coût
-de l\'action + 100 unités de temps). Tu peux cumuler autant de modificateurs que tu veux, cependant une limite est
-appliquée à la somme totale de chaque modificateur actif (total minimum : -50 %, total maximum : +50 %). Par exemple si
-tu as appliqué Furie 3 fois, ton modificateur d\'attaque total ne sera que de 50 % au lieu de 75 %, cependant lorsque
-l\'effet de la première Furie aura expiré, le modificateur d\'attaque sera toujours de 50 % jusqu\'à ce que l\'effet de la
-deuxième expire.</string>
-    <string name="game_supports_part3">Les actions de soutien n\'apportent pas que des effets positifs, ainsi la plupart appliquent un modificateur positif
-sur des caratéristiques et en contrepartie un modificateur négatif sur d\'autres. Par exemple Furie va augmenter l\'attaque
-mais baisser la défense, alors que Garde fera l\'inverse.</string>
-    <string name="game_supports_part4">Avant d\'effectuer une action de soutien, tu dois vérifier au préalable si les effets positifs compensent les effets négatifs (n\'oublie pas la limite des 50 %) et son coût en temps (qui aurait pu être utilisé pour effectuer une attaque).
-</string>
-    <string name="game_supports_part5">Tu peux voir le total des modificateurs appliqués sur chaque personnage dans l\'écran principal, en dessous du nombre de points de vie.</string>
-    <string name="game_supports_attack_part1">Augmente les dégâts infligés (les réduit si négatif).</string>
-    <string name="game_supports_defense_part1">Réduit les dégâts reçus (les augmente si négatif)</string>
-    <string name="game_supports_hit_part1">Augmente les chances de réussir ses attaques.</string>
-    <string name="game_supports_avoid_part1">Diminue les chances de réussite des attaques de ton adversaire.</string>
-    <string name="game_supports_crit_part1">Augmente la chance de faire un coup critique (la réduit si négatif).</string>
-    <string name="game_supports_time_part1">Comme pour toute action, les soutiens ont un coût en temps. Ce coût déterminera si tu pourras jouer à nouveau avant le tour de ton adversaire, ou combien de temps ton adversaire disposera lors de son prochain tour.</string>
+    <string name="used_skill_message">%s utilise %s</string>
+    <string name="next">Suivant</string>
+    <string name="back">Retour</string>
+    <string name="back_to_title_screen">Retour à l\'écran titre</string>
+    <string name="game_over_quote_1">Le combat est enfin terminé. %s va prendre un repos bien mérité …</string>
+    <string name="game_over_quote_2">Les exploits héroïques de %s seront transmis aux générations futures.</string>
+    <string name="result_attack_missed">%s esquive de justesse !</string>
+    <string name="result_damage_standard">%s subit %d de dégâts.</string>
+    <string name="result_damage_critical">%s subit un coup critique pour %d de dégâts.</string>
+    <string name="result_delay">Son tour est retardé de %d.</string>
+    <string name="result_stat_down_effect">%s diminuée de %d.</string>
+    <string name="result_stat_up_effect">%s augmentée de %d.</string>
+    <string name="result_player_defeated">%s est vaincu !</string>
+    <string name="attack_quote_single_1">Essaie d\'éviter ça !</string>
+    <string name="attack_quote_single_2">Ton heure a sonné !</string>
+    <string name="attack_quote_single_3">Tu vas subir mon courroux !</string>
+    <string name="attack_quote_single_4">Tu ne pourras pas t\'échapper cette fois !</string>
+    <string name="attack_quote_single_5">Personne ne viendra te sauver !</string>
+    <string name="attack_quote_single_6">Tu vas regretter de m\'avoir défié !</string>
+    <string name="attack_quote_multi_1">Vous n\'avez aucune chance contre moi !</string>
+    <string name="attack_quote_multi_2">Tremblez devant ma puissance !</string>
+    <string name="attack_quote_multi_3">Vous serez impuissants contre mon attaque !</string>
+    <string name="attack_quote_multi_4">Je vais me venger de vous tous !</string>
+    <string name="attack_quote_shared_1">Je ne montrerai aucune pitié !</string>
+    <string name="support_quote_self_1">C\'est le moment de dépasser mes limites !</string>
+    <string name="support_quote_self_2">Je ne vais plus me retenir cette fois !</string>
+    <string name="support_quote_self_3">Que la justice me donne la force !</string>
+    <string name="support_quote_ally_1">Tu peux y arriver !</string>
+    <string name="support_quote_ally_2">Laisse moi t\'aider !</string>
+    <string name="support_quote_ally_3">Je vais assurer tes arrières !</string>
+    <string name="help_start_screen_title">Bienvenue sur Ultimate Cat Battle !</string>
+    <string name="help_player_select_screen_title">Sélection des joueurs</string>
+    <string name="help_team_select_screen_title">Sélection des équipes</string>
+    <string name="help_game_intro_screen_title">Démarrer la partie</string>
+    <string name="help_start_screen_paragraph_1">Ultimate Cat Battle est un jeu de combat au tour par tour impliquant un chat, un pingouin, et d\'autres personnages ..</string>
+    <string name="help_start_screen_paragraph_2">Tu peux jouer seul contre l\'ordinateur ou avec d\'autres joueurs sur le même appareil, jusqu\'à 4 joueurs.</string>
+    <string name="help_start_screen_paragraph_3">Pour commencer une partie, sélectionne d\'abord le nombre de joueurs en cliquant sur le bouton correspondant.</string>
+    <string name="help_player_select_screen_paragraph_1">Par défaut, un personnage est assigné à chaque joueur (en incluant l\'ordinateur en mode solo).</string>
+    <string name="help_player_select_screen_paragraph_2">Cet écran permet de réassigner les personnages aux joueurs ainsi que d\'ajouter des personnages jusqu\'à un maximum de 4. S\'il y a plus de personnages que de joueurs, tu peux également assigner des personnages à l\'ordinateur.</string>
+    <string name="help_player_select_screen_paragraph_3">Plusieurs personnages peuvent être assignés au même joueur, cependant chaque joueur doit contrôler au moins un personnage (en incluant l\'ordinateur en mode solo).</string>
+    <string name="help_player_select_screen_paragraph_4">Les personnages sont :</string>
+    <string name="help_player_select_screen_paragraph_5">Les joueurs sont :</string>
+    <string name="help_player_select_screen_paragraph_6">Les commandes sont :</string>
+    <string name="help_player_select_screen_paragraph_7">Affecte un personnage à un autre joueur en sélectionnant l\'icône du joueur choisi.</string>
+    <string name="help_player_select_screen_paragraph_8">Change le joueur affecté au personnage.</string>
+    <string name="help_player_select_screen_paragraph_9">Ajoute un personnage.</string>
+    <string name="help_player_select_screen_paragraph_10">Retire ce personnage.</string>
+    <string name="help_player_select_screen_paragraph_11">Une fois que tu as fais tes choix, cliques sur \'Confirmer\'. Pour revenir à l\'écran principal, cliques sur \'Annuler\'.</string>
+    <string name="help_team_select_screen_paragraph_1">Par défaut, chaque joueur appartient à sa propre équipe et joue contre tous les autres. Tu peux cependant activer le mode coopératif en mettant plusieurs joueurs dans la même équipe. Les joueurs d\'une même équipe gagnent ou perdent ensemble !</string>
+    <string name="help_team_select_screen_paragraph_2">Chaque personnage contrôlé par l\'ordinateur est considéré comme un joueur à part entière. Tu ne peux pas mettre des joueurs humains et l\'ordinateur dans une même équipe (les équipes disponibles pour les joueurs humains sont différentes de celles pour l\'ordinateur).</string>
+    <string name="help_team_select_screen_paragraph_3">Il n\'y a pas de restrictions sur le nombre de joueurs afféctés à une équipe tant que les joueurs sont répartis dans au moins 2 équipes différentes.</string>
+    <string name="help_team_select_screen_paragraph_4">Les personnages qui appartiennent à des équipes plus réduites (ex : 1 contre 3) verront leurs points de vie et dégâts augmentés afin d\'équilibrer le jeu.</string>
+    <string name="help_team_select_screen_paragraph_5">Les équipes pour les joueurs humains sont :</string>
+    <string name="help_team_select_screen_paragraph_6">Les équipes pour l\'ordinateur sont :</string>
+    <string name="help_team_select_screen_paragraph_7">Les commandes sont :</string>
+    <string name="help_team_select_screen_paragraph_8">Assigne le joueur à une autre équipe en sélectionnant l\'icône de l\'équipe voulue.</string>
+    <string name="help_team_select_screen_paragraph_9">Change l\'équipe associée au joueur.</string>
+    <string name="help_team_select_screen_paragraph_10">Une fois que tu as fais tes choix, cliques sur \'Confirmer\'. Pour revenir à l\'écran de sélection des joueurs, cliques sur \'Annuler\'.</string>
+    <string name="help_game_intro_screen_paragraph_1">Au début du jeu, chaque personnage se voit attribué un temps de démarrage aléatoire (en unités de temps). Le personnage qui a le nombre d\'unités le plus bas jouera en premier.</string>
+    <string name="help_game_intro_screen_paragraph_2">Lorsque les points de vie d\'un personnage atteignent 0, le personnage se retire du combat. Le jeu prend fin lorsqu\'il n\'y a plus d\'une seule équipe avec des personnages actifs (l\'équipe gagne), ou lors que les personnages actifs ne sont plus que dans des équipes contrôllées par l\'ordinateur (l\'ordinateur gagne).</string>
+    <string name="help_game_intro_screen_paragraph_3">Cliques sur \'Commencer la partie\' pour démarrer le tour du prochain joueur.</string>
+    <string name="help_game_start_turn_screen_title">Démarrer le tour d\'un joueur</string>>
+    <string name="help_game_select_move_screen_title">Sélectionner une action</string>
+    <string name="help_game_move_select_screen_paragraph_1">Ta principale tâche est de choisir ta prochaine action. il existe deux types d\'actions : les actions d\'attaque et les actions de soutien. Les actions d\'attaque (en rouge) infligent des dégâts à tes adversaires et parfois des effets négatifs. Les actions de soutien (en vert), modifient les statistiques de ton personnage ou de ses alliés.</string>
+    <string name="help_game_move_select_screen_paragraph_2">Toutes les actions on un coût en temps, qui après utilisation est ajouté au temps que ton personnage devra attendre avant d\'effectuer une prochaine action. Si le coût en temps est supérieur au temps restant du personnage, son tour prendra fin.</string>
+    <string name="help_game_move_select_screen_paragraph_3">Certaines actions ont un temps de recharge, ce qui signifie que tu devras attendre avant de pouvoir les utiliser à nouveau. Lorsqu\'une action est encore en recharge, son bouton est grisé et le temps de recharge restant est affiché.</string>
+    <string name="help_game_move_select_screen_paragraph_4">Les icônes communes à tous les types d\'action sont :</string>
+    <string name="help_game_move_select_screen_paragraph_5">Coût de l\'action (en unités de temps)</string>
+    <string name="help_game_move_select_screen_paragraph_6">Temps de recharge restant avant que l\'action soit à nouveau utilisable</string>
+    <string name="help_game_move_select_screen_paragraph_7">Indique que l\'action cible un seul personnage (ennemi pour une attaque, ton personnage ou un allé pour un soutien)</string>
+    <string name="help_game_move_select_screen_paragraph_8">Indique que l\'action cible un groupe de personnages (tous les adversaires pour une attaque)</string>
+    <string name="help_game_move_select_screen_paragraph_9">Les icônes spécifiques aux attaques sont :</string>
+    <string name="help_game_attack_confirm_screen_title">Les actions d\'attaque</string>
+    <string name="help_game_support_confirm_screen_title">Les actions de soutien</string>
+    <string name="help_game_attack_execution_screen_title">Execution d\'une attaque</string>
+    <string name="help_game_support_execution_screen_title">Execution d\'un soutien</string>
+    <string name="help_game_attack_result_screen_title">Résultat d\'une attaque</string>
+    <string name="help_game_support_result_screen_title">Résultat d\'un soutien</string>
+    <string name="help_game_over_screen_title">La partie est finie !</string>
+    <string name="help_game_start_turn_screen_paragraph_1">Le tour d\'un joueur est déterminé par le nombre d\'unité de temps nécessaire avant qu\'il soit capable d\'agir. Chaque action a un coût en temps qui inflige un délai d\'attente au joueur actif. Si ce délai est supérieur à celui du joueur suivant, son tour prend fin.</string>
+    <string name="help_game_start_turn_screen_paragraph_2">Le joueur actif est affiché sur la partie gauche de l\'écran, ainsi que ses caractéristiques détaillées.</string>
+    <string name="help_game_start_turn_screen_paragraph_3">Les statistiques disponibles sont :</string>
+    <string name="help_stat_hit_points_description">Points de vie : Niveau d\'endurance du personnage. Les attaques adverses les diminuent. Lorsqu\'ils atteignent 0, le personnage se retrouve hors combat.</string>
+    <string name="help_stat_time_description">Temps disponible : Unités de temps restant jusqu\'au prochain tour.</string>
+    <string name="help_stat_attack_description">Points d\'attaque : Une valeur plus élevées augmente les dégâts infligés.</string>
+    <string name="help_stat_defense_description">Points de défense : Une valeur plus élevée diminue les dégâts reçus.</string>
+    <string name="help_stat_hit_description">Points de précision : Une valeur plus élevée augmente les chances de réussite des attaques.</string>
+    <string name="help_stat_avoid_description">Points d\'esquive : Une valeur plus élevée diminue les chances d\'être touché par une attaque adverse.</string>
+    <string name="help_stat_critical_description">Points de critique : Une valeur plus élevée augmente les chances de coût critique. Une attaque critique augmente de 50 % lesdégâts infligés et la durée des effets de status.</string>
+    <string name="help_game_start_turn_screen_paragraph_4">Les informations sur les autres joueurs sont disponibles sur la partie droite de l\'écran :</string>
+    <string name="help_stat_waiting_time_description">Temps d\'attente : Unités de temps avant le tour du personnage.</string>
+    <string name="help_stat_active_description">Actif : Cette icône est affichée pendant le tour du personnage.</string>
+    <string name="help_game_start_turn_screen_paragraph_5">Pour continuer, cliques sur \'Démarrer le tour\'.</string>
+    <string name="help_game_move_select_screen_paragraph_10">Plage de dégâts effectués avant application des modificateurs de statistiques</string>
+    <string name="help_game_move_select_screen_paragraph_11">Les icônes spéficiques aux soutiens sont :</string>
+    <string name="help_game_move_select_screen_paragraph_12">Indique quelle statistique sera principalement augmentée (dans l\'exemple : les points d\'attaque)</string>
+    <string name="help_game_move_select_screen_paragraph_13">Pour choisir une action, presse le bouton associé à celle-ci.</string>
+    <string name="help_game_attack_confirm_screen_paragraph_1">Cet écran offre un aperçu des effets de ton attaque et te permets de choisir ta cible (si l\'attaque ne cible qu\'un personnage).</string>
+    <string name="help_game_attack_confirm_screen_paragraph_2">Tu peux choisir la cible en appuyant sur l\'icône du personnage souhaité. Cela affichera également la plage de dégâts estimée, les chances de toucher et les chances de coup critique sur ce personnage. Si l\'attaque est multi-cible, sélectioner un personnage n\'affichera que les effets estimés sur ce dernier.</string>
+    <string name="help_game_attack_confirm_screen_paragraph_3">Si l\'attaque produit des effets supplémentaires, ils seront également affichés sur cet écran, ainsi que leur probabilité et leur durée.</string>
+    <string name="help_game_support_confirm_screen_paragraph_1">Cet écran offre un aperçu des effets de ton soutien et te permets de choisir ta cible (ton personnage ou un allié).</string>
+    <string name="help_game_support_confirm_screen_paragraph_2">Tu peux choisir la cible en appuyant sur l\'icône du personnage souhaité. Celà affichera également les modifications de statistiques sur ta cible ainsi que la durée de l\'effet.</string>
+    <string name="help_game_support_confirm_screen_paragraph_3">Les actions de soutien ont des effets différents selon que la cible soit ton personnage ou un allié. Lorsque tu cibles ton personnage, il bénéficiera d\'augmentations plus élevées, mais en contrepartie certaines autres statistiques seront réduites.</string>
+    <string name="help_game_move_confirm_screen_icons">Les autres icônes importantes sont :</string>
+    <string name="help_game_move_confirm_screen_time_cost">Affiche le coût de l\'action en unités de temps.</string>
+    <string name="help_game_move_confirm_screen_cooldown">Affiche le temps de recharge de l\'action. Si l\'icône n\'apparaît pas, celà signifie que l\'action n\'a pas de temps de recharge.</string>
+    <string name="help_game_move_confirm_screen_action">Afin d\'exécuter ton action, presse le bouton \'Confirmer\'. Pour revenir à l\'écran de sélection des actions, presse le bouton \'Annuler\'.</string>
+    <string name="help_game_attack_execution_screen_paragraph_1">L\'attaque est effectuée. Désormais, les dés sont jetés !</string>
+    <string name="help_game_attack_execution_screen_paragraph_2">Presse le bouton \'Suivant\' pour voir les résultats de l\'attaque.</string>
+    <string name="help_game_support_execution_screen_paragraph_1">Un soutien est effectué. Toujours plus de puissance !</string>
+    <string name="help_game_support_execution_screen_paragraph_2">Presse le bouton \'Suivant\' pour voir les résultats du soutien.</string>
+    <string name="help_game_attack_result_screen_paragraph_1">Cet écran affiche le résultat de l\'attaque (succès, crirtique ou échec) ainsi que les dégâts effectués et les effets de status appliqués.</string>
+    <string name="help_game_attack_result_screen_paragraph_2">Presse le bouton \'Suivant\' pour continuer. En fonction de la situation, soit le personnage actif pourra à nouveau choisir une action, soit le tour d\'un autre personnage va démarrer, soit la partie sera terminée (si tous les adversaires sont vaincus).</string>
+    <string name="help_game_support_result_screen_paragraph_1">Cet écran affiche les modifications de statistiques effectuées sur la cible du soutien.</string>
+    <string name="help_game_support_result_screen_paragraph_2">Presse le bouton \'Suivant\' pour continuer. En fonction de la situation, soit le personnage actif pourra à nouveau choisir une action, soit le tour d\'un autre personnage va démarrer.</string>
+    <string name="help_game_over_screen_paragraph_1">La partie est terminée. Que tu aies gagné ou perdu, j\'espère que tu t\'es bien amusé.</string>
+    <string name="help_game_over_screen_paragraph_2">La seule action possible est de retourner à l\'écran principal en appuyant sur le bouton du même nom. Prêt pour un match retour ?</string>
+    <string name="go_home_confirm">Quitter la partie et revenir à l\'écran principal ?</string>
 </resources>

@@ -7,10 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="title_background_color">#FF729fcf</color>
     <color name="attack_container_color">#FFFFEEEE</color>
     <color name="attack_border_color">#FF800000</color>
     <color name="support_container_color">#FFEEFFEE</color>
     <color name="support_border_color">#FF008000</color>
     <color name="default_border_color">#FF000080</color>
     <color name="stat_bonus_color">#FF008000</color>
+    <color name="disabled_foreground_color">#FF808080</color>
+    <color name="disabled_background_color">#FF404040</color>
+    <color name="panel_second_color">#FFFFE0C0</color>
+    <color name="selected_icon_background">#FFE11584</color>
+    <color name="active_avatar_color">#FFFFFF80</color>
+    <color name="inactive_avatar_color">#FFC0C0C0</color>
 </resources>
