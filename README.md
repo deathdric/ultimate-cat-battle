@@ -27,7 +27,7 @@ the game made publicly available there.
 
 # Game instructions
 
-You can get detailed information by clicking the help icon at any stage of the same : ![help_icon](images/question_mark.png)
+You can get detailed information by clicking the help icon at any stage of the game : ![help_icon](images/question_mark.png)
 
 First step is to choose the number of players (1 to 4). Then you assign characters to each player including the computer
 (note that you can add characters up to 4). Then, if there are more than 2 parties involved, you assign players into teams,
