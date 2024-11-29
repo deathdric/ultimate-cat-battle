@@ -53,13 +53,18 @@ fun computeTeamRatio(playerId: PlayerId,
     return maxTeamCount / curTeamCount.coerceAtLeast(1)
 }
 
-fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, teamRatio: Int, opponentCount: Int, startTime: Int) : Player{
+fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, teamRatio: Int, opponentCount: Int, startTime: Int, numberGenerator: NumberGenerator = RandomNumberGenerator()) : Player{
     val playerTemplate = PlayerRepository.getPlayer(playerId)
     val maxHitPoints = playerTemplate.maxHitPoints * teamRatio
     val attackActionList = playerTemplate.attackActions.map { AttackRepository.getAttack(it).toAttackAction(teamRatio, opponentCount) }.toList()
     val supportActionList = playerTemplate.supportActions.map { SupportRepository.getSupport(it).toSupportAction() }.toList()
+    val algo = if (playerType.isComputer) {
+        val availableAlgos = ComputerMoveChoiceType.entries
+        val algoIndex = numberGenerator.roll(0, availableAlgos.size)
+        availableAlgos[algoIndex]
+    } else ComputerMoveChoiceType.RANDOM
     val player = Player(maxHitPoints = maxHitPoints, id = playerId, playerType = playerType,
-        attackActions = attackActionList, supportActions = supportActionList)
+        attackActions = attackActionList, supportActions = supportActionList, algo)
     player.applyDelay(startTime)
     return player
 }
@@ -77,7 +82,7 @@ fun createNewGame(characterAllocations: Map<PlayerId, CharacterAllocation>,
         val teamRatio = computeTeamRatio(playerEntry.key, characterAllocations, teamAllocations)
         val opponentCount = computeOpponentCount(playerEntry.key, characterAllocations, teamAllocations)
         val startTime = numberGenerator.roll(0, 20)
-        val player = createNewPlayer(playerEntry.key, playerEntry.value.playerType, teamRatio, opponentCount, startTime)
+        val player = createNewPlayer(playerEntry.key, playerEntry.value.playerType, teamRatio, opponentCount, startTime, numberGenerator)
         playerList.add(player)
     }
     return Game(teams = teams.entries.map { Team(it.value.toList(), it.key )})

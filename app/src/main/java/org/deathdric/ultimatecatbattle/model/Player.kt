@@ -4,7 +4,8 @@ data class Player(val maxHitPoints: Int,
                   val id: PlayerId,
                   val playerType: PlayerType,
                   val attackActions: List<AttackAction> = listOf(),
-                  val supportActions: List<SupportAction> = listOf()
+                  val supportActions: List<SupportAction> = listOf(),
+                  val computerMoveChoiceType: ComputerMoveChoiceType = ComputerMoveChoiceType.RANDOM
 ) {
     var hitPoints = maxHitPoints
         private set;

@@ -18,8 +18,9 @@ import org.deathdric.ultimatecatbattle.model.SupportAction
 import org.deathdric.ultimatecatbattle.model.SupportActionId
 import org.deathdric.ultimatecatbattle.model.TargetType
 import org.deathdric.ultimatecatbattle.model.TeamId
+import org.deathdric.ultimatecatbattle.model.availableMoves
 import org.deathdric.ultimatecatbattle.model.createNewGame
-import org.deathdric.ultimatecatbattle.model.findComputerMove
+import org.deathdric.ultimatecatbattle.model.getAlgorithm
 
 class UltimateCatBattleViewModel: ViewModel() {
 
@@ -186,10 +187,11 @@ class UltimateCatBattleViewModel: ViewModel() {
         val curPlayer = game!!.curActivePlayer!!
         if (curPlayer.playerType == PlayerType.COMPUTER) {
             val currentTeam = game!!.findTeam(curPlayer).get()
-            val allyCount = currentTeam.players.size.coerceAtLeast(1)
-            val enemyCount = (game!!.players.size - allyCount).coerceAtLeast(1)
+            val otherTeams = game!!.teams.filter { it.id != currentTeam.id }
+            val availableComputerMoves = game!!.availableMoves(computerPlayerId = curPlayer.id)
+            val computerMoveAlgorithm = curPlayer.computerMoveChoiceType.getAlgorithm()
 
-            val nextMove = game!!.findComputerMove(curPlayer.id, allyCount, enemyCount)
+            val nextMove = computerMoveAlgorithm.computeNextMove(curPlayer, currentTeam, otherTeams, availableComputerMoves, numberGenerator)
             when(nextMove.moveType) {
                 ComputerMoveType.ATTACK -> executeComputerAttack(curPlayer, nextMove)
                 ComputerMoveType.SUPPORT -> executeComputerSupport(curPlayer, nextMove)
