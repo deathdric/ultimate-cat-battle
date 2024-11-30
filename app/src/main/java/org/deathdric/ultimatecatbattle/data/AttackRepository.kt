@@ -47,10 +47,10 @@ object AttackRepository {
         targetType = TargetType.ALL_ENEMIES,
         defaultDamageRange = AttackDamageRange(60, 80),
         damage = mapOf(Pair(2, AttackDamageRange(40, 54)), Pair(3, AttackDamageRange(30, 40))),
-        hit = 50,
-        delay = 50,
+        hit = 55,
+        delay = 40,
         critical = 5,
-        coolDown = 100,
+        coolDown = 150,
         delayEffect = DelayEffect(50, 10)
     )
 

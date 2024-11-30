@@ -84,7 +84,8 @@ interface ComputerMoveAlgorithm {
 enum class ComputerMoveChoiceType {
     RANDOM,
     DAMAGE,
-    DAMAGE_BEST3
+    DAMAGE_BEST3,
+    ACCURACY_80
 }
 
 interface ComputerMoveWeightEvaluator {
@@ -96,7 +97,8 @@ interface ComputerMoveWeightEvaluator {
 
 class WeightBaseMoveAlgorithm (
     private val weightEvaluator: ComputerMoveWeightEvaluator,
-    private val maxChoiceCount: Int? = null
+    private val maxChoiceCount: Int? = null,
+    private val minWeightThreshold: Int? = null
 ) : ComputerMoveAlgorithm  {
     override fun computeNextMove(
         player: Player,
@@ -108,6 +110,10 @@ class WeightBaseMoveAlgorithm (
         val weightedMoves = weightEvaluator.computeWeightedMoves(player, playerTeam, opponentTeams, availableMoves)
         val filteredWeightMoves = if (maxChoiceCount != null) {
             weightedMoves.sortedBy { it.weight }.reversed().subList(0, maxChoiceCount.coerceAtMost(weightedMoves.size))
+        } else if (minWeightThreshold != null) {
+            val maxWeight = weightedMoves.maxOf { it.weight }
+            val minThreshold = (maxWeight * minWeightThreshold) / 100
+            weightedMoves.filter { it.weight >= minThreshold }
         } else {
             weightedMoves
         }
@@ -153,7 +159,7 @@ class RandomWeightMoveEvaluator : ComputerMoveWeightEvaluator {
 
 }
 
-fun AttackActionPreview.computeAttackDamageScore() : Int {
+fun AttackActionPreview.computeAttackDamageScore(squareHitRatio: Boolean = false) : Int {
     var score = 0
     for (targetedPreview in this.targetedPreviews) {
         val cappedMinDamage = targetedPreview.minDamage.coerceAtMost(targetedPreview.target.hitPoints)
@@ -163,7 +169,15 @@ fun AttackActionPreview.computeAttackDamageScore() : Int {
 
         val mediumDamageWithCrit = mediumDamage + ((mediumDamage * targetedPreview.critical.coerceAtLeast(0).coerceAtMost(100)) / 200)
 
-        score += (mediumDamageWithCrit * targetedPreview.hit.coerceAtLeast(0).coerceAtMost(100)) / 100
+        val targetHitRatio = targetedPreview.hit.coerceAtLeast(0).coerceAtMost(100)
+
+        val damageScore = (mediumDamageWithCrit * targetHitRatio) / 100
+
+        if (squareHitRatio) {
+            score += (damageScore * targetHitRatio) / 100
+        } else {
+            score += damageScore
+        }
     }
 
 
@@ -190,21 +204,64 @@ class DamageBasedComputerMoveWeightEvaluator : ComputerMoveWeightEvaluator {
                         val supportEffectType = move.supportAction!!.id.mainEffectType()
                         val opponentCount = opponentTeams.flatMap { it.players }.count { it.isAlive }
                         val teamSize = playerTeam.players.size
+                        val weight: Int
                         if (supportEffectType == StatusEffectType.HIT) {
-                            val weight = ((50 - player.hit) * opponentCount * opponentCount) / teamSize
-                            weightedMoves.add(WeightedComputerMove(move.toComputerMove(), weight))
+                            weight = ((50 - player.hit) * opponentCount * opponentCount) / teamSize
                         } else if (supportEffectType == StatusEffectType.ATTACK) {
-                            val weight = ((50 - player.attack) * opponentCount * opponentCount) / teamSize
-                            weightedMoves.add(WeightedComputerMove(move.toComputerMove(), weight))
+                            weight = ((50 - player.attack) * opponentCount * opponentCount) / teamSize
+                        } else {
+                            weight = 1
                         }
+                        weightedMoves.add(WeightedComputerMove(move.toComputerMove(), weight.coerceAtLeast(1)))
                     }
                 }
             }
         }
         return weightedMoves
     }
+}
 
+class AccuracyBasedComputerMoveWeightEvaluator : ComputerMoveWeightEvaluator {
+    override fun computeWeightedMoves(
+        player: Player,
+        playerTeam: Team,
+        opponentTeams: List<Team>,
+        availableMoves: List<AvailableComputerMove>
+    ): List<WeightedComputerMove> {
+        val weightedMoves = mutableListOf<WeightedComputerMove>()
+        for (move in availableMoves) {
+            when(move.moveType) {
+                ComputerMoveType.ATTACK -> {
+                    val attackWeight = move.attackActionPreview!!.computeAttackDamageScore(true)
+                    weightedMoves.add(WeightedComputerMove(move.toComputerMove(), attackWeight))
+                }
+                ComputerMoveType.SUPPORT -> {
+                    if (move.actionTargets[0].id == player.id) {
+                        val supportEffectType = move.supportAction!!.id.mainEffectType()
+                        val opponents = opponentTeams.flatMap { it.players }.filter { it.isAlive }
+                        val opponentCount = opponents.size
+                        val teamSize = playerTeam.players.size
+                        val weight: Int
+                        if (supportEffectType == StatusEffectType.HIT) {
+                            weight = ((50 - player.hit) * opponentCount * opponentCount) / teamSize
 
+                        } else if (supportEffectType == StatusEffectType.ATTACK) {
+                            weight = ((50 - player.attack) * opponentCount * opponentCount) / teamSize
+                        } else if (supportEffectType == StatusEffectType.DEFENSE) {
+                            val opponentOffensiveStatus =
+                                opponents.sumOf { 2 * (it.hit - player.avoid) + it.attack - player.defense }
+                            val hitPointRatio = ((player.hitPoints * 100) / player.maxHitPoints).coerceAtLeast(1)
+                            weight = opponentCount * (100 - hitPointRatio) + opponentOffensiveStatus
+                        } else {
+                            weight = 1
+                        }
+                        weightedMoves.add(WeightedComputerMove(move.toComputerMove(), weight.coerceAtLeast(1)))
+                    }
+                }
+            }
+        }
+        return weightedMoves
+    }
 }
 
 fun ComputerMoveChoiceType.getAlgorithm() : ComputerMoveAlgorithm {
@@ -212,5 +269,6 @@ fun ComputerMoveChoiceType.getAlgorithm() : ComputerMoveAlgorithm {
         ComputerMoveChoiceType.RANDOM -> WeightBaseMoveAlgorithm(weightEvaluator = RandomWeightMoveEvaluator())
         ComputerMoveChoiceType.DAMAGE -> WeightBaseMoveAlgorithm(weightEvaluator = DamageBasedComputerMoveWeightEvaluator())
         ComputerMoveChoiceType.DAMAGE_BEST3 -> WeightBaseMoveAlgorithm(weightEvaluator = DamageBasedComputerMoveWeightEvaluator(), maxChoiceCount = 3)
+        ComputerMoveChoiceType.ACCURACY_80 -> WeightBaseMoveAlgorithm(weightEvaluator =  AccuracyBasedComputerMoveWeightEvaluator(), minWeightThreshold = 80)
     }
 }
