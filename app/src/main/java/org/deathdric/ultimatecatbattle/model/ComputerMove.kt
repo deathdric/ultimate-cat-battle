@@ -1,8 +1,6 @@
 package org.deathdric.ultimatecatbattle.model
 
-import org.deathdric.ultimatecatbattle.data.AttackRepository
 import org.deathdric.ultimatecatbattle.ui.mainEffectType
-import kotlin.random.Random
 
 enum class ComputerMoveType {
     ATTACK,
@@ -85,7 +83,8 @@ enum class ComputerMoveChoiceType {
     RANDOM,
     DAMAGE,
     DAMAGE_BEST3,
-    ACCURACY_80
+    ACCURACY_80,
+    DEFENSE_80
 }
 
 interface ComputerMoveWeightEvaluator {
@@ -159,7 +158,7 @@ class RandomWeightMoveEvaluator : ComputerMoveWeightEvaluator {
 
 }
 
-fun AttackActionPreview.computeAttackDamageScore(squareHitRatio: Boolean = false) : Int {
+fun AttackActionPreview.computeAttackDamageScore(squareHitRatio: Boolean = false, includeEffects: Boolean = false) : Int {
     var score = 0
     for (targetedPreview in this.targetedPreviews) {
         val cappedMinDamage = targetedPreview.minDamage.coerceAtMost(targetedPreview.target.hitPoints)
@@ -169,9 +168,34 @@ fun AttackActionPreview.computeAttackDamageScore(squareHitRatio: Boolean = false
 
         val mediumDamageWithCrit = mediumDamage + ((mediumDamage * targetedPreview.critical.coerceAtLeast(0).coerceAtMost(100)) / 200)
 
+        val damageBeforeHit : Int
+        if (includeEffects) {
+
+            if (this.attackAction.statusEffect != null) {
+                var bonus = 0
+                for (effect in attackAction.statusEffect.effects) {
+                    val effectBonus = when(effect.effectType) {
+                        StatusEffectType.ATTACK -> (targetedPreview.target.attack - effect.effectValue + 25)
+                        StatusEffectType.AVOID -> (targetedPreview.target.avoid - effect.effectValue + 25)
+                        StatusEffectType.HIT -> (targetedPreview.target.hit - effect.effectValue + 25)
+                        StatusEffectType.DEFENSE -> (targetedPreview.target.defense - effect.effectValue + 25)
+                        StatusEffectType.CRITICAL -> (targetedPreview.target.critical - effect.effectValue + 25)
+                    }
+                    bonus += effectBonus.coerceAtLeast(0)
+                }
+                damageBeforeHit = mediumDamageWithCrit + ((bonus * attackAction.statusEffect.chance) / 100)
+            } else if (this.attackAction.delayEffect != null) {
+                damageBeforeHit = mediumDamageWithCrit + ((this.attackAction.delayEffect.delay * this.attackAction.delayEffect.chance) / 100)
+            } else {
+                damageBeforeHit = mediumDamageWithCrit
+            }
+        } else {
+            damageBeforeHit = mediumDamageWithCrit
+        }
+
         val targetHitRatio = targetedPreview.hit.coerceAtLeast(0).coerceAtMost(100)
 
-        val damageScore = (mediumDamageWithCrit * targetHitRatio) / 100
+        val damageScore = (damageBeforeHit * targetHitRatio) / 100
 
         if (squareHitRatio) {
             score += (damageScore * targetHitRatio) / 100
@@ -232,7 +256,7 @@ class AccuracyBasedComputerMoveWeightEvaluator : ComputerMoveWeightEvaluator {
         for (move in availableMoves) {
             when(move.moveType) {
                 ComputerMoveType.ATTACK -> {
-                    val attackWeight = move.attackActionPreview!!.computeAttackDamageScore(true)
+                    val attackWeight = move.attackActionPreview!!.computeAttackDamageScore(squareHitRatio = true)
                     weightedMoves.add(WeightedComputerMove(move.toComputerMove(), attackWeight))
                 }
                 ComputerMoveType.SUPPORT -> {
@@ -264,11 +288,49 @@ class AccuracyBasedComputerMoveWeightEvaluator : ComputerMoveWeightEvaluator {
     }
 }
 
+class DefensiveMoveWeightEvaluator : ComputerMoveWeightEvaluator {
+    override fun computeWeightedMoves(
+        player: Player,
+        playerTeam: Team,
+        opponentTeams: List<Team>,
+        availableMoves: List<AvailableComputerMove>
+    ): List<WeightedComputerMove> {
+        val weightedMoves = mutableListOf<WeightedComputerMove>()
+        val opponents = opponentTeams.flatMap { it.players }.filter { it.isAlive }
+        val opponentCount = opponents.size
+        for (move in availableMoves) {
+            when(move.moveType) {
+                ComputerMoveType.SUPPORT -> {
+                    if (move.actionTargets[0].id == player.id) {
+                        val weight: Int
+                        val mainEffect = move.supportAction!!.id.mainEffectType()
+                        if (mainEffect == StatusEffectType.DEFENSE) {
+                            weight = 200 * opponentCount
+                        } else if (mainEffect == StatusEffectType.HIT) {
+                            weight = 190 * opponentCount
+                        } else {
+                            weight = 1
+                        }
+                        weightedMoves.add(WeightedComputerMove(move.toComputerMove(), weight))
+                    }
+                }
+                ComputerMoveType.ATTACK -> {
+                    val attackWeight = move.attackActionPreview!!.computeAttackDamageScore(squareHitRatio = true, includeEffects = true)
+                    weightedMoves.add(WeightedComputerMove(move.toComputerMove(), attackWeight))
+                }
+            }
+        }
+        return weightedMoves
+    }
+
+}
+
 fun ComputerMoveChoiceType.getAlgorithm() : ComputerMoveAlgorithm {
     return when(this) {
         ComputerMoveChoiceType.RANDOM -> WeightBaseMoveAlgorithm(weightEvaluator = RandomWeightMoveEvaluator())
         ComputerMoveChoiceType.DAMAGE -> WeightBaseMoveAlgorithm(weightEvaluator = DamageBasedComputerMoveWeightEvaluator())
         ComputerMoveChoiceType.DAMAGE_BEST3 -> WeightBaseMoveAlgorithm(weightEvaluator = DamageBasedComputerMoveWeightEvaluator(), maxChoiceCount = 3)
         ComputerMoveChoiceType.ACCURACY_80 -> WeightBaseMoveAlgorithm(weightEvaluator =  AccuracyBasedComputerMoveWeightEvaluator(), minWeightThreshold = 80)
+        ComputerMoveChoiceType.DEFENSE_80 -> WeightBaseMoveAlgorithm(weightEvaluator =  DefensiveMoveWeightEvaluator(), minWeightThreshold = 80)
     }
 }
