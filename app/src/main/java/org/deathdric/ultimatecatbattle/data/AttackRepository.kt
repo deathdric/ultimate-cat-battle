@@ -18,7 +18,7 @@ object AttackRepository {
         hit = 75,
         delay = 20,
         critical = 15,
-        statusEffect = AttackStatusEffect(50, 100, listOf(StatusEffect(StatusEffectType.DEFENSE, -10)))
+        statusEffect = AttackStatusEffect(75, 100, listOf(StatusEffect(StatusEffectType.DEFENSE, -10)))
     )
 
     private val fingerOfDeath = AttackActionTemplate (
