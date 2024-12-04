@@ -5,18 +5,24 @@ data class Player(val maxHitPoints: Int,
                   val playerType: PlayerType,
                   val attackActions: List<AttackAction> = listOf(),
                   val supportActions: List<SupportAction> = listOf(),
-                  val computerMoveChoiceType: ComputerMoveChoiceType = ComputerMoveChoiceType.RANDOM
-) {
+                  val computerMoveChoiceType: ComputerMoveChoiceType = ComputerMoveChoiceType.RANDOM,
+                  val baseAttack : Int = 0,
+                  val baseDefense : Int = 0,
+                  val baseHit : Int = 0,
+                  val baseAvoid : Int = 0,
+                  val baseCrit : Int = 0
+
+                  ) {
     var hitPoints = maxHitPoints
         private set;
 
     private var statusEffects : MutableList<StatusModifier> = ArrayList()
     val isAlive get() = hitPoints > 0
-    val attack get()  = computeStat(StatusEffectType.ATTACK)
-    val defense get()  = computeStat(StatusEffectType.DEFENSE)
-    val hit get()  = computeStat(StatusEffectType.HIT)
-    val avoid get()  = computeStat(StatusEffectType.AVOID)
-    val critical get() = computeStat(StatusEffectType.CRITICAL)
+    val attack get()  = computeStat(StatusEffectType.ATTACK, baseAttack)
+    val defense get()  = computeStat(StatusEffectType.DEFENSE, baseDefense)
+    val hit get()  = computeStat(StatusEffectType.HIT, baseHit)
+    val avoid get()  = computeStat(StatusEffectType.AVOID, baseAvoid)
+    val critical get() = computeStat(StatusEffectType.CRITICAL, baseCrit)
 
     var nextTime = 0
         private set;
@@ -57,9 +63,10 @@ data class Player(val maxHitPoints: Int,
     }
 
     private fun computeStat(
-        effectType: StatusEffectType
+        effectType: StatusEffectType,
+        baseValue: Int = 0
     ) : Int {
-        var total = 0
+        var total = baseValue
         for (effect in statusEffects) {
             total += effectType.statusFunction.invoke(effect)
         }

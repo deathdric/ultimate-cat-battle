@@ -56,15 +56,39 @@ fun computeTeamRatio(playerId: PlayerId,
 fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, teamRatio: Int, opponentCount: Int, startTime: Int, numberGenerator: NumberGenerator = RandomNumberGenerator()) : Player{
     val playerTemplate = PlayerRepository.getPlayer(playerId)
     val maxHitPoints = playerTemplate.maxHitPoints * teamRatio
+    val baseHit = when(teamRatio) {
+        2 -> 5
+        3 -> 10
+        else -> 0
+    }
+    val baseAvoid = when(teamRatio) {
+        2 -> 5
+        3 -> 10
+        else -> 0
+    }
+    val baseDefense = when(teamRatio) {
+        2 -> 5
+        3 -> 10
+        else -> 0
+    }
     val attackActionList = playerTemplate.attackActions.map { AttackRepository.getAttack(it).toAttackAction(teamRatio, opponentCount) }.toList()
     val supportActionList = playerTemplate.supportActions.map { SupportRepository.getSupport(it).toSupportAction() }.toList()
     val algo = if (playerType.isComputer) {
-        val availableAlgos = ComputerMoveChoiceType.entries
+
+        val availableAlgos = if (teamRatio > 1)  {
+            listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.DAMAGE_BEST3)
+        } else if (opponentCount == 1) {
+            listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.ACCURACY_EFFECTS_80, ComputerMoveChoiceType.DAMAGE_BEST3)
+        } else {
+            ComputerMoveChoiceType.entries
+        }
+
         val algoIndex = numberGenerator.roll(0, availableAlgos.size)
         availableAlgos[algoIndex]
     } else ComputerMoveChoiceType.RANDOM
     val player = Player(maxHitPoints = maxHitPoints, id = playerId, playerType = playerType,
-        attackActions = attackActionList, supportActions = supportActionList, algo)
+        attackActions = attackActionList, supportActions = supportActionList, algo,
+        baseHit = baseHit, baseAvoid = baseAvoid, baseDefense = baseDefense)
     player.applyDelay(startTime)
     return player
 }

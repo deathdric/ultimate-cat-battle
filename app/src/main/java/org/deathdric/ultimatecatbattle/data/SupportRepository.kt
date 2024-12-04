@@ -16,7 +16,7 @@ object SupportRepository {
         coolDown = 100,
         selfEffects = listOf(
             StatusEffect(StatusEffectType.ATTACK, 50),
-            StatusEffect(StatusEffectType.DEFENSE, -25),
+            StatusEffect(StatusEffectType.DEFENSE, -20),
             StatusEffect(StatusEffectType.AVOID, -10),
             StatusEffect(StatusEffectType.CRITICAL, 25),
         ),
@@ -33,7 +33,7 @@ object SupportRepository {
         delay = 20,
         coolDown = 100,
         selfEffects = listOf(
-            StatusEffect(StatusEffectType.ATTACK, -25),
+            StatusEffect(StatusEffectType.ATTACK, -20),
             StatusEffect(StatusEffectType.DEFENSE, 50),
             StatusEffect(StatusEffectType.HIT, -10),
             StatusEffect(StatusEffectType.AVOID, 10)
@@ -51,8 +51,8 @@ object SupportRepository {
         delay = 10,
         coolDown = 100,
         selfEffects = listOf(
-            StatusEffect(StatusEffectType.ATTACK, -15),
-            StatusEffect(StatusEffectType.DEFENSE, -15),
+            StatusEffect(StatusEffectType.ATTACK, -10),
+            StatusEffect(StatusEffectType.DEFENSE, -10),
             StatusEffect(StatusEffectType.HIT, 30),
             StatusEffect(StatusEffectType.AVOID, 20)
 
