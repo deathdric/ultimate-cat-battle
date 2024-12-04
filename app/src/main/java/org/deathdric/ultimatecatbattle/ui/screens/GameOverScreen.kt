@@ -176,11 +176,11 @@ fun GameOverScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatB
 
 @Composable
 fun GenericGameOverScreenPreview(screenConstraints: ScreenConstraints) {
-    val cat = createNewPlayer(PlayerId.CAT, PlayerType.PLAYER1, 3, 3, 0)
+    val cat = createNewPlayer(PlayerId.CAT, PlayerType.PLAYER1, 4, 3, 3, 0)
     val firstTeam = Team(listOf(cat), TeamId.BALL_GREEN)
-    val penguin = createNewPlayer(PlayerId.PENGUIN, PlayerType.PLAYER2, teamRatio = 1, opponentCount = 1, startTime = 105)
-    val rabbit = createNewPlayer(PlayerId.RABBIT, PlayerType.PLAYER3, teamRatio = 1, opponentCount = 1, startTime = 17)
-    val mouse = createNewPlayer(PlayerId.MOUSE, PlayerType.PLAYER4, teamRatio = 1, opponentCount = 1, startTime = 10)
+    val penguin = createNewPlayer(PlayerId.PENGUIN, PlayerType.PLAYER2, 4, teamRatio = 1, opponentCount = 1, startTime = 105)
+    val rabbit = createNewPlayer(PlayerId.RABBIT, PlayerType.PLAYER3, 4, teamRatio = 1, opponentCount = 1, startTime = 17)
+    val mouse = createNewPlayer(PlayerId.MOUSE, PlayerType.PLAYER4, 4, teamRatio = 1, opponentCount = 1, startTime = 10)
     mouse.applyDamage(1200)
     val secondTeam = Team(listOf(penguin, rabbit, mouse), TeamId.FISH_BLUE)
     val catInfo = PlayerState(cat, firstTeam)

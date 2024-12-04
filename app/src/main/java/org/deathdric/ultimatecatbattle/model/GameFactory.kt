@@ -53,7 +53,7 @@ fun computeTeamRatio(playerId: PlayerId,
     return maxTeamCount / curTeamCount.coerceAtLeast(1)
 }
 
-fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, teamRatio: Int, opponentCount: Int, startTime: Int, numberGenerator: NumberGenerator = RandomNumberGenerator()) : Player{
+fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, characterCount: Int, teamRatio: Int, opponentCount: Int, startTime: Int, numberGenerator: NumberGenerator = RandomNumberGenerator()) : Player{
     val playerTemplate = PlayerRepository.getPlayer(playerId)
     val maxHitPoints = playerTemplate.maxHitPoints * teamRatio
     val baseHit = when(teamRatio) {
@@ -77,7 +77,7 @@ fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, teamRatio: Int, 
 
         val availableAlgos = if (teamRatio > 1)  {
             listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.DAMAGE_BEST3)
-        } else if (opponentCount == 1) {
+        } else if (opponentCount == 1 && characterCount > 2) {
             listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.ACCURACY_EFFECTS_80)
         } else {
             ComputerMoveChoiceType.entries
@@ -97,6 +97,7 @@ fun createNewGame(characterAllocations: Map<PlayerId, CharacterAllocation>,
                   teamAllocations: Map<PlayerKey, TeamAllocation>,
                   numberGenerator: NumberGenerator = RandomNumberGenerator()) : Game {
     val teams = mutableMapOf<TeamId, MutableList<Player>>()
+    val characterCount = characterAllocations.values.count { it.enable }
     for (playerEntry in characterAllocations) {
         if (!playerEntry.value.enable) {
             continue
@@ -106,7 +107,7 @@ fun createNewGame(characterAllocations: Map<PlayerId, CharacterAllocation>,
         val teamRatio = computeTeamRatio(playerEntry.key, characterAllocations, teamAllocations)
         val opponentCount = computeOpponentCount(playerEntry.key, characterAllocations, teamAllocations)
         val startTime = numberGenerator.roll(0, 20)
-        val player = createNewPlayer(playerEntry.key, playerEntry.value.playerType, teamRatio, opponentCount, startTime, numberGenerator)
+        val player = createNewPlayer(playerEntry.key, playerEntry.value.playerType, characterCount, teamRatio, opponentCount, startTime, numberGenerator)
         playerList.add(player)
     }
     return Game(teams = teams.entries.map { Team(it.value.toList(), it.key )})
