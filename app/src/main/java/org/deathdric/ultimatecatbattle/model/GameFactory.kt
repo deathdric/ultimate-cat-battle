@@ -78,7 +78,7 @@ fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, teamRatio: Int, 
         val availableAlgos = if (teamRatio > 1)  {
             listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.DAMAGE_BEST3)
         } else if (opponentCount == 1) {
-            listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.ACCURACY_EFFECTS_80, ComputerMoveChoiceType.DAMAGE_BEST3)
+            listOf(ComputerMoveChoiceType.ACCURACY_80, ComputerMoveChoiceType.ACCURACY_EFFECTS_80)
         } else {
             ComputerMoveChoiceType.entries
         }

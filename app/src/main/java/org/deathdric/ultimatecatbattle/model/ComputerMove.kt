@@ -265,16 +265,15 @@ class AccuracyBasedComputerMoveWeightEvaluator (private val withEffects: Boolean
                         val supportEffectType = move.supportAction!!.id.mainEffectType()
                         val opponents = opponentTeams.flatMap { it.players }.filter { it.isAlive }
                         val opponentCount = opponents.size
-                        val teamSize = playerTeam.players.size
                         val weight: Int
                         if (supportEffectType == StatusEffectType.HIT) {
-                            weight = ((50 - player.hit) * opponentCount * opponentCount) / teamSize
+                            weight = (50 - player.hit) * opponentCount * 2
 
                         } else if (supportEffectType == StatusEffectType.ATTACK) {
-                            weight = ((50 - player.attack) * opponentCount * opponentCount) / teamSize
+                            weight = (30 - player.attack) * opponentCount * 2
                         } else if (supportEffectType == StatusEffectType.DEFENSE) {
                             val opponentOffensiveStatus =
-                                opponents.sumOf { 2 * (it.hit - player.avoid) + it.attack - player.defense }
+                                opponents.sumOf { (it.hit - player.avoid) + it.attack - player.defense }
                             val hitPointRatio = ((player.hitPoints * 100) / player.maxHitPoints).coerceAtLeast(1)
                             weight = opponentCount * (100 - hitPointRatio) + opponentOffensiveStatus
                         } else {
