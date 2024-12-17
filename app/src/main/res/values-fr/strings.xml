@@ -170,7 +170,7 @@
     <string name="help_stat_defense_description">Points de défense : Une valeur plus élevée diminue les dégâts reçus.</string>
     <string name="help_stat_hit_description">Points de précision : Une valeur plus élevée augmente les chances de réussite des attaques.</string>
     <string name="help_stat_avoid_description">Points d\'esquive : Une valeur plus élevée diminue les chances d\'être touché par une attaque adverse.</string>
-    <string name="help_stat_critical_description">Points de critique : Une valeur plus élevée augmente les chances de coup critique. Une attaque critique augmente de 50 % les dégâts infligés et la durée des effets de status.</string>
+    <string name="help_stat_critical_description" formatted="false">Points de critique : Une valeur plus élevée augmente les chances de coup critique. Une attaque critique augmente de 50 % les dégâts infligés et la durée des effets de status.</string>
     <string name="help_game_start_turn_screen_paragraph_4">Les informations sur les autres joueurs sont disponibles sur la partie droite de l\'écran :</string>
     <string name="help_stat_waiting_time_description">Temps d\'attente : Unités de temps avant le tour du personnage.</string>
     <string name="help_stat_active_description">Actif : Cette icône est affichée pendant le tour du personnage.</string>
@@ -186,7 +186,7 @@
     <string name="help_game_support_confirm_screen_paragraph_2">Tu peux choisir la cible en appuyant sur l\'icône du personnage souhaité. Celà affichera également les modifications de statistiques sur ta cible ainsi que la durée de l\'effet.</string>
     <string name="help_game_support_confirm_screen_paragraph_3">Les actions de soutien ont des effets différents selon que la cible soit ton personnage ou un allié. Lorsque tu cibles ton personnage, il bénéficiera d\'augmentations plus élevées, mais en contrepartie certaines autres statistiques seront réduites.</string>
     <string name="help_game_move_confirm_screen_icons">Les autres icônes importantes sont :</string>
-    <string name="help_game_move_confirm_screen_time_cost">Affiche le coût de l\'action en unités de temps.</string>
+    <string name="help_game_move_confirm_screen_time_cost" formatted="false">Affiche le coût de l\'action en unités de temps.</string>
     <string name="help_game_move_confirm_screen_cooldown">Affiche le temps de recharge de l\'action. Si l\'icône n\'apparaît pas, celà signifie que l\'action n\'a pas de temps de recharge.</string>
     <string name="help_game_move_confirm_screen_action">Afin d\'exécuter ton action, appuie sur le bouton \'Confirmer\'. Pour revenir à l\'écran de sélection des actions, appuie sur le bouton \'Annuler\'.</string>
     <string name="help_game_attack_execution_screen_paragraph_1">L\'attaque est effectuée. Désormais, les dés sont jetés !</string>

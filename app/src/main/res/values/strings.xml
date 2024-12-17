@@ -158,7 +158,7 @@
     <string name="help_stat_defense_description">Defense rating : A higher value decreases damage received</string>
     <string name="help_stat_hit_description">Hit rating : A higher value increases the success of attack moves</string>
     <string name="help_stat_avoid_description">Avoidance rating : A higher value decreases the success of being hit by an opponent\'s attack move</string>
-    <string name="help_stat_critical_description">Critical rating : A higher value increases the chance of critical hit. A critical attack move have its damage and effects duration increased by 50 %</string>
+    <string name="help_stat_critical_description" formatted="false">Critical rating : A higher value increases the chance of critical hit. A critical attack move have its damage and effects duration increased by 50 %</string>
     <string name="help_stat_waiting_time_description">Waiting time : Units of time before this character\'s next turn.</string>
     <string name="help_stat_active_description">Active : This icon is displayed during this character\'s turn.</string>
     <string name="help_game_select_move_screen_title">Selecting a move</string>
@@ -186,7 +186,7 @@
     <string name="help_game_support_confirm_screen_title">Support moves</string>
     <string name="help_game_support_confirm_screen_paragraph_1">This screen gives a preview of the effects of your support action and allows you to choose a target.</string>
     <string name="help_game_support_confirm_screen_paragraph_2">You can select the target by pressing the icon representing the target character. It will also display the modified stats for the target and the duration of the effect.</string>
-    <string name="help_game_support_confirm_screen_paragraph_3">Support moves have different effects based on whether you target yourself or an ally. When your target yourself, you will benefit from greater stat increases, but at the cost of a decrease in other stats. Do not forget that there is a lower cap of -50 % and an upper cap of + 50 % applied to the cumulated effects on a given stat.</string>
+    <string name="help_game_support_confirm_screen_paragraph_3" formatted="false">Support moves have different effects based on whether you target yourself or an ally. When your target yourself, you will benefit from greater stat increases, but at the cost of a decrease in other stats. Do not forget that there is a lower cap of -50 % and an upper cap of + 50 % applied to the cumulated effects on a given stat.</string>
     <string name="help_game_attack_execution_screen_title">Attack execution</string>
     <string name="help_game_attack_execution_screen_paragraph_1">The attack move is launched. Here goes nothing !</string>
     <string name="help_game_attack_execution_screen_paragraph_2">Press \'Next\' in order to see the results of the attack.</string>
