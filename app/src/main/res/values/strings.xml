@@ -23,6 +23,11 @@
     <string name="remove">Remove</string>
     <string name="character_assign_title">Assign characters to players</string>
     <string name="team_assign_title">Assign players to teams</string>
+    <string name="power_assign_title">Configure the power levels</string>
+    <string name="power_weak">Weak</string>
+    <string name="power_medium">Medium</string>
+    <string name="power_strong">Strong</string>
+    <string name="power_very_strong">Very Strong</string>
     <string name="must_have_more_than_one_team">You need at least 2 different teams !</string>
     <string name="team_name_pattern">Team %s</string>
     <string name="fish_blue">Fish Blue</string>
@@ -131,6 +136,13 @@
     <string name="help_player_select_screen_paragraph_9">Add a character.</string>
     <string name="help_player_select_screen_paragraph_10">Remove a character.</string>
     <string name="help_player_select_screen_paragraph_11">If you are done press the \'Confirm\' button. If you want to go back to the main screen press the \'Cancel\' button.</string>
+    <string name="help_power_select_screen_paragraph_1">The purpose of this screen is to configure the power level of each player, allowing to fine-tune the difficulty.</string>
+    <string name="help_power_select_screen_paragraph_2">Power levels will impact the initial hit points, hit rating and avoidance rating of the player\'s characters. For computer players, it will also impact how it will compute its moves.</string>
+    <string name="help_power_select_screen_paragraph_3">The available power levels are :</string>
+    <string name="help_power_select_screen_paragraph_4">Commands are :</string>
+    <string name="help_power_select_screen_paragraph_5">Update the power level of a player by selecting the target power icon.</string>
+    <string name="help_power_select_screen_paragraph_6">Change the power level of the player.</string>
+    <string name="help_power_select_screen_paragraph_7">If you are done press the \'Confirm\' button. If you want to go back to the player selection screen press the \'Cancel\' button.</string>
     <string name="help_team_select_screen_title">Team selection</string>
     <string name="help_team_select_screen_paragraph_1">By default, each player is against all other players and belongs to his own team. You can however allow cooperative gameplay by assigning different players into the same team. Players on the same team win or lose together.</string>
     <string name="help_team_select_screen_paragraph_2">Each character controlled by the computer is considered as a dedicated player. You can\'t put human players and computer players into a same team (available teams are different between human players and computer players).</string>
@@ -141,7 +153,7 @@
     <string name="help_team_select_screen_paragraph_7">Commands are :</string>
     <string name="help_team_select_screen_paragraph_8">Assign the player to another team by selecting the target team icon.</string>
     <string name="help_team_select_screen_paragraph_9">Change the team assigned to the player.</string>
-    <string name="help_team_select_screen_paragraph_10">If you are done press the \'Confirm\' button. If you want to go back to the player selection screen press the \'Cancel\' button.</string>
+    <string name="help_team_select_screen_paragraph_10">If you are done press the \'Confirm\' button. If you want to go back to the power level selection screen press the \'Cancel\' button.</string>
     <string name="help_game_intro_screen_title">Starting the game</string>
     <string name="help_game_intro_screen_paragraph_1">At the beginning of the game, each character is given a random delay (in time units). The character who has the lowest delay will play first.</string>
     <string name="help_game_intro_screen_paragraph_2">Once a character hit points reaches 0, he will be out of combat. The game will end when only one team still has active characters (this team wins), or when only computer teams have active characters (computer wins).</string>

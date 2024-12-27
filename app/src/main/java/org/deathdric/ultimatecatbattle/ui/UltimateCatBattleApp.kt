@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.deathdric.ultimatecatbattle.ui.screens.MainGameScreen
 import org.deathdric.ultimatecatbattle.ui.screens.PlayerSelectScreen
+import org.deathdric.ultimatecatbattle.ui.screens.PowerSelectScreen
 import org.deathdric.ultimatecatbattle.ui.screens.ReturnHomeScreen
 import org.deathdric.ultimatecatbattle.ui.screens.StartScreen
 import org.deathdric.ultimatecatbattle.ui.screens.TeamSelectScreen
@@ -45,6 +46,15 @@ fun UltimateCatBattleApp() {
 
                 RootUiStatus.PLAYER_SELECT -> {
                     PlayerSelectScreen(
+                        screenConstraints,
+                        viewModel = viewModel,
+                        uiState = uiState,
+                        Modifier.fillMaxSize()
+                    )
+                }
+
+                RootUiStatus.POWER_ALLOCATIONS -> {
+                    PowerSelectScreen(
                         screenConstraints,
                         viewModel = viewModel,
                         uiState = uiState,

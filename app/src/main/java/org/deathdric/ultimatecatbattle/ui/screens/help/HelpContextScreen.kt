@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.screens.getPlayerScreenDisplayOptions
+import org.deathdric.ultimatecatbattle.ui.screens.getPowerScreenDisplayOptions
 import org.deathdric.ultimatecatbattle.ui.screens.getStartScreenDisplayOptions
 import org.deathdric.ultimatecatbattle.ui.screens.getTeamScreenDisplayOptions
 import org.deathdric.ultimatecatbattle.ui.screens.toActivePlayerPanelDisplayOptions
@@ -79,7 +80,7 @@ fun ScreenConstraints.toHelpContextScreenDisplayOptions () : HelpContextScreenDi
         18.sp
     }
 
-    val lineHeight = (textSize * 5)/4
+    val lineHeight = (textSize * 6)/4
 
     val buttonSizeMode = if (this.maxHeight < 400.dp) {
         ElementSizeMode.NORMAL
@@ -106,6 +107,7 @@ fun HelpContextScreen(screenConstraints: ScreenConstraints, viewModel: UltimateC
                 RootUiStatus.START_SCREEN -> R.string.help_start_screen_title
                 RootUiStatus.PLAYER_SELECT -> R.string.help_player_select_screen_title
                 RootUiStatus.TEAM_SELECT -> R.string.help_team_select_screen_title
+                RootUiStatus.POWER_ALLOCATIONS -> R.string.power_assign_title
                 RootUiStatus.MAIN_GAME -> {
                     when(uiState.gameState!!.status) {
                         GameStatus.INTRO -> R.string.help_game_intro_screen_title
@@ -157,6 +159,11 @@ fun HelpContextScreen(screenConstraints: ScreenConstraints, viewModel: UltimateC
                                 playerSelectScreenDisplayOptions = screenConstraints.getPlayerScreenDisplayOptions(),
                                 modifier = Modifier.fillMaxSize()
                             )
+                        }
+                        RootUiStatus.POWER_ALLOCATIONS -> {
+                            PowerSelectContextScreen(helpContextScreenDisplayOptions = displayOptions,
+                                powerSelectScreenDisplayOptions = screenConstraints.getPowerScreenDisplayOptions(),
+                                modifier = Modifier.fillMaxSize())
                         }
                         RootUiStatus.TEAM_SELECT -> {
                             TeamSelectContextScreen(

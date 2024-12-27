@@ -341,6 +341,7 @@ fun DamageDoneText(
         fontFamily = FontFamily.SansSerif,
         fontWeight = fontWeight,
         fontSize = displayOptions.damageFontSize,
+        lineHeight = (displayOptions.damageFontSize * 6)/4,
         color = textColor
     )
 }

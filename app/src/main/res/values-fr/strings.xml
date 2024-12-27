@@ -21,6 +21,11 @@
     <string name="remove">Retirer</string>
     <string name="character_assign_title">Assigne les personnages aux joueurs</string>
     <string name="team_assign_title">Répartis les joueurs par équipes</string>
+    <string name="power_assign_title">Configure la puissance des joueurs</string>
+    <string name="power_weak">Faible</string>
+    <string name="power_medium">Moyen</string>
+    <string name="power_strong">Fort</string>
+    <string name="power_very_strong">Très fort</string>
     <string name="must_have_more_than_one_team">Il faut au moins 2 équipes différentes !</string>
     <string name="team_name_pattern">Equipe %s</string>
     <string name="fish_blue">Bleu Poisson</string>
@@ -114,6 +119,7 @@
     <string name="support_quote_ally_3">Je vais assurer tes arrières !</string>
     <string name="help_start_screen_title">Bienvenue sur Ultimate Cat Battle !</string>
     <string name="help_player_select_screen_title">Sélection des joueurs</string>
+    <string name="help_power_select_screen_paragraph_7">Une fois que tu as fais tes choix, appuie sur \'Confirmer\'. Pour revenir à l\'écran de sélection des joueurs, appuie sur \'Annuler\'.</string>
     <string name="help_team_select_screen_title">Sélection des équipes</string>
     <string name="help_game_intro_screen_title">Démarrer la partie</string>
     <string name="help_start_screen_paragraph_1">Ultimate Cat Battle est un jeu de combat au tour par tour impliquant un chat, un pingouin, et d\'autres personnages ..</string>
@@ -139,7 +145,7 @@
     <string name="help_team_select_screen_paragraph_7">Les commandes sont :</string>
     <string name="help_team_select_screen_paragraph_8">Assigne le joueur à une autre équipe en sélectionnant l\'icône de l\'équipe voulue.</string>
     <string name="help_team_select_screen_paragraph_9">Change l\'équipe associée au joueur.</string>
-    <string name="help_team_select_screen_paragraph_10">Une fois que tu as fais tes choix, appuie sur \'Confirmer\'. Pour revenir à l\'écran de sélection des joueurs, appuie sur \'Annuler\'.</string>
+    <string name="help_team_select_screen_paragraph_10">Une fois que tu as fais tes choix, appuie sur \'Confirmer\'. Pour revenir à l\'écran de sélection des niveaux de puissance, appuie sur \'Annuler\'.</string>
     <string name="help_game_intro_screen_paragraph_1">Au début du jeu, chaque personnage se voit attribuer un temps de démarrage aléatoire (en unités de temps). Le personnage qui a le nombre d\'unités le plus bas jouera en premier.</string>
     <string name="help_game_intro_screen_paragraph_2">Lorsque les points de vie d\'un personnage atteignent 0, le personnage se retire du combat. Le jeu prend fin lorsqu\'il n\'y a plus qu\'une seule équipe avec des personnages actifs (l\'équipe gagne), ou lors que les personnages actifs ne sont plus que dans des équipes contrôlées par l\'ordinateur (l\'ordinateur gagne).</string>
     <string name="help_game_intro_screen_paragraph_3">Appuie sur \'Commencer la partie\' pour démarrer le tour du prochain joueur.</string>
@@ -200,4 +206,10 @@
     <string name="help_game_over_screen_paragraph_1">La partie est terminée. Que tu aies gagné ou perdu, j\'espère que tu t\'es bien amusé.</string>
     <string name="help_game_over_screen_paragraph_2">La seule action possible est de retourner à l\'écran principal en appuyant sur le bouton du même nom. Prêt pour un match retour ?</string>
     <string name="go_home_confirm">Quitter la partie et revenir à l\'écran principal ?</string>
+    <string name="help_power_select_screen_paragraph_1">Le but de cet écran est de configurer le niveau de puissance de chaque joueur, permettant de modifier la difficulté du jeu.</string>
+    <string name="help_power_select_screen_paragraph_2">Les niveaux de puissance impactent les points de vie, la précision et l\'esquive des personnages du joueur. Pour les personnages contrôlés par l\'ordinateur, cela impacte également la façon dont les actions seront choisies.</string>
+    <string name="help_power_select_screen_paragraph_3">Les niveaux de puissance disponibles sont :</string>
+    <string name="help_power_select_screen_paragraph_4">Les commandes sont :</string>
+    <string name="help_power_select_screen_paragraph_5">Modifie le niveau de puissance du joueur en sélectionnant l\'icône du niveau souhaité.</string>
+    <string name="help_power_select_screen_paragraph_6">Modifie le niveau de puissance du joueur.</string>
 </resources>

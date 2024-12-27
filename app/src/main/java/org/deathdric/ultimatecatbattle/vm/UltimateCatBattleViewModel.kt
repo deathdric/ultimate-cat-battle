@@ -9,6 +9,7 @@ import org.deathdric.ultimatecatbattle.model.AttackActionId
 import org.deathdric.ultimatecatbattle.model.AttackActionPreview
 import org.deathdric.ultimatecatbattle.model.ComputerMove
 import org.deathdric.ultimatecatbattle.model.ComputerMoveType
+import org.deathdric.ultimatecatbattle.model.Power
 import org.deathdric.ultimatecatbattle.model.Game
 import org.deathdric.ultimatecatbattle.model.Player
 import org.deathdric.ultimatecatbattle.model.PlayerId
@@ -27,6 +28,7 @@ class UltimateCatBattleViewModel: ViewModel() {
     private var playerCount: Int = 1
     private var characterAllocation : MutableMap<PlayerId, CharacterAllocation> = createCharacterAllocation(playerCount)
     private var teamAllocation: MutableMap<PlayerKey, TeamAllocation> = createTeamAllocations(characterAllocation.values.toList(),playerCount)
+    private var powerAllocation: MutableMap<PlayerType, Power> = createPowerAllocations(characterAllocation.values.toList())
     private var game: Game? = null
     private var numberGenerator = RandomNumberGenerator()
 
@@ -35,7 +37,8 @@ class UltimateCatBattleViewModel: ViewModel() {
             rootUiStatus = RootUiStatus.START_SCREEN,
             startScreenState = StartScreenState(),
             characterAllocationState = createGlobalCharacterAllocationState(characterAllocation, playerCount),
-            teamAllocationState = createGlobalTeamAllocationState(teamAllocation, playerCount)
+            teamAllocationState = createGlobalTeamAllocationState(teamAllocation, playerCount),
+            powerAllocationState = PowerAllocationState(powerAllocation.toMap())
         )
     }
     private val _uiState = MutableStateFlow(initialState())
@@ -77,6 +80,14 @@ class UltimateCatBattleViewModel: ViewModel() {
         }
     }
 
+    fun selectPowerAllocation(playerType: PlayerType, power: Power) {
+        this.powerAllocation[playerType] = power
+
+        _uiState.update { previous ->
+            previous.copy(powerAllocationState = PowerAllocationState(this.powerAllocation.toMap()))
+        }
+    }
+
     fun toggleCharacter(playerId: PlayerId, enable: Boolean) {
         val playerAllocation = this.characterAllocation[playerId] ?: return
         this.characterAllocation[playerId] = playerAllocation.copy(enable = enable, playerType = PlayerType.COMPUTER)
@@ -101,6 +112,15 @@ class UltimateCatBattleViewModel: ViewModel() {
 
         _uiState.update { previous ->
             previous.copy(teamAllocationState = createGlobalTeamAllocationState(this.teamAllocation, this.playerCount))
+        }
+    }
+
+    fun startPowerAllocation() {
+        powerAllocation = createPowerAllocations(characterAllocation.values.toList())
+        _uiState.update { previous ->
+            previous.copy(rootUiStatus = RootUiStatus.POWER_ALLOCATIONS,
+                powerAllocationState = PowerAllocationState(this.powerAllocation.toMap())
+            )
         }
     }
 
@@ -129,7 +149,7 @@ class UltimateCatBattleViewModel: ViewModel() {
     }
 
     fun startGame() {
-        game = createNewGame(characterAllocation, teamAllocation, numberGenerator)
+        game = createNewGame(characterAllocation, teamAllocation, numberGenerator, powerAllocation)
         game!!.updateActivePlayer()
         _uiState.update { previous ->
             previous.copy(rootUiStatus = RootUiStatus.MAIN_GAME,
@@ -376,9 +396,15 @@ class UltimateCatBattleViewModel: ViewModel() {
         }
     }
 
-    fun cancelTeamAllocation() {
+    fun cancelPowerAllocation() {
         _uiState.update { previous ->
             previous.copy(rootUiStatus = RootUiStatus.PLAYER_SELECT)
+        }
+    }
+
+    fun cancelTeamAllocation() {
+        _uiState.update { previous ->
+            previous.copy(rootUiStatus = RootUiStatus.POWER_ALLOCATIONS)
         }
     }
 

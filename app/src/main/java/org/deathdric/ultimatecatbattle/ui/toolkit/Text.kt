@@ -41,8 +41,9 @@ fun MessageText(text: String, modifier: Modifier = Modifier, sizeMode: ElementSi
 @Composable
 fun StandardText(text: String, modifier: Modifier = Modifier, fontWeight: FontWeight = FontWeight.Normal, textAlign: TextAlign = TextAlign.Justify,
                  color: Color = Color.Black, fontSize: TextUnit = 16.sp, fontStyle: FontStyle = FontStyle.Normal, lineHeight: TextUnit = TextUnit.Unspecified) {
+    val targetLineHeight = if (lineHeight == TextUnit.Unspecified) (fontSize * 6) / 4 else lineHeight
     Text(text = text, fontSize = fontSize, fontWeight = fontWeight, fontFamily = FontFamily.SansSerif,
-        textAlign = textAlign, modifier = modifier, color = color, fontStyle = fontStyle, lineHeight = lineHeight)
+        textAlign = textAlign, modifier = modifier, color = color, fontStyle = fontStyle, lineHeight = targetLineHeight)
 }
 
 @Composable

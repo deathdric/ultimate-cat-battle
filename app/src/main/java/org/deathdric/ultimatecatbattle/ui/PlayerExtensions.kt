@@ -6,6 +6,7 @@ import org.deathdric.ultimatecatbattle.model.AttackActionId
 import org.deathdric.ultimatecatbattle.model.Player
 import org.deathdric.ultimatecatbattle.model.PlayerId
 import org.deathdric.ultimatecatbattle.model.PlayerType
+import org.deathdric.ultimatecatbattle.model.Power
 import org.deathdric.ultimatecatbattle.model.StatusEffectType
 import org.deathdric.ultimatecatbattle.model.SupportActionId
 import org.deathdric.ultimatecatbattle.model.TeamId
@@ -187,5 +188,23 @@ fun StatusEffectType.name() : Int {
         StatusEffectType.ATTACK -> R.string.stat_attack
         StatusEffectType.DEFENSE -> R.string.stat_defense
         StatusEffectType.CRITICAL -> R.string.stat_crit
+    }
+}
+
+fun Power.icon(): Int {
+    return when(this) {
+        Power.WEAK -> R.drawable.easy
+        Power.NORMAL -> R.drawable.medium
+        Power.STRONG -> R.drawable.hard
+        Power.VERY_STRONG -> R.drawable.very_hard
+    }
+}
+
+fun Power.name(): Int {
+    return when(this) {
+        Power.WEAK -> R.string.power_weak
+        Power.NORMAL -> R.string.power_medium
+        Power.STRONG -> R.string.power_strong
+        Power.VERY_STRONG -> R.string.power_very_strong
     }
 }

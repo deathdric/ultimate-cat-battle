@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -284,8 +285,10 @@ fun AvailableTeamImage(imageSize: Dp, imagePadding: Dp, availableTeam: TeamId,
                          teamAllocationState: TeamAllocationState,
                          onClick: () -> Unit) {
     var background = Color.Transparent
+    var alpha = 0.6f
     if (teamAllocationState.teamAllocation.teamId == availableTeam) {
         background = colorResource(id = R.color.selected_icon_background)
+        alpha = 1f
     }
     Image(painter = painterResource(id = availableTeam.icon()),
         contentDescription = stringResource(id = availableTeam.name()),
@@ -293,6 +296,7 @@ fun AvailableTeamImage(imageSize: Dp, imagePadding: Dp, availableTeam: TeamId,
             .background(background)
             .padding(imagePadding)
             .size(imageSize)
+            .alpha(alpha)
             .clickable {
                 onClick()
             })

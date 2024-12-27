@@ -2,6 +2,7 @@ package org.deathdric.ultimatecatbattle.vm
 
 import org.deathdric.ultimatecatbattle.model.PlayerId
 import org.deathdric.ultimatecatbattle.model.PlayerType
+import org.deathdric.ultimatecatbattle.model.Power
 
 data class CharacterAllocation(val playerId: PlayerId, val enable: Boolean, val playerType: PlayerType)
 
@@ -52,6 +53,19 @@ data class CharacterAllocationValidation(
     val validated: Boolean,
     val missingPlayerCharacters: PlayerType?
 )
+
+data class PowerAllocationState(
+    val players: Map<PlayerType, Power>
+
+) {
+    fun findAtIndex(index: Int) : PlayerType? {
+        val allPlayers = PlayerType.entries.filter { players.containsKey(it) }.toList()
+        if (allPlayers.size > index && index >= 0) {
+            return allPlayers[index]
+        }
+        return null
+    }
+}
 
 data class GlobalCharacterAllocationState(
     val characters: Map<PlayerId, CharacterAllocationState>,

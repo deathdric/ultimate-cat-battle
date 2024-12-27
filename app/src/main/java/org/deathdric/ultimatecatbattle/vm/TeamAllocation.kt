@@ -1,5 +1,6 @@
 package org.deathdric.ultimatecatbattle.vm
 
+import org.deathdric.ultimatecatbattle.model.Power
 import org.deathdric.ultimatecatbattle.model.PlayerId
 import org.deathdric.ultimatecatbattle.model.PlayerType
 import org.deathdric.ultimatecatbattle.model.TeamId
@@ -18,6 +19,14 @@ data class TeamAllocationValidation(val validated: Boolean)
 
 data class GlobalTeamAllocationState(val teams: List<TeamAllocationState>, val validation: TeamAllocationValidation)
 
+fun createPowerAllocations(characterAllocations: List<CharacterAllocation>) : MutableMap<PlayerType, Power> {
+    val powerAllocations = mutableMapOf<PlayerType, Power>();
+    val distinctPlayers = characterAllocations.filter { it.enable }.map { it.playerType }.distinct()
+    for (playerType in distinctPlayers) {
+        powerAllocations[playerType] = Power.NORMAL
+    }
+    return powerAllocations
+}
 
 fun createTeamAllocations(characterAllocations: List<CharacterAllocation>, playerCount : Int) : MutableMap<PlayerKey, TeamAllocation> {
     val computerPlayers = characterAllocations.stream().filter { cal -> cal.playerType == PlayerType.COMPUTER && cal.enable }.collect(
