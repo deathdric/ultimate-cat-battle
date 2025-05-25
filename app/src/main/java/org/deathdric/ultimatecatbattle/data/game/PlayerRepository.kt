@@ -1,9 +1,9 @@
-package org.deathdric.ultimatecatbattle.data
+package org.deathdric.ultimatecatbattle.data.game
 
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerTemplate
-import org.deathdric.ultimatecatbattle.model.SupportActionId
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerTemplate
+import org.deathdric.ultimatecatbattle.model.game.SupportActionId
 
 object PlayerRepository {
 

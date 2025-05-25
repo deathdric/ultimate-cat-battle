@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 data class AttackDamageRange (
     val minDamage: Int,

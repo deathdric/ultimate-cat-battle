@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.deathdric.ultimatecatbattle.data.save.GameSaveManager
 import org.deathdric.ultimatecatbattle.ui.screens.MainGameScreen
 import org.deathdric.ultimatecatbattle.ui.screens.PlayerSelectScreen
 import org.deathdric.ultimatecatbattle.ui.screens.PowerSelectScreen
@@ -29,6 +31,8 @@ fun UltimateCatBattleApp() {
     BoxWithConstraints (modifier = Modifier.screenModifier()) {
         val screenConstraints = ScreenConstraints(maxWidth = this.maxWidth, maxHeight = this.maxHeight)
         val viewModel : UltimateCatBattleViewModel = viewModel()
+        val saveManager = GameSaveManager(LocalContext.current.filesDir)
+        viewModel.initSaveManager(saveManager)
         val uiState = viewModel.uiState.collectAsState().value
         if (uiState.toggleContextHelp) {
             HelpContextScreen(screenConstraints = screenConstraints, viewModel = viewModel, uiState = uiState,
@@ -40,6 +44,7 @@ fun UltimateCatBattleApp() {
                         screenConstraints,
                         viewModel = viewModel,
                         uiState = uiState,
+                        saveManager.hasSave(),
                         Modifier.fillMaxSize()
                     )
                 }

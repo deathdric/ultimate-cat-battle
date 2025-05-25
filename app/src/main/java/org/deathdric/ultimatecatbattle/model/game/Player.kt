@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 data class Player(val maxHitPoints: Int,
                   val id: PlayerId,
@@ -10,22 +10,18 @@ data class Player(val maxHitPoints: Int,
                   val baseDefense : Int = 0,
                   val baseHit : Int = 0,
                   val baseAvoid : Int = 0,
-                  val baseCrit : Int = 0
-
+                  val baseCrit : Int = 0,
+                  var hitPoints : Int = maxHitPoints,
+                  var nextTime: Int = 0,
+                  var statusEffects : MutableList<StatusModifier> = ArrayList()
                   ) {
-    var hitPoints = maxHitPoints
-        private set;
 
-    private var statusEffects : MutableList<StatusModifier> = ArrayList()
     val isAlive get() = hitPoints > 0
     val attack get()  = computeStat(StatusEffectType.ATTACK, baseAttack)
     val defense get()  = computeStat(StatusEffectType.DEFENSE, baseDefense)
     val hit get()  = computeStat(StatusEffectType.HIT, baseHit)
     val avoid get()  = computeStat(StatusEffectType.AVOID, baseAvoid)
     val critical get() = computeStat(StatusEffectType.CRITICAL, baseCrit)
-
-    var nextTime = 0
-        private set;
 
     fun applyDelay(delay: Int) {
         nextTime += delay

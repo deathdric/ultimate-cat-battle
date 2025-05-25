@@ -1,8 +1,8 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
-import org.deathdric.ultimatecatbattle.data.AttackRepository
-import org.deathdric.ultimatecatbattle.data.PlayerRepository
-import org.deathdric.ultimatecatbattle.data.SupportRepository
+import org.deathdric.ultimatecatbattle.data.game.AttackRepository
+import org.deathdric.ultimatecatbattle.data.game.PlayerRepository
+import org.deathdric.ultimatecatbattle.data.game.SupportRepository
 import org.deathdric.ultimatecatbattle.vm.CharacterAllocation
 import org.deathdric.ultimatecatbattle.vm.PlayerKey
 import org.deathdric.ultimatecatbattle.vm.TeamAllocation
@@ -24,8 +24,8 @@ fun retrieveTeamId(playerId: PlayerId,
 }
 
 fun computeOpponentCount(playerId: PlayerId,
-    characterAllocations: Map<PlayerId, CharacterAllocation>,
-    teamAllocations: Map<PlayerKey, TeamAllocation>) : Int {
+                         characterAllocations: Map<PlayerId, CharacterAllocation>,
+                         teamAllocations: Map<PlayerKey, TeamAllocation>) : Int {
     val teamId = retrieveTeamId(playerId, characterAllocations, teamAllocations) ?: 1
     val otherTeams = teamAllocations.entries.stream().filter { it.value.teamId != teamId }
     var opponentCount = 0
@@ -38,7 +38,7 @@ fun computeOpponentCount(playerId: PlayerId,
 fun computeTeamRatio(playerId: PlayerId,
                      characterAllocations: Map<PlayerId, CharacterAllocation>,
                      teamAllocations: Map<PlayerKey, TeamAllocation>) : Int {
-    val teamId = retrieveTeamId(playerId, characterAllocations, teamAllocations) ?: 1
+    val teamId = retrieveTeamId(playerId, characterAllocations, teamAllocations) ?: return 1
     val teamCount = mutableMapOf<TeamId, Int>();
     for (teamEntry in TeamId.entries) {
         var characterCount = 0
@@ -48,12 +48,16 @@ fun computeTeamRatio(playerId: PlayerId,
         }
         teamCount[teamEntry] = characterCount
     }
+    return computeTeamRatio(teamCount, teamId)
+}
+
+fun <TTeam: Any> computeTeamRatio(teamCount: Map<TTeam, Int>, teamId: TTeam) : Int {
     val maxTeamCount = teamCount.values.max()
     val curTeamCount = teamCount[teamId] ?: 1
     return maxTeamCount / curTeamCount.coerceAtLeast(1)
 }
 
-fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, characterCount: Int, teamRatio: Int, opponentCount: Int, startTime: Int, numberGenerator: NumberGenerator = RandomNumberGenerator(), power: Power = Power.NORMAL) : Player{
+fun createNewPlayer(playerId: PlayerId, playerType: PlayerType, characterCount: Int, teamRatio: Int, opponentCount: Int, startTime: Int, numberGenerator: NumberGenerator = RandomNumberGenerator(), power: Power = Power.NORMAL) : Player {
     val playerTemplate = PlayerRepository.getPlayer(playerId)
     var maxHitPoints = playerTemplate.maxHitPoints * teamRatio
     var baseHit = when(teamRatio) {
@@ -128,5 +132,5 @@ fun createNewGame(characterAllocations: Map<PlayerId, CharacterAllocation>,
         val player = createNewPlayer(playerEntry.key, playerEntry.value.playerType, characterCount, teamRatio, opponentCount, startTime, numberGenerator, power)
         playerList.add(player)
     }
-    return Game(teams = teams.entries.map { Team(it.value.toList(), it.key )})
+    return Game(teams = teams.entries.map { Team(it.value.toList(), it.key ) })
 }

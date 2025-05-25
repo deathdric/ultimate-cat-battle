@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 import org.deathdric.ultimatecatbattle.ui.mainEffectType
 
@@ -76,7 +76,8 @@ interface ComputerMoveAlgorithm {
                         playerTeam: Team,
                         opponentTeams: List<Team>,
                         availableMoves: List<AvailableComputerMove>,
-                        numberGenerator: NumberGenerator) : ComputerMove
+                        numberGenerator: NumberGenerator
+    ) : ComputerMove
 }
 
 enum class ComputerMoveChoiceType {
@@ -99,7 +100,7 @@ class WeightBaseMoveAlgorithm (
     private val weightEvaluator: ComputerMoveWeightEvaluator,
     private val maxChoiceCount: Int? = null,
     private val minWeightThreshold: Int? = null
-) : ComputerMoveAlgorithm  {
+) : ComputerMoveAlgorithm {
     override fun computeNextMove(
         player: Player,
         playerTeam: Team,
@@ -246,7 +247,8 @@ class DamageBasedComputerMoveWeightEvaluator : ComputerMoveWeightEvaluator {
     }
 }
 
-class AccuracyBasedComputerMoveWeightEvaluator (private val withEffects: Boolean = false) : ComputerMoveWeightEvaluator {
+class AccuracyBasedComputerMoveWeightEvaluator (private val withEffects: Boolean = false) :
+    ComputerMoveWeightEvaluator {
     override fun computeWeightedMoves(
         player: Player,
         playerTeam: Team,

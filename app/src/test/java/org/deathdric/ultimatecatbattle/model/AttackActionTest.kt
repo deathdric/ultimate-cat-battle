@@ -1,5 +1,18 @@
 package org.deathdric.ultimatecatbattle.model
 
+import org.deathdric.ultimatecatbattle.model.game.AttackAction
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.AttackStatusEffect
+import org.deathdric.ultimatecatbattle.model.game.AttackSuccessMode
+import org.deathdric.ultimatecatbattle.model.game.DelayEffect
+import org.deathdric.ultimatecatbattle.model.game.FakeNumberGenerator
+import org.deathdric.ultimatecatbattle.model.game.Player
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.StatusEffect
+import org.deathdric.ultimatecatbattle.model.game.StatusEffectType
+import org.deathdric.ultimatecatbattle.model.game.StatusModifier
+import org.deathdric.ultimatecatbattle.model.game.TargetType
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull

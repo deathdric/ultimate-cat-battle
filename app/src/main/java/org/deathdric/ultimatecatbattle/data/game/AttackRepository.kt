@@ -1,13 +1,13 @@
-package org.deathdric.ultimatecatbattle.data
+package org.deathdric.ultimatecatbattle.data.game
 
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.AttackActionTemplate
-import org.deathdric.ultimatecatbattle.model.AttackDamageRange
-import org.deathdric.ultimatecatbattle.model.AttackStatusEffect
-import org.deathdric.ultimatecatbattle.model.DelayEffect
-import org.deathdric.ultimatecatbattle.model.StatusEffect
-import org.deathdric.ultimatecatbattle.model.StatusEffectType
-import org.deathdric.ultimatecatbattle.model.TargetType
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.AttackActionTemplate
+import org.deathdric.ultimatecatbattle.model.game.AttackDamageRange
+import org.deathdric.ultimatecatbattle.model.game.AttackStatusEffect
+import org.deathdric.ultimatecatbattle.model.game.DelayEffect
+import org.deathdric.ultimatecatbattle.model.game.StatusEffect
+import org.deathdric.ultimatecatbattle.model.game.StatusEffectType
+import org.deathdric.ultimatecatbattle.model.game.TargetType
 
 object AttackRepository {
     private val dragonFist = AttackActionTemplate (

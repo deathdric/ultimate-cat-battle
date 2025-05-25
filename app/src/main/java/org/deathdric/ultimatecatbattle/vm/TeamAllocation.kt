@@ -1,12 +1,12 @@
 package org.deathdric.ultimatecatbattle.vm
 
-import org.deathdric.ultimatecatbattle.model.Power
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerType
-import org.deathdric.ultimatecatbattle.model.TeamId
-import org.deathdric.ultimatecatbattle.model.allComputerTeams
-import org.deathdric.ultimatecatbattle.model.allPlayerTeams
-import org.deathdric.ultimatecatbattle.model.allPlayerTypes
+import org.deathdric.ultimatecatbattle.model.game.Power
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.TeamId
+import org.deathdric.ultimatecatbattle.model.game.allComputerTeams
+import org.deathdric.ultimatecatbattle.model.game.allPlayerTeams
+import org.deathdric.ultimatecatbattle.model.game.allPlayerTypes
 import java.util.stream.Collectors
 
 data class PlayerKey(val playerType: PlayerType, val playerId: PlayerId? = null)

@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 enum class TeamId(val isComputer: Boolean) {
     BALL_GREEN(false),

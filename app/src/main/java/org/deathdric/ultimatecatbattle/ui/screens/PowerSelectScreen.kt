@@ -26,8 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.PlayerType
-import org.deathdric.ultimatecatbattle.model.Power
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.Power
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.icon
 import org.deathdric.ultimatecatbattle.ui.name

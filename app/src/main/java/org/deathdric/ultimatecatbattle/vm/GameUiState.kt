@@ -2,14 +2,14 @@ package org.deathdric.ultimatecatbattle.vm
 
 import androidx.annotation.StringRes
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.AttackActionPreview
-import org.deathdric.ultimatecatbattle.model.AttackActionResult
-import org.deathdric.ultimatecatbattle.model.Game
-import org.deathdric.ultimatecatbattle.model.Player
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.SupportAction
-import org.deathdric.ultimatecatbattle.model.SupportActionResult
-import org.deathdric.ultimatecatbattle.model.Team
+import org.deathdric.ultimatecatbattle.model.game.AttackActionPreview
+import org.deathdric.ultimatecatbattle.model.game.AttackActionResult
+import org.deathdric.ultimatecatbattle.model.game.Game
+import org.deathdric.ultimatecatbattle.model.game.Player
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.SupportAction
+import org.deathdric.ultimatecatbattle.model.game.SupportActionResult
+import org.deathdric.ultimatecatbattle.model.game.Team
 
 enum class GameStatus {
     INTRO,

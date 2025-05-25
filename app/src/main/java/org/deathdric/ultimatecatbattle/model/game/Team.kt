@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 data class Team(val players: List<Player>, val id: TeamId) {
     val isAlive get() = players.stream().anyMatch { it.isAlive }

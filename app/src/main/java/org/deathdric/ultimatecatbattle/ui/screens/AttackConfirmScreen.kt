@@ -29,11 +29,11 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.AttackAction
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.DelayEffect
-import org.deathdric.ultimatecatbattle.model.TargetType
-import org.deathdric.ultimatecatbattle.model.TargetedAttackActionPreview
+import org.deathdric.ultimatecatbattle.model.game.AttackAction
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.DelayEffect
+import org.deathdric.ultimatecatbattle.model.game.TargetType
+import org.deathdric.ultimatecatbattle.model.game.TargetedAttackActionPreview
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.aliveIcon
 import org.deathdric.ultimatecatbattle.ui.icon

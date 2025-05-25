@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 class FakeNumberGenerator(private val setNumbers: List<Int>) : NumberGenerator {
     private var curIndex = 0

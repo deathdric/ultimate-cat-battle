@@ -1,11 +1,11 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 data class SupportActionResult (
     val targets: List<Player>,
     val statusEffect: List<StatusEffect>
 )
 
-fun SupportActionTemplate.toSupportAction() : SupportAction {
+fun SupportActionTemplate.toSupportAction(nextAvailable : Int = 0) : SupportAction {
     return SupportAction(
         this.id,
         this.targetType,
@@ -13,7 +13,8 @@ fun SupportActionTemplate.toSupportAction() : SupportAction {
         ArrayList(this.otherEffects),
         this.delay,
         this.duration,
-        this.coolDown
+        this.coolDown,
+        nextAvailable
     )
 }
 
@@ -24,16 +25,15 @@ data class SupportAction (
     val otherEffects: List<StatusEffect>,
     val delay: Int,
     val duration: Int,
-    val coolDown: Int = 0
+    val coolDown: Int = 0,
+    var nextAvailable: Int = 0
 ) {
-    var nextAvailable = 0
-        private set;
 
     fun isAvailable(curTime: Int) : Boolean {
         return nextAvailable <= curTime
     }
 
-    fun updateAvailability(curTime: Int) {
+    private fun updateAvailability(curTime: Int) {
         nextAvailable = curTime + coolDown
     }
 

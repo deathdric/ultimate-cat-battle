@@ -1,8 +1,8 @@
 package org.deathdric.ultimatecatbattle.vm
 
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.NumberGenerator
-import org.deathdric.ultimatecatbattle.model.RandomNumberGenerator
+import org.deathdric.ultimatecatbattle.model.game.NumberGenerator
+import org.deathdric.ultimatecatbattle.model.game.RandomNumberGenerator
 
 open class QuoteGenerator(private val allCitations: List<Int>) {
     fun pickRandomQuote(numberGenerator: NumberGenerator = RandomNumberGenerator()) : Int {

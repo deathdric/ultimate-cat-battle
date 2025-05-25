@@ -34,8 +34,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.TeamId
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.TeamId
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.aliveIcon
 import org.deathdric.ultimatecatbattle.ui.icon
@@ -282,8 +282,8 @@ fun TeamSelectScreen(
 
 @Composable
 fun AvailableTeamImage(imageSize: Dp, imagePadding: Dp, availableTeam: TeamId,
-                         teamAllocationState: TeamAllocationState,
-                         onClick: () -> Unit) {
+                       teamAllocationState: TeamAllocationState,
+                       onClick: () -> Unit) {
     var background = Color.Transparent
     var alpha = 0.6f
     if (teamAllocationState.teamAllocation.teamId == availableTeam) {

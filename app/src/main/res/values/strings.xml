@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">UltimateCatBattle</string>
     <string name="main_title" translatable="false">Ultimate Cat Battle</string>
     <string name="copyright_notice" translatable="false">Copyright Deathdric 2024</string>
+    <string name="resume">Resume</string>
     <string name="one_player">1 player</string>
     <string name="two_players">2 players</string>
     <string name="three_players">3 players</string>

@@ -75,7 +75,8 @@ fun ScreenConstraints.getStartScreenDisplayOptions() : StartScreenDisplayOptions
 }
 
 @Composable
-fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState, modifier: Modifier = Modifier) {
+fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState,
+                hasSave: Boolean, modifier: Modifier = Modifier) {
     val displayOptions = screenConstraints.getStartScreenDisplayOptions();
     Row (modifier = modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
         Column (modifier = Modifier
@@ -89,6 +90,13 @@ fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBatt
                 HelpIcon(onClick = { viewModel.toggleContextHelp(true) }, size = displayOptions.helpIconSize, modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp))
             }
             Column(modifier = Modifier.fillMaxHeight().defaultMinSize(minWidth = 200.dp), verticalArrangement = Arrangement.SpaceEvenly) {
+                if (hasSave) {
+                    SimpleButton(
+                        onClick = { viewModel.loadGame() },
+                        sizeMode = displayOptions.buttonSizeMode,
+                        text = stringResource(R.string.resume)
+                    )
+                }
                 SimpleButton(onClick = { viewModel.startPlayerSelection(1) }, sizeMode = displayOptions.buttonSizeMode, text = stringResource(id = R.string.one_player))
                 SimpleButton(onClick = { viewModel.startPlayerSelection(2) }, sizeMode = displayOptions.buttonSizeMode, text = stringResource(id = R.string.two_players))
                 SimpleButton(onClick = { viewModel.startPlayerSelection(3) }, sizeMode = displayOptions.buttonSizeMode, text = stringResource(id = R.string.three_players))
@@ -152,10 +160,21 @@ fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBatt
 }
 
 @Composable
+@Preview(
+    showSystemUi = false,
+    device = "spec:width=560dp,height=330dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+)
+fun SmallStartScreenPreview() {
+    val viewModel = UltimateCatBattleViewModel()
+    val uiState = viewModel.uiState.collectAsState().value
+    StartScreen(screenConstraints = ScreenConstraints(560.dp, 300.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
+}
+
+@Composable
 @Preview(showSystemUi = true,
     device = "spec:width=800dp,height=400dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape")
 fun StartScreenPreview() {
     val viewModel = UltimateCatBattleViewModel()
     val uiState = viewModel.uiState.collectAsState().value
-    StartScreen(ScreenConstraints(720.dp, 360.dp), UltimateCatBattleViewModel(), uiState, Modifier.screenModifier())
+    StartScreen(ScreenConstraints(720.dp, 360.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
 }

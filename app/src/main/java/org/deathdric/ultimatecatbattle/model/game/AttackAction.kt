@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 data class AttackStatusEffect (
     val chance: Int,
@@ -46,7 +46,7 @@ data class AttackActionPreview (
     val targetedPreviews: List<TargetedAttackActionPreview>
 )
 
-fun AttackActionTemplate.toAttackAction(teamRatio: Int, opponentCount: Int) : AttackAction {
+fun AttackActionTemplate.toAttackAction(teamRatio: Int, opponentCount: Int, nextAvailable: Int = 0) : AttackAction {
     val damageRange = this.damage[opponentCount] ?: this.defaultDamageRange
     var minDamage = damageRange.minDamage
     var maxDamage = damageRange.maxDamage
@@ -67,7 +67,8 @@ fun AttackActionTemplate.toAttackAction(teamRatio: Int, opponentCount: Int) : At
         delay = this.delay,
         coolDown = this.coolDown,
         statusEffect = this.statusEffect,
-        delayEffect = this.delayEffect
+        delayEffect = this.delayEffect,
+        nextAvailable = nextAvailable
     )
 }
 
@@ -81,10 +82,9 @@ data class AttackAction (
     val delay: Int,
     val coolDown: Int = 0,
     val statusEffect: AttackStatusEffect? = null,
-    val delayEffect: DelayEffect? = null
+    val delayEffect: DelayEffect? = null,
+    var nextAvailable: Int = 0
 ) {
-    var nextAvailable = 0
-        private set;
 
     fun isAvailable(curTime: Int) : Boolean {
         return nextAvailable <= curTime
@@ -165,7 +165,8 @@ data class AttackAction (
             } else {
                 resultList.add(
                     TargetedAttackActionResult(previewTarget.target,
-                    AttackSuccessMode.FAILURE)
+                    AttackSuccessMode.FAILURE
+                    )
                 )
             }
 

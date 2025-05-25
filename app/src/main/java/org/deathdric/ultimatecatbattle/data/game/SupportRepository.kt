@@ -1,10 +1,10 @@
-package org.deathdric.ultimatecatbattle.data
+package org.deathdric.ultimatecatbattle.data.game
 
-import org.deathdric.ultimatecatbattle.model.StatusEffect
-import org.deathdric.ultimatecatbattle.model.StatusEffectType
-import org.deathdric.ultimatecatbattle.model.SupportActionId
-import org.deathdric.ultimatecatbattle.model.SupportActionTemplate
-import org.deathdric.ultimatecatbattle.model.TargetType
+import org.deathdric.ultimatecatbattle.model.game.StatusEffect
+import org.deathdric.ultimatecatbattle.model.game.StatusEffectType
+import org.deathdric.ultimatecatbattle.model.game.SupportActionId
+import org.deathdric.ultimatecatbattle.model.game.SupportActionTemplate
+import org.deathdric.ultimatecatbattle.model.game.TargetType
 
 object SupportRepository {
 

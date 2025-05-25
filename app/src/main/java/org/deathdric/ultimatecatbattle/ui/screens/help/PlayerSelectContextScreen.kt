@@ -24,8 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.screens.PlayerSelectScreenDisplayOptions
 import org.deathdric.ultimatecatbattle.ui.screens.PlayerSelectScreenIconArrangeMode

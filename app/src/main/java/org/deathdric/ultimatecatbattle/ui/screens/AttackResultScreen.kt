@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -41,11 +42,11 @@ import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.AttackActionResult
-import org.deathdric.ultimatecatbattle.model.AttackSuccessMode
-import org.deathdric.ultimatecatbattle.model.FakeNumberGenerator
-import org.deathdric.ultimatecatbattle.model.toStatusEffects
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.AttackActionResult
+import org.deathdric.ultimatecatbattle.model.game.AttackSuccessMode
+import org.deathdric.ultimatecatbattle.model.game.FakeNumberGenerator
+import org.deathdric.ultimatecatbattle.model.game.toStatusEffects
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.fullImage
 import org.deathdric.ultimatecatbattle.ui.icon

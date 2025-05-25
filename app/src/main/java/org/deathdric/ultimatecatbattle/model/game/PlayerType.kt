@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 enum class PlayerType (val isComputer: Boolean) {
     PLAYER1(false),

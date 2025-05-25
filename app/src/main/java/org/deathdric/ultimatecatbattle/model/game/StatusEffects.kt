@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 fun generateStatusModifier(effects: List<StatusEffect>, expires: Int) : StatusModifier {
     var attack = 0

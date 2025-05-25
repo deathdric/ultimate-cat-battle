@@ -38,8 +38,8 @@ import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.TargetType
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.TargetType
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.fullImage
 import org.deathdric.ultimatecatbattle.ui.icon

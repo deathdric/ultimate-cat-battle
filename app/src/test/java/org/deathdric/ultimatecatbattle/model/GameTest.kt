@@ -1,5 +1,12 @@
 package org.deathdric.ultimatecatbattle.model
 
+import org.deathdric.ultimatecatbattle.model.game.Game
+import org.deathdric.ultimatecatbattle.model.game.Player
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.TargetType
+import org.deathdric.ultimatecatbattle.model.game.Team
+import org.deathdric.ultimatecatbattle.model.game.TeamId
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

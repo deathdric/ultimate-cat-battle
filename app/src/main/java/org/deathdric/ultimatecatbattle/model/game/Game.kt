@@ -1,11 +1,11 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 import java.util.Optional
 import java.util.stream.Collectors
 
-class Game(val teams: List<Team>) {
+class Game(val teams: List<Team>, initTime : Int = 0) {
 
-    var curTime = 0
+    var curTime = initTime
         private set
 
     val players: List<Player> = teams.stream().flatMap { it.players.stream() }.collect(Collectors.toList())

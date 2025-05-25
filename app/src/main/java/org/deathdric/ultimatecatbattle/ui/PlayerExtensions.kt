@@ -2,14 +2,14 @@ package org.deathdric.ultimatecatbattle.ui
 
 import androidx.compose.ui.graphics.Color
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.Player
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerType
-import org.deathdric.ultimatecatbattle.model.Power
-import org.deathdric.ultimatecatbattle.model.StatusEffectType
-import org.deathdric.ultimatecatbattle.model.SupportActionId
-import org.deathdric.ultimatecatbattle.model.TeamId
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.Player
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.Power
+import org.deathdric.ultimatecatbattle.model.game.StatusEffectType
+import org.deathdric.ultimatecatbattle.model.game.SupportActionId
+import org.deathdric.ultimatecatbattle.model.game.TeamId
 
 fun PlayerId.aliveIcon() : Int {
     return when(this) {

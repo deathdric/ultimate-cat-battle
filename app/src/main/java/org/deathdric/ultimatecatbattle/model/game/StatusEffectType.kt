@@ -1,4 +1,4 @@
-package org.deathdric.ultimatecatbattle.model
+package org.deathdric.ultimatecatbattle.model.game
 
 enum class StatusEffectType (val minValue: Int, val maxValue: Int, val statusFunction : (StatusModifier) -> Int) {
     ATTACK(-50, 50,  { it.attack }),

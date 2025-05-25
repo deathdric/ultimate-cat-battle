@@ -1,27 +1,38 @@
 package org.deathdric.ultimatecatbattle.vm
 
+import android.content.Context
+import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.AttackActionId
-import org.deathdric.ultimatecatbattle.model.AttackActionPreview
-import org.deathdric.ultimatecatbattle.model.ComputerMove
-import org.deathdric.ultimatecatbattle.model.ComputerMoveType
-import org.deathdric.ultimatecatbattle.model.Power
-import org.deathdric.ultimatecatbattle.model.Game
-import org.deathdric.ultimatecatbattle.model.Player
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerType
-import org.deathdric.ultimatecatbattle.model.RandomNumberGenerator
-import org.deathdric.ultimatecatbattle.model.SupportAction
-import org.deathdric.ultimatecatbattle.model.SupportActionId
-import org.deathdric.ultimatecatbattle.model.TargetType
-import org.deathdric.ultimatecatbattle.model.TeamId
-import org.deathdric.ultimatecatbattle.model.availableMoves
-import org.deathdric.ultimatecatbattle.model.createNewGame
-import org.deathdric.ultimatecatbattle.model.getAlgorithm
+import org.deathdric.ultimatecatbattle.data.save.GAME_SAVE_TAG
+import org.deathdric.ultimatecatbattle.data.save.GameSaveConverter
+import org.deathdric.ultimatecatbattle.data.save.GameSaveManager
+import org.deathdric.ultimatecatbattle.model.game.AttackActionId
+import org.deathdric.ultimatecatbattle.model.game.AttackActionPreview
+import org.deathdric.ultimatecatbattle.model.game.ComputerMove
+import org.deathdric.ultimatecatbattle.model.game.ComputerMoveType
+import org.deathdric.ultimatecatbattle.model.game.Game
+import org.deathdric.ultimatecatbattle.model.game.Player
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.Power
+import org.deathdric.ultimatecatbattle.model.game.RandomNumberGenerator
+import org.deathdric.ultimatecatbattle.model.game.SupportAction
+import org.deathdric.ultimatecatbattle.model.game.SupportActionId
+import org.deathdric.ultimatecatbattle.model.game.TargetType
+import org.deathdric.ultimatecatbattle.model.game.TeamId
+import org.deathdric.ultimatecatbattle.model.game.availableMoves
+import org.deathdric.ultimatecatbattle.model.game.createNewGame
+import org.deathdric.ultimatecatbattle.model.game.getAlgorithm
+import java.io.File
+import java.io.FileWriter
+
 
 class UltimateCatBattleViewModel: ViewModel() {
 
@@ -31,6 +42,7 @@ class UltimateCatBattleViewModel: ViewModel() {
     private var powerAllocation: MutableMap<PlayerType, Power> = createPowerAllocations(characterAllocation.values.toList())
     private var game: Game? = null
     private var numberGenerator = RandomNumberGenerator()
+    private var gameSaveManager : GameSaveManager? = null
 
     private fun initialState(): UltimateCatBattleUiState {
         return UltimateCatBattleUiState(
@@ -44,6 +56,9 @@ class UltimateCatBattleViewModel: ViewModel() {
     private val _uiState = MutableStateFlow(initialState())
     val uiState: StateFlow<UltimateCatBattleUiState> = _uiState
 
+    fun initSaveManager(gameSaveManager: GameSaveManager) {
+        this.gameSaveManager = gameSaveManager
+    }
 
     fun startupSwitchCat() {
         _uiState.update { previous ->
@@ -166,7 +181,7 @@ class UltimateCatBattleViewModel: ViewModel() {
                 selectedAttack = null,
                 attackResult = null
             )
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -227,7 +242,7 @@ class UltimateCatBattleViewModel: ViewModel() {
                     selectedAttack = null,
                     attackResult = null
                 )
-                previous.copy(gameState = gameState)
+                previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
             }
         }
     }
@@ -242,7 +257,7 @@ class UltimateCatBattleViewModel: ViewModel() {
                 selectedTarget = attackActionSimulation.targetedPreviews[0].target.id
             )
             val gameState = previous.gameState!!.copy(status = GameStatus.ATTACK_CONFIRM, selectedAttack = attackActionState)
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -257,7 +272,7 @@ class UltimateCatBattleViewModel: ViewModel() {
                 availableTargets = availableTargets.map { it.id }
             )
             val gameState = previous.gameState!!.copy(status = GameStatus.SUPPORT_CONFIRM, selectedSupport = supportSelectionState)
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -265,7 +280,7 @@ class UltimateCatBattleViewModel: ViewModel() {
         _uiState.update { previous ->
             val attackActionState = previous.gameState!!.selectedAttack!!.copy(selectedTarget = playerId)
             val gameState = previous.gameState.copy(status = GameStatus.ATTACK_CONFIRM, selectedAttack = attackActionState)
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -273,7 +288,7 @@ class UltimateCatBattleViewModel: ViewModel() {
         _uiState.update { previous ->
             val supportActionState = previous.gameState!!.selectedSupport!!.copy(selectedTarget = playerId)
             val gameState = previous.gameState.copy(status = GameStatus.SUPPORT_CONFIRM, selectedSupport = supportActionState)
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -293,7 +308,7 @@ class UltimateCatBattleViewModel: ViewModel() {
 
             val gameState = previous.gameState.copy(status = GameStatus.ATTACK_EXECUTION,
                 selectedAttack = selectedAttack.copy(actionExecutionQuote = generateAttackQuote(selectedAttack.preview)))
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -309,7 +324,7 @@ class UltimateCatBattleViewModel: ViewModel() {
 
             val gameState = previous.gameState.copy(status = GameStatus.SUPPORT_EXECUTION,
                 selectedSupport = selectedSupport.copy(supportExecutionQuote = generateSupportQuote(selectedSupport.supportAction, selectedTarget = selectedSupport.selectedTarget, previous.gameState.playerInfo.activePlayer.player.id)))
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -331,7 +346,7 @@ class UltimateCatBattleViewModel: ViewModel() {
                 selectedAttack = previous.gameState!!.selectedAttack!!,
                 attackResult = attackResult
             )
-            previous.copy(gameState = gameUiState)
+            previous.copy(gameState = gameUiState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
@@ -353,26 +368,56 @@ class UltimateCatBattleViewModel: ViewModel() {
                 selectedSupport = previous.gameState!!.selectedSupport!!,
                 supportResult = supportResult
             )
-            previous.copy(gameState = gameUiState)
+            previous.copy(gameState = gameUiState, rootUiStatus = RootUiStatus.MAIN_GAME)
+        }
+    }
+    fun loadGame() {
+        val curSaveManager = gameSaveManager
+        requireNotNull(curSaveManager)
+        try {
+            game = curSaveManager.loadGame()
+        } catch (ex: Exception) {
+            game = null
+            Log.e(GAME_SAVE_TAG, "Could not load game", ex)
+        }
+        if (game != null) {
+            beginNextAction()
         }
     }
 
     fun endAction() {
+        try {
+            val curSaveManager = gameSaveManager
+            requireNotNull(curSaveManager)
+            if (!game!!.isGameOver) {
+                curSaveManager.saveGame(game!!)
+            }
+
+        } catch (ex: Exception) {
+            Log.e(GAME_SAVE_TAG, "Could not save game", ex)
+        }
+        beginNextAction()
+    }
+
+    fun beginNextAction() {
         val playerChanged = game!!.updateActivePlayer()
         game!!.players.forEach { it.applyEffectExpiration(game!!.curTime) }
         if (game!!.isGameOver) {
+            val curSaveManager = gameSaveManager
+            requireNotNull(curSaveManager)
+            curSaveManager.deleteSave()
             _uiState.update { previous ->
                 val gameState = GameUiState(
                     playerInfo = game!!.toPlayerInfo(),
                     status = GameStatus.GAME_OVER,
-                    startTurnQuote = previous.gameState!!.startTurnQuote,
+                    startTurnQuote = StartTurnQuotes.pickRandomQuote(numberGenerator),
                     selectedAttack = null,
                     selectedSupport = null,
                     attackResult = null,
                     supportResult = null,
                     gameOverInfo = game!!.toGameOverInfo(GameOverQuotes.pickRandomQuote(this.numberGenerator))
                 )
-                previous.copy(gameState = gameState)
+                previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
             }
         } else if (playerChanged) {
             displayNewTurn()
@@ -381,18 +426,17 @@ class UltimateCatBattleViewModel: ViewModel() {
         }
     }
 
-
     fun cancelAttack() {
         _uiState.update { previous ->
             val gameState = previous.gameState!!.copy(status = GameStatus.MOVE_SELECT, selectedAttack = null)
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 
     fun cancelSupport() {
         _uiState.update { previous ->
             val gameState = previous.gameState!!.copy(status = GameStatus.MOVE_SELECT, selectedSupport = null)
-            previous.copy(gameState = gameState)
+            previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
 

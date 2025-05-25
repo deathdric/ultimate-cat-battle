@@ -1,8 +1,8 @@
 package org.deathdric.ultimatecatbattle.vm
 
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerType
-import org.deathdric.ultimatecatbattle.model.Power
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.Power
 
 data class CharacterAllocation(val playerId: PlayerId, val enable: Boolean, val playerType: PlayerType)
 

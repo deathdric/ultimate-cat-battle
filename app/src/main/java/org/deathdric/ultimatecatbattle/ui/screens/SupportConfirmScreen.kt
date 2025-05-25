@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.TargetType
+import org.deathdric.ultimatecatbattle.model.game.TargetType
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.aliveIcon
 import org.deathdric.ultimatecatbattle.ui.icon

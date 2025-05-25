@@ -36,8 +36,8 @@ import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.SupportAction
-import org.deathdric.ultimatecatbattle.model.SupportActionResult
+import org.deathdric.ultimatecatbattle.model.game.SupportAction
+import org.deathdric.ultimatecatbattle.model.game.SupportActionResult
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.fullImage
 import org.deathdric.ultimatecatbattle.ui.icon
@@ -91,9 +91,9 @@ fun ScreenConstraints.toSupportResultScreenDisplayOptions(): SupportResultScreen
 
 @Composable
 fun SupportResultScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBattleViewModel,
-                           playerInfo: GamePlayerInfo,
-                           supportResult: SupportActionResult,
-                           supportSelectionState: SupportSelectionState, modifier: Modifier = Modifier
+                        playerInfo: GamePlayerInfo,
+                        supportResult: SupportActionResult,
+                        supportSelectionState: SupportSelectionState, modifier: Modifier = Modifier
 ) {
     val displayOptions = screenConstraints.toSupportResultScreenDisplayOptions()
     val currentPlayer = playerInfo.activePlayer.player

@@ -36,11 +36,11 @@ import androidx.compose.ui.unit.coerceAtMost
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.PlayerId
-import org.deathdric.ultimatecatbattle.model.PlayerType
-import org.deathdric.ultimatecatbattle.model.Team
-import org.deathdric.ultimatecatbattle.model.TeamId
-import org.deathdric.ultimatecatbattle.model.createNewPlayer
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.Team
+import org.deathdric.ultimatecatbattle.model.game.TeamId
+import org.deathdric.ultimatecatbattle.model.game.createNewPlayer
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.fullImage
 import org.deathdric.ultimatecatbattle.ui.name

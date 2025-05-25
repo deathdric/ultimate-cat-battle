@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import org.deathdric.ultimatecatbattle.R
-import org.deathdric.ultimatecatbattle.model.StatusEffect
+import org.deathdric.ultimatecatbattle.model.game.StatusEffect
 import org.deathdric.ultimatecatbattle.ui.icon
 import org.deathdric.ultimatecatbattle.ui.name
 import org.deathdric.ultimatecatbattle.ui.toolkit.StandardText

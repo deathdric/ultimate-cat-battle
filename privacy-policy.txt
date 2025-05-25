@@ -2,7 +2,7 @@ Ultimate Cat Battle privacy policy
 
 Ultimate Cat Battle :
 - Does not use any connectivity to the internet
-- Does not read/store files on your device
+- Does not read/store files on your device outside of game save files
 - Does not require any specific permission on your device
 - Does not have ads, let alone targeted ones
 - Does not use telemetry

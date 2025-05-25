@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="resume">Continuer</string>
     <string name="one_player">1 joueur</string>
     <string name="two_players">2 joueurs</string>
     <string name="three_players">3 joueurs</string>

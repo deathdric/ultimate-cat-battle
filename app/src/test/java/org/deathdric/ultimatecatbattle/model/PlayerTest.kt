@@ -1,5 +1,11 @@
 package org.deathdric.ultimatecatbattle.model
 
+import org.deathdric.ultimatecatbattle.model.game.Player
+import org.deathdric.ultimatecatbattle.model.game.PlayerId
+import org.deathdric.ultimatecatbattle.model.game.PlayerType
+import org.deathdric.ultimatecatbattle.model.game.StatusEffect
+import org.deathdric.ultimatecatbattle.model.game.StatusEffectType
+import org.deathdric.ultimatecatbattle.model.game.generateStatusModifier
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
