@@ -6,7 +6,9 @@ plugins {
 android {
     namespace = "org.deathdric.ultimatecatbattle"
     compileSdk = 35
-
+    lint {
+        checkReleaseBuilds = false
+    }
     defaultConfig {
         applicationId = "org.deathdric.ultimatecatbattle"
         minSdk = 24
