@@ -1,5 +1,6 @@
 package org.deathdric.ultimatecatbattle.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,12 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.deathdric.ultimatecatbattle.R
 import org.deathdric.ultimatecatbattle.ui.ScreenConstraints
 import org.deathdric.ultimatecatbattle.ui.toolkit.ElementSizeMode
 import org.deathdric.ultimatecatbattle.ui.toolkit.HelpIcon
+import org.deathdric.ultimatecatbattle.ui.toolkit.ResumeIcon
 import org.deathdric.ultimatecatbattle.ui.toolkit.SimpleButton
 import org.deathdric.ultimatecatbattle.ui.toolkit.ToggledImage
 import org.deathdric.ultimatecatbattle.ui.toolkit.screenModifier
@@ -45,7 +48,9 @@ import org.deathdric.ultimatecatbattle.vm.UltimateCatBattleViewModel
 data class StartScreenDisplayOptions (
     val helpIconSize: Dp,
     val buttonSizeMode: ElementSizeMode,
-    val mainPanelRatio: Float
+    val mainPanelRatio: Float,
+    val titleTextSize: TextUnit,
+    val mainIconSize: Dp
 )
 
 fun ScreenConstraints.getStartScreenDisplayOptions() : StartScreenDisplayOptions {
@@ -59,6 +64,16 @@ fun ScreenConstraints.getStartScreenDisplayOptions() : StartScreenDisplayOptions
         80.dp
     }
 
+    val titleSize = if (maxHeight < 500.dp) {
+        34.sp
+    } else if (maxWidth < 800.dp) {
+        40.sp
+    } else if (maxWidth < 950.dp) {
+        46.sp
+    } else {
+        54.sp
+    }
+
     val buttonSizeMode = if (this.maxHeight < 400.dp) {
         ElementSizeMode.NORMAL
     } else if (this.maxHeight < 650.dp) {
@@ -67,17 +82,29 @@ fun ScreenConstraints.getStartScreenDisplayOptions() : StartScreenDisplayOptions
         ElementSizeMode.VERY_LARGE
     }
 
+    val mainIconSize = if (this.maxHeight < 500.dp) {
+        100.dp
+    } else if (maxWidth < 800.dp) {
+        120.dp
+    } else if (maxWidth < 950.dp) {
+        150.dp
+    } else {
+        200.dp
+    }
+
     return StartScreenDisplayOptions (
         helpIconSize = menuIconSize,
         buttonSizeMode = buttonSizeMode,
-        mainPanelRatio = if (this.maxWidth > 800.dp) 3f else 2f
+        mainPanelRatio = if (this.maxWidth > 800.dp) 3f else 2f,
+        titleTextSize = titleSize,
+        mainIconSize = mainIconSize
     )
 }
 
 @Composable
 fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBattleViewModel, uiState: UltimateCatBattleUiState,
                 hasSave: Boolean, modifier: Modifier = Modifier) {
-    val displayOptions = screenConstraints.getStartScreenDisplayOptions();
+    val displayOptions = screenConstraints.getStartScreenDisplayOptions()
     Row (modifier = modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
         Column (modifier = Modifier
             .weight(1f)
@@ -87,16 +114,12 @@ fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBatt
             verticalArrangement = Arrangement.Top
         ) {
             Row(horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
+                if (hasSave) {
+                    ResumeIcon(onClick = { viewModel.loadGame() }, size = displayOptions.helpIconSize, modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp))
+                }
                 HelpIcon(onClick = { viewModel.toggleContextHelp(true) }, size = displayOptions.helpIconSize, modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp))
             }
             Column(modifier = Modifier.fillMaxHeight().defaultMinSize(minWidth = 200.dp), verticalArrangement = Arrangement.SpaceEvenly) {
-                if (hasSave) {
-                    SimpleButton(
-                        onClick = { viewModel.loadGame() },
-                        sizeMode = displayOptions.buttonSizeMode,
-                        text = stringResource(R.string.resume)
-                    )
-                }
                 SimpleButton(onClick = { viewModel.startPlayerSelection(1) }, sizeMode = displayOptions.buttonSizeMode, text = stringResource(id = R.string.one_player))
                 SimpleButton(onClick = { viewModel.startPlayerSelection(2) }, sizeMode = displayOptions.buttonSizeMode, text = stringResource(id = R.string.two_players))
                 SimpleButton(onClick = { viewModel.startPlayerSelection(3) }, sizeMode = displayOptions.buttonSizeMode, text = stringResource(id = R.string.three_players))
@@ -115,7 +138,7 @@ fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBatt
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily.SansSerif,
-                fontSize = 36.sp,
+                fontSize = displayOptions.titleTextSize,
                 fontStyle = FontStyle.Italic,
                 style = TextStyle(
                     shadow = Shadow(Color.Black, offset = Offset(-2f, 2f))
@@ -128,15 +151,15 @@ fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBatt
             Row (horizontalArrangement = Arrangement.Center) {
                 ToggledImage(active = uiState.startScreenState.catClicked,
                     activeImageId = R.drawable.cat_loss, inactiveImageId = R.drawable.cat2,
-                    modifier = Modifier.size(100.dp),
+                    modifier = Modifier.size(displayOptions.mainIconSize),
                     onClick = { viewModel.startupSwitchCat() })
                 Image(painter = painterResource(id = R.drawable.damage), contentDescription = null,
                     modifier = Modifier
-                        .padding(top = 25.dp)
-                        .size(100.dp))
+                        .padding(top = (displayOptions.mainIconSize / 4))
+                        .size(displayOptions.mainIconSize))
                 ToggledImage(active = uiState.startScreenState.penguinClicked,
                     activeImageId = R.drawable.penguin_loss, inactiveImageId = R.drawable.penguin1,
-                    modifier = Modifier.size(100.dp),
+                    modifier = Modifier.size(displayOptions.mainIconSize),
                     onClick = { viewModel.startupSwitchPenguin() })
             }
             Row(modifier = Modifier
@@ -159,10 +182,11 @@ fun StartScreen(screenConstraints: ScreenConstraints, viewModel: UltimateCatBatt
     }
 }
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 @Preview(
     showSystemUi = false,
-    device = "spec:width=560dp,height=330dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+    device = "spec:width=560dp,height=300dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
 )
 fun SmallStartScreenPreview() {
     val viewModel = UltimateCatBattleViewModel()
@@ -170,11 +194,36 @@ fun SmallStartScreenPreview() {
     StartScreen(screenConstraints = ScreenConstraints(560.dp, 300.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
 }
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 @Preview(showSystemUi = true,
     device = "spec:width=800dp,height=400dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape")
 fun StartScreenPreview() {
     val viewModel = UltimateCatBattleViewModel()
     val uiState = viewModel.uiState.collectAsState().value
-    StartScreen(ScreenConstraints(720.dp, 360.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
+    StartScreen(ScreenConstraints(800.dp, 400.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
+}
+
+@SuppressLint("ViewModelConstructorInComposable")
+@Composable
+@Preview(
+    showSystemUi = false,
+    device = "spec:width=900dp,height=330dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+)
+fun StartScreenPreviewLargeWidth() {
+    val viewModel = UltimateCatBattleViewModel()
+    val uiState = viewModel.uiState.collectAsState().value
+    StartScreen(ScreenConstraints(900.dp, 330.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
+}
+
+@SuppressLint("ViewModelConstructorInComposable")
+@Composable
+@Preview(
+    showSystemUi = false,
+    device = "spec:width=1280dp,height=701dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+)
+fun StartScreenPreviewLargeSize() {
+    val viewModel = UltimateCatBattleViewModel()
+    val uiState = viewModel.uiState.collectAsState().value
+    StartScreen(ScreenConstraints(1280.dp, 701.dp), UltimateCatBattleViewModel(), uiState, true, Modifier.screenModifier())
 }

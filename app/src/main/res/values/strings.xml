@@ -48,7 +48,7 @@
     <string name="support_guard">Guard</string>
     <string name="support_speed">Speed</string>
     <string name="go_home">Back to main screen</string>
-    <string name="go_home_confirm">Do you want to end the game and go back to the main screen ?</string>
+    <string name="go_home_confirm">Do you want to stop the game and go back to the main screen ?</string>
     <string name="new_game">Let the battle begin !</string>
     <string name="objective_description">Reduce your opponents hit points to 0</string>
     <string name="objective_description2">When you turn begins, choose an action for your character in order to either inflict damage to your enemies or to improve your stats.</string>
@@ -96,7 +96,7 @@
     <string name="back">Back</string>
     <string name="back_to_title_screen">Back to title screen</string>
     <string name="game_over_quote_1">The fight is finally over. %s is taking a well deserved rest …</string>
-    <string name="game_over_quote_2">%s\' heroic deeds will be passed on future generations.</string>
+    <string name="game_over_quote_2">%s\'s heroic deeds will be passed on future generations.</string>
     <string name="result_attack_missed">%s dodges by a hair\'s breadth !</string>
     <string name="result_damage_standard">%s takes %d damage.</string>
     <string name="result_damage_critical">%s is critically hit for %d damage.</string>
@@ -125,6 +125,7 @@
     <string name="help_start_screen_paragraph_1">Ultimate Cat Battle is a turn-based fighting game featuring a cat, a penguin, and others.</string>
     <string name="help_start_screen_paragraph_2">You can play solo against the computer or with other players on the same device, up to 4 players.</string>
     <string name="help_start_screen_paragraph_3">To start a game, first select the number of players by clicking the appropriate button.</string>
+    <string name="help_start_screen_paragraph_4">If you want to resume your last game, press the following button :</string>
     <string name="help_player_select_screen_title">Player selection</string>
     <string name="help_player_select_screen_paragraph_1">By default, each player has a single character assigned (including the computer in single-player mode).</string>
     <string name="help_player_select_screen_paragraph_2">In this screen, you can change the character allocation and even add new characters, up to 4. If there are more characters than players, you can also assign characters to the computer.</string>

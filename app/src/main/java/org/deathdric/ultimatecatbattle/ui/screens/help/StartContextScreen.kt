@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.deathdric.ultimatecatbattle.R
+import org.deathdric.ultimatecatbattle.ui.toolkit.ResumeIcon
 import org.deathdric.ultimatecatbattle.ui.toolkit.StandardText
 
 @Composable
@@ -17,5 +18,7 @@ fun StartContextScreen(helpContextScreenDisplayOptions: HelpContextScreenDisplay
         StandardText(text = stringResource(id = R.string.help_start_screen_paragraph_1), fontSize = helpContextScreenDisplayOptions.textSize, lineHeight = helpContextScreenDisplayOptions.lineHeight, modifier = Modifier.padding(4.dp))
         StandardText(text = stringResource(id = R.string.help_start_screen_paragraph_2), fontSize = helpContextScreenDisplayOptions.textSize, lineHeight = helpContextScreenDisplayOptions.lineHeight, modifier = Modifier.padding(4.dp))
         StandardText(text = stringResource(id = R.string.help_start_screen_paragraph_3), fontSize = helpContextScreenDisplayOptions.textSize, lineHeight = helpContextScreenDisplayOptions.lineHeight, modifier = Modifier.padding(4.dp))
+        StandardText(text = stringResource(id = R.string.help_start_screen_paragraph_4), fontSize = helpContextScreenDisplayOptions.textSize, lineHeight = helpContextScreenDisplayOptions.lineHeight, modifier = Modifier.padding(4.dp))
+        ResumeIcon(onClick = { }, size = 50.dp, modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp))
     }
 }

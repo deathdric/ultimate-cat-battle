@@ -85,6 +85,19 @@ fun HelpIcon(onClick: () -> Unit, size: Dp, modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun ResumeIcon(onClick: () -> Unit, size: Dp, modifier: Modifier = Modifier) {
+    Box (modifier = modifier) {
+        Image(painter = painterResource(id = R.drawable.resume), contentDescription = stringResource(
+            id = R.string.resume
+        ),
+            modifier = Modifier
+                .padding(start = 4.dp, end = 4.dp)
+                .size(size)
+                .clickable { onClick() })
+    }
+}
+
+@Composable
 fun SimpleButton(onClick: () -> Unit, text: String, modifier: Modifier = Modifier, sizeMode: ElementSizeMode = ElementSizeMode.NORMAL,
                  containerColor : Color = colorResource(id = R.color.default_border_color), contentColor: Color = Color.White) {
     Button(onClick = onClick, modifier = modifier

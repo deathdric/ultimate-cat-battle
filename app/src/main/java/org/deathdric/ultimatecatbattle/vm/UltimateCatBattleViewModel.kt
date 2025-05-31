@@ -1,17 +1,12 @@
 package org.deathdric.ultimatecatbattle.vm
 
-import android.content.Context
 import android.util.Log
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import org.deathdric.ultimatecatbattle.R
 import org.deathdric.ultimatecatbattle.data.save.GAME_SAVE_TAG
-import org.deathdric.ultimatecatbattle.data.save.GameSaveConverter
 import org.deathdric.ultimatecatbattle.data.save.GameSaveManager
 import org.deathdric.ultimatecatbattle.model.game.AttackActionId
 import org.deathdric.ultimatecatbattle.model.game.AttackActionPreview
@@ -30,8 +25,6 @@ import org.deathdric.ultimatecatbattle.model.game.TeamId
 import org.deathdric.ultimatecatbattle.model.game.availableMoves
 import org.deathdric.ultimatecatbattle.model.game.createNewGame
 import org.deathdric.ultimatecatbattle.model.game.getAlgorithm
-import java.io.File
-import java.io.FileWriter
 
 
 class UltimateCatBattleViewModel: ViewModel() {
@@ -164,6 +157,9 @@ class UltimateCatBattleViewModel: ViewModel() {
     }
 
     fun startGame() {
+        val curSaveManager = gameSaveManager
+        requireNotNull(curSaveManager)
+        curSaveManager.deleteSave()
         game = createNewGame(characterAllocation, teamAllocation, numberGenerator, powerAllocation)
         game!!.updateActivePlayer()
         _uiState.update { previous ->
@@ -210,7 +206,7 @@ class UltimateCatBattleViewModel: ViewModel() {
                 status = GameStatus.SUPPORT_EXECUTION,
                 startTurnQuote = previous.gameState!!.startTurnQuote,
                 selectedSupport = SupportSelectionState(availableTargets = targets, supportAction = supportActionMove,
-                    selectedTarget = nextMove.actionTarget, supportExecutionQuote = generateSupportQuote(supportAction = supportActionMove,
+                    selectedTarget = nextMove.actionTarget, supportExecutionQuote = generateSupportQuote(
                         selectedTarget = nextMove.actionTarget, currentPlayer = computerPlayer.id)),
                 supportResult = null
             )
@@ -312,7 +308,7 @@ class UltimateCatBattleViewModel: ViewModel() {
         }
     }
 
-    private fun generateSupportQuote(supportAction: SupportAction, selectedTarget: PlayerId, currentPlayer: PlayerId) : Int {
+    private fun generateSupportQuote(selectedTarget: PlayerId, currentPlayer: PlayerId) : Int {
         val isSelf = selectedTarget == currentPlayer
         return if (isSelf) SupportSelfQuotes.pickRandomQuote(numberGenerator) else SupportAllyQuotes.pickRandomQuote(numberGenerator)
     }
@@ -323,7 +319,7 @@ class UltimateCatBattleViewModel: ViewModel() {
             val selectedSupport = previous.gameState!!.selectedSupport!!
 
             val gameState = previous.gameState.copy(status = GameStatus.SUPPORT_EXECUTION,
-                selectedSupport = selectedSupport.copy(supportExecutionQuote = generateSupportQuote(selectedSupport.supportAction, selectedTarget = selectedSupport.selectedTarget, previous.gameState.playerInfo.activePlayer.player.id)))
+                selectedSupport = selectedSupport.copy(supportExecutionQuote = generateSupportQuote(selectedTarget = selectedSupport.selectedTarget, previous.gameState.playerInfo.activePlayer.player.id)))
             previous.copy(gameState = gameState, rootUiStatus = RootUiStatus.MAIN_GAME)
         }
     }
