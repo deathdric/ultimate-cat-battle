@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace = "org.deathdric.ultimatecatbattle"
-    compileSdk = 35
+    compileSdk = 37
     lint {
         checkReleaseBuilds = false
     }
     defaultConfig {
         applicationId = "org.deathdric.ultimatecatbattle"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
